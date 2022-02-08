@@ -16,9 +16,6 @@ MenStore is a clothes store website for men. Specializing in office and corporat
  * **Sort items by price**
  * **Divide items by type**
  * **Searching for item**
- * **Variety of payment methods**
-    * Cash on Delivery (COD)
-    * PayPal
   
 ## `Who is the customer?`
 Shop targets on people with elegant and neat style such as students, office workers, business people, ...
