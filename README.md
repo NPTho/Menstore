@@ -18,7 +18,7 @@ MenStore is a clothing store website for men. Providing a modern perspective on 
  * **Searching for item**
   
 ## `Who is the customer?`
-Shop targets on people whose style is elegant and neat style such as students, office workers, business people, ...
+Shop targets on people whose taste toward is elegant and neat style such as students, office workers, business people, ...
 
 ## `Tools and Technologies:`
 * **Technology** :HTML, CSS, Javascript, Bootstrap, Java, Servlet, JDBC, JSP, Maven.
