@@ -1,13 +1,13 @@
 # MenStore
-MenStore is a clothes store website for men. Specializing in office and corporate products such as shirts, vests, trousers, shoes, ...Is a wise choice for those who follow a neat and polite style. Moreover,  shop also has incentive programs, accumulate bonus points, and discount events on annual holidays.
+MenStore is a clothing store website for men. Providing a modern perspective on office outfit for men such as shirts, suits, vests, trousers, shoes,... MenStore is a wise choice for those who follow a neat and polite style with a great taste. Moreover, shop also has incentive programs, accumulate bonus points, and discount events on annual holidays.
 
 ## `Features:`
 * **Login and Decentralization**
     * There is decentralization between admin and customer
-    * Customer can earn points and accumulation it when shopping and use it to get discounts
+    * Customers can earn and accumulation points when shopping then use it to get discounts
 * **CRUD Operations** like
-    * User can add product to their cart and purchase summary.
-    * User can remove product from their cart and purchase summary.
+    * Users can add products to their cart and purchase them.
+    * Users can remove product from their cart and purchase them.
     * Admin can add product to the product list.
     * Admin can edit the product details.
     * Admin can delete the product from the list.
@@ -18,7 +18,7 @@ MenStore is a clothes store website for men. Specializing in office and corporat
  * **Searching for item**
   
 ## `Who is the customer?`
-Shop targets on people with elegant and neat style such as students, office workers, business people, ...
+Shop targets on people whose taste toward elegant and neat style such as students, office workers, business people, ...
 
 ## `Tools and Technologies:`
 * **Technology** :HTML, CSS, Javascript, Bootstrap, Java, Servlet, JDBC, JSP, Maven.
@@ -30,8 +30,8 @@ Shop targets on people with elegant and neat style such as students, office work
   -   [Github](https://github.com/GiangNTSE150747), [Facebook](https://www.facebook.com/TrGiang.ne/)
 * Nguyen Hoang Duy
   -   [Github](https://github.com/GiangNTSE150747), [Facebook](https://www.facebook.com/TrGiang.ne/)
-* Nguyen Phu Tho
-  -   [Github](https://github.com/GiangNTSE150747), [Facebook](https://www.facebook.com/TrGiang.ne/)
+* Nguyen Phuoc Tho
+  -   [Github](https://github.com/NPTho), [Facebook](https://www.facebook.com/IvorEos.ne/)
 * Hai Trieu 
   -   [Github](https://github.com/GiangNTSE150747), [Facebook](https://www.facebook.com/TrGiang.ne/)
  ## `GUI (Screenshot of project):`
