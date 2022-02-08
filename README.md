@@ -31,7 +31,7 @@ Shop targets on people whose taste toward elegant and neat style such as student
 * Nguyen Hoang Duy
   -   [Github](https://github.com/GiangNTSE150747), [Facebook](https://www.facebook.com/TrGiang.ne/)
 * Nguyen Phuoc Tho
-  -   [Github](https://github.com/NPTho), [Facebook](https://www.facebook.com/IvorEos.ne/)
+  -   [Github](https://github.com/NPTho), [Facebook](https://www.facebook.com/IvorEos/)
 * Hai Trieu 
   -   [Github](https://github.com/GiangNTSE150747), [Facebook](https://www.facebook.com/TrGiang.ne/)
  ## `GUI (Screenshot of project):`
