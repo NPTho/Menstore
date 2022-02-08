@@ -34,3 +34,4 @@ Shop targets on people with elegant and neat style such as students, office work
   -   [Github](https://github.com/GiangNTSE150747), [Facebook](https://www.facebook.com/TrGiang.ne/)
 * Hai Trieu 
   -   [Github](https://github.com/GiangNTSE150747), [Facebook](https://www.facebook.com/TrGiang.ne/)
+ ## `GUI (Screenshot of project):`
