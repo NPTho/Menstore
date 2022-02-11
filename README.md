@@ -2,7 +2,7 @@
 MenStore is a clothing store website for men. Providing a modern perspective on office outfit for men such as shirts, suits, vests, trousers, shoes,... MenStore is a wise choice for those who follow a neat and polite style with a great taste. Moreover, shop also has incentive programs, accumulate bonus points, and discount events on annual holidays.
 
 ## `Features:`
-* **Login and Decentralization**
+* **Login and Privilege**
     * There is decentralization between admin and customer
     * Customers can earn and accumulation points when shopping then use it to get discounts
 * **CRUD Operations** like
