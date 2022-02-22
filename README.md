@@ -38,6 +38,8 @@ Shop targets on people whose taste toward elegant and neat style such as student
  * **Manage Pages (For admin/owner):** Simple, convenient for observation and management
    * **Dashboard**
  ![image](https://user-images.githubusercontent.com/90202401/153649322-284ca55d-7225-458f-9d32-d1649ce18bb1.png)
+   * **Voucher management**
+ ![image](https://user-images.githubusercontent.com/90202401/155060175-6e6b88d2-6677-45a4-87e7-efa7aad39096.png)
    * **Profile**
  ![image](https://user-images.githubusercontent.com/90202401/153649542-743df728-fdd5-4fba-938d-1796110f5ea3.png)
    * **Manage**
