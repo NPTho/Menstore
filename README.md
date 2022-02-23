@@ -40,8 +40,6 @@ Shop targets on people whose taste toward elegant and neat style such as student
  ![image](https://user-images.githubusercontent.com/90202401/153649322-284ca55d-7225-458f-9d32-d1649ce18bb1.png)
    * **Voucher management**
  ![image](https://user-images.githubusercontent.com/90202401/155060175-6e6b88d2-6677-45a4-87e7-efa7aad39096.png)
-   * **Profile**
- ![image](https://user-images.githubusercontent.com/90202401/153649542-743df728-fdd5-4fba-938d-1796110f5ea3.png)
    * **Manage**
  ![image](https://user-images.githubusercontent.com/90202401/153649867-11fe42ec-d540-4fb7-99bb-0146ad40fd7b.png)
 * **Web Pages (For user/customer):** Modern, good-looking to attract customers
@@ -60,4 +58,7 @@ Shop targets on people whose taste toward elegant and neat style such as student
    * **Shopping cart**
 ![image](https://user-images.githubusercontent.com/90202401/153679998-59aea7ee-941c-4425-8263-fe7a7d800be3.png)
 
-
+## `Database design:`
+* **ER Model**
+![image](https://user-images.githubusercontent.com/90202401/155354034-8f5902dc-8602-4889-becd-cef976f83ecf.png)
+ER Model with details:
