@@ -65,4 +65,7 @@ ER Model in details:
 ![image](https://user-images.githubusercontent.com/90202401/155372447-a3325502-5056-4f1a-8c7f-5b71a748e1de.png)
 * **Relational Model**
 ![image](https://user-images.githubusercontent.com/90202401/155371767-4342e55b-2fc6-4e99-89f3-d442254ccbac.png)
+## `System design(Screenshot folder):`
+![image](https://user-images.githubusercontent.com/90202401/155380530-c21bbbcc-5a33-483f-907e-fdfa5e91dde0.png)
+
 
