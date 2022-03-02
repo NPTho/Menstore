@@ -60,9 +60,9 @@ Shop targets on people whose taste toward elegant and neat style such as student
 
 ## `Database design:`
 * **ER Model**
-![image](https://user-images.githubusercontent.com/90202401/155373286-2690b6e1-1a13-4263-a9a7-2945c4982796.png)
+![image](https://user-images.githubusercontent.com/90202401/156303703-6fddce9e-ba94-44f5-b6d2-369bdb11017c.png)
 ER Model in details:
-![image](https://user-images.githubusercontent.com/90202401/155452412-e28993ae-a2fd-483d-9024-d67911effdde.png)
+![image](https://user-images.githubusercontent.com/90202401/156302655-0f34556a-ecc6-4fe0-87ea-8e194ecad0a3.png)
 * **Relational Model**
 ![image](https://user-images.githubusercontent.com/90202401/155452501-5cfcd71e-1852-427c-8ad6-d58d1da0d0e4.png)
 ## `System design(Folder tree screenshot):`
