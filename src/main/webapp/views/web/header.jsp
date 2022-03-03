@@ -32,7 +32,6 @@
                     <ul>
                         <li class="active"><a href="${pageContext.request.contextPath}/home">Home</a></li>
                         <li><a href="${pageContext.request.contextPath}/products">Product</a></li>
-                        <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
                         <div class="clear"></div>
                     </ul>
                 </div>
@@ -43,7 +42,6 @@
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
                         <li><a href="${pageContext.request.contextPath}/products">Product</a></li>
-                        <li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
                         <div class="clear"></div>
                     </ul>
                 </nav>
