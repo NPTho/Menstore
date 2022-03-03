@@ -1,10 +1,10 @@
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\Controller\common\AccessController.java
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\DAOimpl\UserDAO.java
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\Controller\admin\DataManageController.java
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\utils\DBUtils.java
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\Controller\admin\HomeController.java
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\DAO\IUserDAO.java
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\model\UserSession.java
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\Controller\web\HomeController.java
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\model\User.java
-C:\Users\MyPC\Desktop\K? Spring 2022\PRJ301\Projects\MenStore\src\main\java\com\menstore\DAOimpl\AccessManager.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\common\AccessController.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\DAOimpl\AccessManager.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\model\UserSession.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\utils\DBUtils.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\admin\DataManageController.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\admin\HomeController.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\DAO\IUserDAO.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\model\User.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\web\HomeController.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\DAOimpl\UserDAO.java
