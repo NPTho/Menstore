@@ -5,8 +5,11 @@
  */
 package com.menstore.Controller.admin;
 
+import com.menstore.DAOimpl.ProductDAO;
+import com.menstore.model.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
+import static java.util.Collections.list;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,11 +24,17 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "datamanageController", urlPatterns = {"/product"})
 public class ProductController extends HttpServlet {
 
- 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        ProductDAO productDAO = new ProductDAO();
+        List<Product> list = productDAO.list();
+
+        request.setAttribute("list", list);
+
         RequestDispatcher rd = request.getRequestDispatcher("/views/admin/Product.jsp");
         rd.forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

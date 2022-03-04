@@ -24,10 +24,7 @@
 
 <body>
     
-    <c:if test="${sessionScope.usersession == null}">
-        <c:redirect url="/login"/>
-    </c:if>
-    
+    <%@include file="../admin/CheckLogin.jsp" %>
     
     <div class="wrapper">
 
@@ -199,42 +196,13 @@
 
                     </div>
 
-                    <footer class="footer">
-                        <div class="container-fluid">
-                            <nav>
-                                <ul class="footer-menu">
-                                    <li>
-                                        <a href="#">
-                                            Home
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Company
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            Portfolio
-                                        </a>
-                                    </li>
-                                </ul>
-                                <p class="copyright text-center">
-                                    ©
-                                    <script>
-                                        document.write(new Date().getFullYear())
-                                    </script>
-                                    Author by <a href="http://www.creative-tim.com">Truong Giang</a>
-                                </p>
-                            </nav>
-                        </div>
-                    </footer>
+                    
                 </div>
 
                 
             </div>
         </div>
-    
+    <jsp:include page="Footer.jsp"/>
 </body>
 <!--   Core JS Files   -->
 <script src="${pageContext.request.contextPath}/views/admin/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
