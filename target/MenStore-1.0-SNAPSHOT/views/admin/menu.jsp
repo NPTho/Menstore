@@ -9,13 +9,25 @@
             <li class="nav-item">
                 <a class="nav-link" href="${pageContext.request.contextPath}/admin">
                     <i class="fa fa-circle"></i> 
-                    <p>Dashboard</p>
+                    <p>Customer orders</p>
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="${pageContext.request.contextPath}/data-manage">
+                <a class="nav-link" href="${pageContext.request.contextPath}/product">
                     <i class="fa fa-circle"></i> 
-                    <p>manage</p>
+                    <p>Product</p>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="${pageContext.request.contextPath}/running-out-stock">
+                    <i class="fa fa-circle"></i> 
+                    <p>Running out stock</p>
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="${pageContext.request.contextPath}/voucher">
+                    <i class="fa fa-circle"></i> 
+                    <p>Voucher</p>
                 </a>
             </li>
             <li>

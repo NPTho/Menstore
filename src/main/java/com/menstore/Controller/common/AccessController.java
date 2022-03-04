@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -33,18 +34,24 @@ public class AccessController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
+
         AccessManager accessManager = new AccessManager();
-        UserSession us =  accessManager.login(username, password);
+        UserSession us = accessManager.login(username, password);
+
+        HttpSession ss = request.getSession(true);
         
-        if(us.getUser() != null){
-            response.sendRedirect(request.getContextPath() +"/home");
-        }
-        else{
-            RequestDispatcher rd  = request.getRequestDispatcher("/views/common/login.jsp");
+        if (us.getUser() != null) {
+            ss.setAttribute("usersession", us);
+            if (us.getUser().getRole().equals("admin")) {
+                response.sendRedirect(request.getContextPath() + "/admin");
+            } else {
+                response.sendRedirect(request.getContextPath() + "/home");
+            }
+        } else {
+            RequestDispatcher rd = request.getRequestDispatcher("/views/common/login.jsp");
             rd.forward(request, response);
         }
     }
