@@ -8,7 +8,7 @@ package com.menstore.Controller.admin;
 import com.menstore.DAOimpl.ProductDAO;
 import com.menstore.model.Product;
 import java.io.IOException;
-import static java.util.Collections.list;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,24 +28,96 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
 
         int page = 1;
-        int recordsPerPage = 5;
-        if(request.getParameter("page") != null){
-                page = Integer.parseInt(request.getParameter("page"));
+        int recordsPerPage = 4;
+        if (request.getParameter("page") != null) {
+            page = Integer.parseInt(request.getParameter("page"));
         }
-        
+
         ProductDAO productDAO = new ProductDAO();
-        List<Product> list = productDAO.list((page-1)*recordsPerPage, recordsPerPage);
+        List<Product> list = new ArrayList<>();
 
         int noOfRecords = productDAO.getNoOfRecords();
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-        
-        request.setAttribute("list", list);
+
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
 
-        RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
-        rd.forward(request, response);
-        
+        String action = request.getParameter("action");
+        if (action != null) {
+            if (action.equals("sort")) {
+                String direction = request.getParameter("direction");
+                String by = request.getParameter("by");
+
+                list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage, direction, by);
+                request.setAttribute("list", list);
+
+                RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
+                rd.forward(request, response);
+
+            } else if (action.equals("search")) {
+                String keyword = request.getParameter("keyword");
+                String by = request.getParameter("by");
+                
+                list = productDAO.search(by, keyword);
+                request.setAttribute("list", list);
+                
+                RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
+                rd.forward(request, response);
+
+            } else if (action.equals("listBy")) {
+
+            } else if (action.equals("delete")) {
+                for (String id : request.getParameterValues("options")) {
+                    productDAO.delete(id);
+                }
+
+                //list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
+                response.sendRedirect(request.getContextPath() + "/product");
+            } else if (action.equals("add")) {
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                String status = request.getParameter("status");
+                float discount = Float.parseFloat(request.getParameter("discount"));
+                int price = Integer.parseInt(request.getParameter("price"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
+                String size = request.getParameter("size");
+                String categoryId = request.getParameter("categoryId");
+                String linkImage = request.getParameter("linkImage");
+
+                Product product = new Product(id, name, status, size, discount, price, quantity, categoryId, linkImage);
+
+                productDAO.add(product);
+
+                //list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
+                response.sendRedirect(request.getContextPath() + "/product");
+
+            } else if (action.equals("edit")) {
+                String id = request.getParameter("id");
+                String name = request.getParameter("name");
+                String status = request.getParameter("status");
+                float discount = Float.parseFloat(request.getParameter("discount"));
+                int price = Integer.parseInt(request.getParameter("price"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
+                String size = request.getParameter("size");
+                String categoryId = request.getParameter("categoryId");
+                String linkImage = request.getParameter("linkImage");
+
+                Product product = new Product(id, name, status, size, discount, price, quantity, categoryId, linkImage);
+
+                productDAO.edit(product);
+
+                //list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
+                response.sendRedirect(request.getContextPath() + "/product");
+            }
+            
+        } else {
+            list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
+            request.setAttribute("list", list);
+
+            RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
+            rd.forward(request, response);
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -109,12 +109,12 @@
                                                         <label for="selectAll"></label>
                                                     </span>
                                                 </th>
-                                                <th><span>Mã</span><a href="${pageContext.request.contextPath}/product?action=sort&direction=down&by=id"><i class="material-icons">arrow_downward</i></a><a href="#"><i class="material-icons">arrow_upward</i></a></th>
-                                                <th><span>Tên</span><a href="#"><i class="material-icons">arrow_downward</i></a><a href="#"><i class="material-icons">arrow_upward</i></a></th>
+                                                <th><span>Mã</span><a href="${pageContext.request.contextPath}/product?action=sort&direction=down&by=id"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/product?action=sort&direction=up&by=id"><i class="material-icons">arrow_upward</i></a></th>
+                                                <th><span>Tên</span><a href="${pageContext.request.contextPath}/product?action=sort&direction=down&by=name"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/product?action=sort&direction=up&by=name"><i class="material-icons">arrow_upward</i></a></th>
                                                 <th>Size</th>
-                                                <th><span>Giá</span><a href="#"><i class="material-icons">arrow_downward</i></a><a href="#"><i class="material-icons">arrow_upward</i></a></th>
+                                                <th><span>Giá</span><a href="${pageContext.request.contextPath}/product?action=sort&direction=down&by=price"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/product?action=sort&direction=up&by=price"><i class="material-icons">arrow_upward</i></a></th>
                                                 <th>Giảm giá(%)</th>
-                                                <th><span>Số lượng</span><a href="#"><i class="material-icons">arrow_downward</i></a><a href="#"><i class="material-icons">arrow_upward</i></a></th>
+                                                <th><span>Số lượng</span><a href="${pageContext.request.contextPath}/product?action=sort&direction=down&by=quantity"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/product?action=sort&direction=up&by=quantity"><i class="material-icons">arrow_upward</i></a></th>
                                                 <th>Loại hàng</th>
                                                 <th>Trạng thái</th>
                                                 <th>Action</th>
@@ -122,11 +122,13 @@
                                         </thead>
                                         <tbody>
                                             <c:set var="productList" value="${requestScope.list}" />
+                                            <c:set var="count" value="${0}" />
+                                            
                                             <c:forEach var="product" items="${productList}">
                                                 <tr>
                                                     <td>
                                                         <span class="custom-checkbox">
-                                                            <input class="Checkbox" type="checkbox" id="checkbox2" name="options[]" value="1">
+                                                            <input class="Checkbox" type="checkbox" id="checkbox2" name="options" value="${product.productId}">
                                                             <label for="checkbox2"></label>
                                                         </span>
                                                     </td>
@@ -139,44 +141,95 @@
                                                     <td>${product.categoryId}</td>
                                                     <td>${product.status}</td>
                                                     <td>
-                                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                                         <a href="${product.linkImage}" target="_blank" class="see"><i class="material-icons" data-toggle="tooltip" title="Image">visibility</i></a>
+                                                        </form>
+                                                        <form action="product?action=edit" method="post">
+                                                            <a href="#editProduct${count}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                            <!-- Edit Modal HTML -->
+                                                            <div id="editProduct${count}" class="modal fade">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">						
+                                                                            <h4 class="modal-title">PRODUCT TABLE</h4>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                        </div>
+                                                                        <div class="modal-body">					
+                                                                            <div class="form-group">
+                                                                                <label>Product ID</label>
+                                                                                <input name="id" type="text" class="form-control" value="${product.productId}" required>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Product name</label>
+                                                                                <input name="name" type="text" class="form-control" value="${product.productName}" required>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Size</label>
+                                                                                <input name="size" type="text" class="form-control" value="${product.size}" required>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Price</label>
+                                                                                <input name="price" type="text" class="form-control" value="${product.price}" required>  
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Discount</label>
+                                                                                <input name="discount" type="text" class="form-control" value="${product.discount}" required>
+                                                                            </div>	
+                                                                            <div class="form-group">
+                                                                                <label>Quantity</label>
+                                                                                <input name="quantity" type="text" class="form-control" value="${product.quantity}" required>
+                                                                            </div>	
+                                                                            <div class="form-group">
+                                                                                <label>Category</label>
+                                                                                <input name="categoryId" type="text" class="form-control" value="${product.categoryId}" required>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Status</label>
+                                                                                <input name="status" type="text" class="form-control" value="${product.status}" required>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label>Link image</label>
+                                                                                <input name="linkImage" type="text" class="form-control" value="${product.linkImage}" required>
+                                                                            </div>				
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                                                                            <input type="submit" class="btn btn-info" value="Submit">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
                                                     </td>
                                                 </tr>
+                                                <c:set var="count" value="${count + 1}" />
                                             </c:forEach>                               
                                         </tbody>
                                     </table>
-                                </form>
-                                <div class="clearfix">
-                                    <div class="hint-text">Showing <b>${currentPage}</b> out of <b>${noOfPages}</b> entries</div>
-                                    <ul class="pagination">
-                                        <!--                                        <li class="page-item disabled"><a href="product?page=1">Previous</a></li>
-                                                                                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                                                                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                                                                <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                                                                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                                                                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                                                                <li class="page-item"><a href="#" class="page-link">Next</a></li>-->
-                                        <c:if test="${currentPage != 1}">
-                                            <td><a href="product?page=${currentPage - 1}">Previous</a></td>
-                                        </c:if>
-                                        <c:forEach begin="1" end="${noOfPages}" var="i">
-                                            <c:choose>
-                                                <c:when test="${currentPage eq i}">
-                                                    <li class="page-item"><a class="page-link">${i}</a></li>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                    <li class="page-item"><a href="product?page=${i}" class="page-link">${i}</a></li>
-<!--                                                    <td><a href="employee.do?page=${i}">${i}</a></td>-->
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </c:forEach>
 
-                                        <c:if test="${currentPage lt noOfPages}">
-                                            <td><a href="product?page=${currentPage + 1}">Next</a></td>
-                                        </c:if>                
-                                    </ul>
-                                </div>
+                                    <div class="clearfix">
+                                        <div class="hint-text">Showing <b>${currentPage}</b> out of <b>${noOfPages}</b> entries</div>
+                                        <ul class="pagination">
+
+                                            <c:if test="${currentPage != 1}">
+                                                <li class="page-item"><a href="product?page=${currentPage - 1}">Previous</a></li>
+                                                </c:if>
+                                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                    <c:choose>
+                                                        <c:when test="${currentPage eq i}">
+                                                        <li class="page-item"><a class="page-link">${i}</a></li>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                        <li class="page-item"><a href="product?page=${i}" class="page-link">${i}</a></li>
+    <!--                                                    <td><a href="employee.do?page=${i}">${i}</a></td>-->
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:forEach>
+
+                                            <c:if test="${currentPage lt noOfPages}">
+                                                <li class="page-item"><a href="product?page=${currentPage + 1}">Next</a></li>
+                                                </c:if>                
+                                        </ul>
+                                    </div>
                             </div>
                         </div>        
                     </div>
@@ -193,35 +246,39 @@
                                     <div class="modal-body">					
                                         <div class="form-group">
                                             <label>Product ID</label>
-                                            <input type="text" class="form-control" required>
+                                            <input name="id" type="text" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Product name</label>
-                                            <input type="text" class="form-control" required>
+                                            <input name="name" type="text" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Size</label>
-                                            <input type="text" class="form-control" required>
+                                            <input name="size" type="text" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Price</label>
-                                            <input type="text" class="form-control" required>  
+                                            <input name="price" type="text" class="form-control" required>  
                                         </div>
                                         <div class="form-group">
                                             <label>Discount</label>
-                                            <input type="text" class="form-control" required>
+                                            <input name="discount" type="text" class="form-control" required>
                                         </div>	
                                         <div class="form-group">
                                             <label>Quantity</label>
-                                            <input type="text" class="form-control" required>
+                                            <input name="quantity" type="text" class="form-control" required>
                                         </div>	
                                         <div class="form-group">
                                             <label>Category</label>
-                                            <input type="text" class="form-control" required>
+                                            <input name="categoryId" type="text" class="form-control" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Status</label>
-                                            <input type="text" class="form-control" required>
+                                            <input name="status" type="text" class="form-control" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Link image</label>
+                                            <input name="linkImage" type="text" class="form-control" >
                                         </div>
 
                                     </div>
@@ -234,64 +291,7 @@
                         </div>
                     </div>
 
-                    <!-- Edit Modal HTML -->
-                    <div id="editEmployeeModal" class="modal fade">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form>
-                                    <div class="modal-header">						
-                                        <h4 class="modal-title">PRODUCT TABLE</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    </div>
-                                    <div class="modal-body">					
-                                        <div class="form-group">
-                                            <label>ID</label>
-                                            <input type="text" class="form-control" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Name</label>
-                                            <input type="email" class="form-control" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Price</label>
-                                            <textarea class="form-control" required></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Quantitative</label>
-                                            <input type="text" class="form-control" required>
-                                        </div>					
-                                    </div>
-                                    <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <input type="submit" class="btn btn-info" value="Save">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Delete Modal HTML -->
-                    <!--                    <div id="deleteEmployeeModal" class="modal fade">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <form>
-                                                        <div class="modal-header">						
-                                                            <h4 class="modal-title">Delete Employee</h4>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                        </div>
-                                                        <div class="modal-body">					
-                                                            <p>Are you sure you want to delete these Records?</p>
-                                                            <p class="text-warning"><small>This action cannot be undone.</small></p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <input type="button" class="btn btn-default" data-dismiss="modal" value="false">
-                                                            <input type="submit" class="btn btn-danger" value="true">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>-->
 
                 </div>
                 <jsp:include page="Footer.jsp"/>
