@@ -114,7 +114,7 @@
                                                 <th>Size</th>
                                                 <th><span>Giá</span><a href="#"><i class="material-icons">arrow_downward</i></a><a href="#"><i class="material-icons">arrow_upward</i></a></th>
                                                 <th>Giảm giá(%)</th>
-                                                <th><span>Số lượng trong kho</span><a href="#"><i class="material-icons">arrow_downward</i></a><a href="#"><i class="material-icons">arrow_upward</i></a></th>
+                                                <th><span>Số lượng</span><a href="#"><i class="material-icons">arrow_downward</i></a><a href="#"><i class="material-icons">arrow_upward</i></a></th>
                                                 <th>Loại hàng</th>
                                                 <th>Trạng thái</th>
                                                 <th>Action</th>
@@ -148,15 +148,33 @@
                                     </table>
                                 </form>
                                 <div class="clearfix">
-                                    <div class="hint-text">Showing <b>3</b> out of <b>25</b> entries</div>
+                                    <div class="hint-text">Showing <b>${currentPage}</b> out of <b>${noOfPages}</b> entries</div>
                                     <ul class="pagination">
-                                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                                        <!--                                        <li class="page-item disabled"><a href="product?page=1">Previous</a></li>
+                                                                                <li class="page-item"><a href="#" class="page-link">1</a></li>
+                                                                                <li class="page-item"><a href="#" class="page-link">2</a></li>
+                                                                                <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                                                                                <li class="page-item"><a href="#" class="page-link">4</a></li>
+                                                                                <li class="page-item"><a href="#" class="page-link">5</a></li>
+                                                                                <li class="page-item"><a href="#" class="page-link">Next</a></li>-->
+                                        <c:if test="${currentPage != 1}">
+                                            <td><a href="product?page=${currentPage - 1}">Previous</a></td>
+                                        </c:if>
+                                        <c:forEach begin="1" end="${noOfPages}" var="i">
+                                            <c:choose>
+                                                <c:when test="${currentPage eq i}">
+                                                    <li class="page-item"><a class="page-link">${i}</a></li>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                    <li class="page-item"><a href="product?page=${i}" class="page-link">${i}</a></li>
+<!--                                                    <td><a href="employee.do?page=${i}">${i}</a></td>-->
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+
+                                        <c:if test="${currentPage lt noOfPages}">
+                                            <td><a href="product?page=${currentPage + 1}">Next</a></td>
+                                        </c:if>                
                                     </ul>
                                 </div>
                             </div>
@@ -205,7 +223,7 @@
                                             <label>Status</label>
                                             <input type="text" class="form-control" required>
                                         </div>
-                                        
+
                                     </div>
                                     <div class="modal-footer">
                                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -293,9 +311,9 @@
                 <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
                 <script src="${pageContext.request.contextPath}/views/admin/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
                 <script>
-                                                            $("#selectAll").click(function () {
-                                                                $(".Checkbox").not(this).prop('checked', this.checked);
-                                                            });
+                                                    $("#selectAll").click(function () {
+                                                        $(".Checkbox").not(this).prop('checked', this.checked);
+                                                    });
 
 
                 </script>

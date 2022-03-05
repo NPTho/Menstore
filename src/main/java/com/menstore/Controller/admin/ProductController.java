@@ -27,14 +27,25 @@ public class ProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        int page = 1;
+        int recordsPerPage = 5;
+        if(request.getParameter("page") != null){
+                page = Integer.parseInt(request.getParameter("page"));
+        }
+        
         ProductDAO productDAO = new ProductDAO();
-        List<Product> list = productDAO.list();
+        List<Product> list = productDAO.list((page-1)*recordsPerPage, recordsPerPage);
 
+        int noOfRecords = productDAO.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+        
         request.setAttribute("list", list);
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/views/admin/Product.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
         rd.forward(request, response);
-
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

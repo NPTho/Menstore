@@ -15,11 +15,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
-        <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="${pageContext.request.contextPath}/views/web/css/style.css" rel="stylesheet" type="text/css" media="all" />
         <!--- start-mmmenu-script---->
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
-        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script src="${pageContext.request.contextPath}/views/web/js/jquery.min.js" type="text/javascript"></script>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/views/web/css/jquery.mmenu.all.css" />
+        <script type="text/javascript" src="${pageContext.request.contextPath}/views/web/js/jquery.mmenu.js"></script>
         <script type="text/javascript">
             //	The menu on the left
             $(function () {
@@ -27,8 +27,8 @@
             });
         </script>
         <!-- start top_js_button -->
-        <script type="text/javascript" src="js/easing.js"></script>
-        <script type="text/javascript" src="js/move-top.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/views/web/js/easing.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/views/web/js/move-top.js"></script>
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
                 $(".scroll").click(function (event) {
@@ -173,12 +173,12 @@
                         <div class="span1_of_3">
                             <h3>flickr widget</h3>
                             <ul class="f_nav">
-                                <li><a href="#"><img src="images/f_pic1.jpg" alt="" /> </a></li>
-                                <li><a href="#"><img src="images/f_pic2.jpg" alt="" /> </a></li>
-                                <li><a href="#"><img src="images/f_pic3.jpg" alt="" /> </a></li>
-                                <li><a href="#"><img src="images/f_pic4.jpg" alt="" /> </a></li>
-                                <li><a href="#"><img src="images/f_pic5.jpg" alt="" /> </a></li>
-                                <li><a href="#"><img src="images/f_pic6.jpg" alt="" /> </a></li>
+                                <li><a href="#"><img src="${pageContext.request.contextPath}/views/web/images/f_pic1.jpg" alt="" /> </a></li>
+                                <li><a href="#"><img src="${pageContext.request.contextPath}/views/web/images/f_pic2.jpg" alt="" /> </a></li>
+                                <li><a href="#"><img src="${pageContext.request.contextPath}/views/web/images/f_pic3.jpg" alt="" /> </a></li>
+                                <li><a href="#"><img src="${pageContext.request.contextPath}/views/web/images/f_pic4.jpg" alt="" /> </a></li>
+                                <li><a href="#"><img src="${pageContext.request.contextPath}/views/web/images/f_pic5.jpg" alt="" /> </a></li>
+                                <li><a href="#"><img src="${pageContext.request.contextPath}/views/web/images/f_pic6.jpg" alt="" /> </a></li>
                             </ul>
                         </div>
                         <div class="clear"></div>

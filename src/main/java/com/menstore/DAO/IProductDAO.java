@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IProductDAO {
     List<Product> list();
+    
+    int getNoOfRecords();
 }
