@@ -106,6 +106,11 @@ public class Product {
     public void setLinkImage(String linkImage) {
         this.linkImage = linkImage;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" + "productId=" + productId + ", productName=" + productName + ", status=" + status + ", size=" + size + ", discount=" + discount + ", price=" + price + ", quantity=" + quantity + ", categoryId=" + categoryId + ", linkImage=" + linkImage + '}';
+    }
     
     
 }

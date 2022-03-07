@@ -371,7 +371,6 @@ public class ProductDAO implements IProductDAO {
 //
 //        return list;
 //    }
-
     @Override
     public List<Product> listBy(int start, int recordsPerPage, String category) {
         ArrayList<Product> list;
@@ -407,7 +406,6 @@ public class ProductDAO implements IProductDAO {
                 product.setCategoryId(rs.getString("CategoryID"));
                 product.setLinkImage(rs.getString("Link_image"));
                 list.add(product);
-                System.out.println(product);
             }
 
         } catch (Exception ex) {
@@ -417,6 +415,43 @@ public class ProductDAO implements IProductDAO {
         }
 
         return list;
+
+    }
+
+    @Override
+    public Product find(String id) {
+        Product product = new Product();
+        String sql = "SELECT * FROM Product WHERE ProductID = ?";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                product.setProductId(rs.getString("ProductID"));
+                product.setProductName(rs.getString("ProductName"));
+                product.setSize(rs.getString("Size"));
+                product.setPrice(rs.getInt("Price"));
+                product.setStatus(rs.getString("Status"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setCategoryId(rs.getString("CategoryID"));
+                product.setLinkImage(rs.getString("Link_image"));
+
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return product;
     }
 
 }

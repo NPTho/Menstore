@@ -6,6 +6,7 @@
 package com.menstore.Controller.common;
 
 import com.menstore.DAOimpl.AccessManager;
+import com.menstore.model.Cart;
 import com.menstore.model.UserSession;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -39,6 +40,8 @@ public class LoginController extends HttpServlet {
             if (us.getUser().getRole().equals("admin")) {
                 response.sendRedirect(request.getContextPath() + "/admin");
             } else {
+                Cart cart = new Cart();
+                ss.setAttribute("cart", cart);
                 response.sendRedirect(request.getContextPath() + "/home");
             }
         } else {

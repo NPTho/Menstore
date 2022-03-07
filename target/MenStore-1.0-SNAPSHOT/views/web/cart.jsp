@@ -4,25 +4,26 @@
     Author     : MyPC
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Da sua
 -->
 <!DOCTYPE HTML>
 <html>
+    <c:url var="linkSource" value="${request.contextPath}/views/web" />
 
     <head>
-        <title>The Fooseshoes Website Template | Home :: w3layouts</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Mavsen+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="css/cart.css">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
-        <link rel="stylesheet" href="font/fontawesome-free-6.0.0-web/css/all.css">
-        <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+        <link rel="stylesheet" href="${linkSource}/css/cart.css">
+        <link rel="stylesheet" href="${linkSource}/css/bootstrap.min.css">
+        <link rel="stylesheet" href="${linkSource}/font/fontawesome-free-6.0.0-web/css/all.css">
+        <link href="${linkSource}/css/style.css" rel="stylesheet" type="text/css" media="all" />
         <!--- start-mmmenu-script---->
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
-        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+        <script src="${linkSource}/js/jquery.min.js" type="text/javascript"></script>
+        <link type="text/css" rel="stylesheet" href="${linkSource}/css/jquery.mmenu.all.css" />
+        <script type="text/javascript" src="${linkSource}/js/jquery.mmenu.js"></script>
         <script type="text/javascript">
             //	The menu on the left
             $(function () {
@@ -30,9 +31,9 @@
             });
         </script>
         <!-- start slider -->
-        <link href="css/slider.css" rel="stylesheet" type="text/css" media="all" />
-        <script type="text/javascript" src="js/jquery.eislideshow.js"></script>
-        <script type="text/javascript" src="js/easing.js"></script>
+        <link href="${linkSource}/css/slider.css" rel="stylesheet" type="text/css" media="all" />
+        <script type="text/javascript" src="${linkSource}/js/jquery.eislideshow.js"></script>
+        <script type="text/javascript" src="${linkSource}/js/easing.js"></script>
         <script type="text/javascript">
             $(function () {
                 $('#ei-slider').eislideshow({
@@ -44,7 +45,7 @@
             });
         </script>
         <!-- start top_js_button -->
-        <script type="text/javascript" src="js/move-top.js"></script>
+        <script type="text/javascript" src="${linkSource}/js/move-top.js"></script>
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
                 $(".scroll").click(function (event) {
@@ -60,26 +61,33 @@
             <!-- start header -->
             <jsp:include page="header.jsp"/>
 
-
             <!-- start slider -->
             <div class="gray_bg">
                 <div class="container p-3 rounded cart gray_bg">
                     <div class="row no-gutters">
                         <div class="col-md-8 same-height">
+
                             <div class="product-details mr-2">
-                                <div class="d-flex flex-row align-items-center"><span
-                                        class="ml-2">Continue Shopping</span></div>
+                                <div class="d-flex flex-row align-items-center"><a href="home">Continue Shopping</a></div>
                                 <hr>
                                 <h6 class="mb-0">Shopping cart</h6>
                                 <div class="d-flex justify-content-between"><span>You have 4 items in your cart</span>
-                                    <!-- <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort
-                                                    by:</span>
-                                            <div class="price-cart ml-2"><span class="mr-2">Price</span><i
-                                                            class="fa fa-angle-down"></i>
-                                            </div>
-                                    </div> -->
+                                    <!--                                     <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort
+                                                                                        by:</span>
+                                                                                <div class="price-cart ml-2"><span class="mr-2">Price</span><i
+                                                                                                class="fa fa-angle-down"></i>
+                                                                                </div>
+                                                                        </div> -->
                                 </div>
-
+                                
+                                ${sessionScope.cart.itemCount}
+                                <c:if test="${sessionScope.cart.itemCount == 0}">
+                                    Null
+                                </c:if>
+                                    
+                                <c:if test="${sessionScope.cart.itemCount != 0}">
+                                    Not Null
+                                </c:if>
 
                                 <div class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
                                     <div class="d-flex flex-row"><img class="rounded"
@@ -93,12 +101,11 @@
                                         <span class="d-block">2</span>
                                         <i class="fa-solid fa-angle-right ml-1"></i>
                                         <span
-                                            class="d-block ml-5 font-weight-bold">$90</span><i
+                                            class="d-block ml-5 font-weight-bold">90 VNĐ</span><i
                                             class="fa-solid fa-trash ml-4 text-black-50"></i></div>
                                 </div>
-
-                                <div
-                                    class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
+                                
+                                <div class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
                                     <div class="d-flex flex-row"><img class="rounded"
                                                                       src="http://dangcapquyong.com/userfiles/images/46704818_445274582668659_14080991009384234731520_n.jpg"
                                                                       height="120">
@@ -110,48 +117,16 @@
                                         <span class="d-block">2</span>
                                         <i class="fa-solid fa-angle-right ml-1"></i>
                                         <span
-                                            class="d-block ml-5 font-weight-bold">$93</span><i
+                                            class="d-block ml-5 font-weight-bold">93 VNĐ</span><i
                                             class="fa-solid fa-trash ml-4 text-black-50"></i></div>
                                 </div>
 
-                                <div
-                                    class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
-                                    <div class="d-flex flex-row"><img class="rounded"
-                                                                      src="https://media.everlane.com/image/upload/c_fill,dpr_2,f_auto,g_face:center,q_auto,w_auto/v1/i/a5efddbc_e4d3.jpg"
-                                                                      height="120">
-                                        <div class="ml-5 a-space"><span class="font-weight-bold d-block">Quần Jean Nam
-                                                JHD</span><span class="spec">Size 31, Màu Đen</span></div>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <i class="fa-solid fa-angle-left mr-1"></i>
-                                        <span class="d-block">1</span>
-                                        <i class="fa-solid fa-angle-right ml-1"></i>
-                                        <span
-                                            class="d-block ml-5 font-weight-bold">$80</span><i
-                                            class="fa-solid fa-trash ml-4 text-black-50"></i></div>
-                                </div>
-                                <div
-                                    class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
-                                    <div class="d-flex flex-row"><img class="rounded"
-                                                                      src="https://ph-live-05.slatic.net/p/f0849c31dd7563240ac930435aeef065.jpg_720x720q80.jpg_.webp"
-                                                                      height="120">
-                                        <div class="ml-5 a-space"><span class="font-weight-bold d-block">Dây chuyền vàng
-                                                chữ thập TGD</span>
-                                            <span class="spec">Vàng 18k, Form dài</span>
-                                        </div>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <i class="fa-solid fa-angle-left mr-1"></i>
-                                        <span class="d-block">1</span>
-                                        <i class="fa-solid fa-angle-right ml-1"></i>
-                                        <span
-                                            class="d-block ml-5 font-weight-bold">$999</span><i
-                                            class="fa-solid fa-trash ml-4 text-black-50"></i></div>
-                                </div>
+
 
                                 <div class="clear"></div>
                             </div>
                             <div class="clear"></div>
+
                         </div>
 
 
@@ -312,7 +287,7 @@
                     </div>
                 </div>
             </div>
-            <script src="js/bootstrap.bundle.min.js"></script>
+            <script src="${linkSource}/js/bootstrap.bundle.min.js"></script>
     </body>
 
 </html>

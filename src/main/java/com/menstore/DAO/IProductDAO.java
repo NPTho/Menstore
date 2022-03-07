@@ -24,4 +24,6 @@ public interface IProductDAO {
     //List<Product> listBy(String category);
     
     List<Product> listBy(int start, int recordsPerPage, String category);
+    
+    Product find(String id);
 }
