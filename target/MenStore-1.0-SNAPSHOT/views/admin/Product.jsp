@@ -62,22 +62,29 @@
 
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class="container-fluid">
-                        <div class="dropdown">
+                        <div class="dropdown col-sm-6">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 PRODUCT
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">All</a>
-                                <a class="dropdown-item" href="#">Shirt</a>
-                                <a class="dropdown-item" href="#">Paint</a>
-                                <a class="dropdown-item" href="#">Shoes</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product">All</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SH">Shirt</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=PA">Pant</a> 
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SHO">Shoes</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=TS">T-Shirt</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=JA">Jacket</a>
                             </div>
                         </div>
 
-                        <form action="#"> 
-                            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search..."
-                                   aria-label="Search">
-
+                        <form action="product?action=search" method="post"> 
+                            <select name="by" class="form-control form-control-sm mr-3 w-75">
+                                <option value="" disabled selected>Choose</option>
+                                <option value="ProductID">Product ID</option>
+                                <option value="ProductName">Product Name</option>
+                                <option value="CategoryID">Category</option>
+                                <option value="Status">Status</option>
+                            </select>
+                            <input name="keyword" class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search..." aria-label="Search">
                         </form>
                     </div>
                 </nav>
@@ -123,7 +130,7 @@
                                         <tbody>
                                             <c:set var="productList" value="${requestScope.list}" />
                                             <c:set var="count" value="${0}" />
-                                            
+
                                             <c:forEach var="product" items="${productList}">
                                                 <tr>
                                                     <td>
@@ -156,7 +163,7 @@
                                                                         <div class="modal-body">					
                                                                             <div class="form-group">
                                                                                 <label>Product ID</label>
-                                                                                <input name="id" type="text" class="form-control" value="${product.productId}" required>
+                                                                                <input name="id" disabled type="text" class="form-control" value="${product.productId}" required>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label>Product name</label>
@@ -208,27 +215,81 @@
 
                                     <div class="clearfix">
                                         <div class="hint-text">Showing <b>${currentPage}</b> out of <b>${noOfPages}</b> entries</div>
-                                        <ul class="pagination">
 
-                                            <c:if test="${currentPage != 1}">
-                                                <li class="page-item"><a href="product?page=${currentPage - 1}">Previous</a></li>
-                                                </c:if>
-                                                <c:forEach begin="1" end="${noOfPages}" var="i">
-                                                    <c:choose>
-                                                        <c:when test="${currentPage eq i}">
-                                                        <li class="page-item"><a class="page-link">${i}</a></li>
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                        <li class="page-item"><a href="product?page=${i}" class="page-link">${i}</a></li>
-    <!--                                                    <td><a href="employee.do?page=${i}">${i}</a></td>-->
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:forEach>
+                                        <c:choose>
 
-                                            <c:if test="${currentPage lt noOfPages}">
-                                                <li class="page-item"><a href="product?page=${currentPage + 1}">Next</a></li>
-                                                </c:if>                
-                                        </ul>
+                                            <c:when test = "${param.action == 'sort'}">
+                                                <ul class="pagination">
+
+                                                    <c:if test="${currentPage != 1}">
+                                                        <li class="page-item"><a href="product?action=sort&direction=${param.direction}&by=${param.by}&page=${currentPage - 1}">Previous</a></li>
+                                                        </c:if>
+                                                        <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                            <c:choose>
+                                                                <c:when test="${currentPage eq i}">
+                                                                <li class="page-item"><a class="page-link">${i}</a></li>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                <li class="page-item"><a href="product?action=sort&direction=${param.direction}&by=${param.by}&page=${i}" class="page-link">${i}</a></li>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:forEach>
+
+                                                    <c:if test="${currentPage lt noOfPages}">
+                                                        <li class="page-item"><a href="product?action=sort&direction=${param.direction}&by=${param.by}&page=${currentPage + 1}">Next</a></li>
+                                                        </c:if>                
+                                                </ul>
+                                            </c:when>
+
+                                            <c:when test = "${param.action == 'listBy'}">
+                                                <ul class="pagination">
+
+                                                    <c:if test="${currentPage != 1}">
+                                                        <li class="page-item"><a href="product?action=listBy&category=${param.category}&page=${currentPage - 1}">Previous</a></li>
+                                                        </c:if>
+                                                        <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                            <c:choose>
+                                                                <c:when test="${currentPage eq i}">
+                                                                <li class="page-item"><a class="page-link">${i}</a></li>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                <li class="page-item"><a href="product?action=listBy&category=${param.category}&page=${i}" class="page-link">${i}</a></li>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:forEach>
+
+                                                    <c:if test="${currentPage lt noOfPages}">
+                                                        <li class="page-item"><a href="product?action=listBy&category=${param.category}&page=${currentPage + 1}">Next</a></li>
+                                                        </c:if>                
+                                                </ul>
+                                            </c:when>
+
+                                            <c:otherwise>
+                                                <ul class="pagination">
+
+                                                    <c:if test="${currentPage != 1}">
+                                                        <li class="page-item"><a href="product?page=${currentPage - 1}">Previous</a></li>
+                                                        </c:if>
+                                                        <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                            <c:choose>
+                                                                <c:when test="${currentPage eq i}">
+                                                                <li class="page-item"><a class="page-link">${i}</a></li>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                <li class="page-item"><a href="product?page=${i}" class="page-link">${i}</a></li>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:forEach>
+
+                                                    <c:if test="${currentPage lt noOfPages}">
+                                                        <li class="page-item"><a href="product?page=${currentPage + 1}">Next</a></li>
+                                                        <li class="page-item"><a href="#">${param.action}</a></li>
+                                                        </c:if>                
+                                                </ul>
+                                            </c:otherwise>
+                                        </c:choose>
+
+
                                     </div>
                             </div>
                         </div>        

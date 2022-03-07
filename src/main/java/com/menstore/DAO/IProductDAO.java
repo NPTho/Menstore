@@ -21,4 +21,7 @@ public interface IProductDAO {
     
     List<Product> search(String by, String keyword);
     
+    //List<Product> listBy(String category);
+    
+    List<Product> listBy(int start, int recordsPerPage, String category);
 }

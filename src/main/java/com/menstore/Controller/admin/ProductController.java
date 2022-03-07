@@ -57,18 +57,29 @@ public class ProductController extends HttpServlet {
             } else if (action.equals("search")) {
                 String keyword = request.getParameter("keyword");
                 String by = request.getParameter("by");
-                
+
+                System.out.println(keyword);
+                System.out.println(by);
+
                 list = productDAO.search(by, keyword);
                 request.setAttribute("list", list);
-                
+
                 RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
                 rd.forward(request, response);
 
             } else if (action.equals("listBy")) {
+                String category = request.getParameter("category");
+                
+                list = productDAO.listBy((page - 1) * recordsPerPage, recordsPerPage ,category);
+                request.setAttribute("list", list);
 
+                RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
+                rd.forward(request, response);
             } else if (action.equals("delete")) {
-                for (String id : request.getParameterValues("options")) {
-                    productDAO.delete(id);
+                if (request.getParameterValues("options") != null) {
+                    for (String id : request.getParameterValues("options")) {
+                        productDAO.delete(id);
+                    }
                 }
 
                 //list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
@@ -109,7 +120,7 @@ public class ProductController extends HttpServlet {
                 //list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
                 response.sendRedirect(request.getContextPath() + "/product");
             }
-            
+
         } else {
             list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
             request.setAttribute("list", list);
