@@ -5,6 +5,8 @@
  */
 package com.menstore.Controller.web;
 
+import com.menstore.DAOimpl.ProductDAO;
+import com.menstore.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -32,6 +34,12 @@ public class DetailController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String productId = request.getParameter("productId");
+        ProductDAO productDAO = new ProductDAO();
+        Product product = new ProductDAO().find(productId);
+        
+        request.setAttribute("product", product);
         
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/details.jsp");
         rd.forward(request, response);

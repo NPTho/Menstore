@@ -65,7 +65,7 @@
                             <div class="product-view">
                                 <div class="product-essential">
                                     <div class="product-img-box">
-                                        <div class="more-views">
+<!--                                        <div class="more-views">
                                             <div class="more-views-container">
                                                 <ul>
                                                     <li>
@@ -90,10 +90,10 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="product-image"> 
                                             <a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="images/0001-2.jpg" title="Women Shorts" alt="Women Shorts">
-                                                <img src="images/0001-2.jpg" alt="Women Shorts" title="Women Shorts" />
+                                                <img src="${requestScope.product.linkImage}" alt="Women Shorts" title="Women Shorts" />
                                             </a>
                                         </div>
                                         <script type="text/javascript">
@@ -135,18 +135,18 @@
                         <!-- start span1_of_1 -->
                         <div class="span1_of_1_des">
                             <div class="desc1">
-                                <h3>Lorem ipsum dolor sit amet laoret.</h3>
-                                <h5>Rs. 499 <span>599</span>  <a href="#">click for offer</a></h5>
+                                <h3>${requestScope.product.productName}</h3>
+                                <h5>${requestScope.product.price} <span>${requestScope.product.price + 99000}</span> VNĐ</h5>
                                 <div class="available">
                                     <div class="btn_form">
                                         <form action="cart?action=buy" method="post">
-                                            <input type="hidden" name="id" value="ASM1502">
-                                            <input type="hidden" name="price" value="400000">
+                                            <input type="hidden" name="id" value="${requestScope.product.productId}">
+                                            <input type="hidden" name="price" value="${requestScope.product.price}">
                                             <input type="submit" value="Add to Cart" />
                                         </form>
 
                                     </div>
-                                    <p>Long arm T-shirt with skull, super comfortable, 100% heavy cotton fabric, long-lasting colors. Another skull design that will make you look great anywhere</p>
+                                    <p>Size: ${requestScope.product.size}, Đồ đẹp bao mặc, 1 đêm duy nhất 1 đêm duy nhất</p>
                                 </div>
                                 <div class="share-desc">
                                     <div class="share">

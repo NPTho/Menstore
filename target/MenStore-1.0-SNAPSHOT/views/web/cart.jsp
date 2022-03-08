@@ -1,8 +1,3 @@
-<%-- 
-    Document   : cart
-    Created on : Mar 3, 2022, 9:47:56 PM
-    Author     : MyPC
---%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -70,8 +65,8 @@
                             <div class="product-details mr-2">
                                 <div class="d-flex flex-row align-items-center"><a href="home">Continue Shopping</a></div>
                                 <hr>
-                                <h6 class="mb-0">Shopping cart</h6>
-                                <div class="d-flex justify-content-between"><span>You have 4 items in your cart</span>
+                                <h6 class="mb-0">SHOPPING CART</h6>
+                                <div class="d-flex justify-content-between"><span>You have ${sessionScope.cart.itemCount} items in your cart</span>
                                     <!--                                     <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort
                                                                                         by:</span>
                                                                                 <div class="price-cart ml-2"><span class="mr-2">Price</span><i
@@ -80,48 +75,28 @@
                                                                         </div> -->
                                 </div>
                                 
-                                ${sessionScope.cart.itemCount}
                                 <c:if test="${sessionScope.cart.itemCount == 0}">
-                                    Null
+                                    <hr>
+                                    <h1>Your cart is empty!!</h1>
                                 </c:if>
-                                    
-                                <c:if test="${sessionScope.cart.itemCount != 0}">
-                                    Not Null
-                                </c:if>
-
-                                <div class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
-                                    <div class="d-flex flex-row"><img class="rounded"
-                                                                      src="https://cf.shopee.vn/file/cb98bac352fb773a97c4e7cb33dad96c"
-                                                                      height="120">
-                                        <div class="ml-5 a-space"><span class="font-weight-bold d-block">Áo Vest Nam
-                                                ABC</span><span class="spec">Size XL, Màu Be</span></div>
-                                    </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <i class="fa-solid fa-angle-left mr-1"></i>
-                                        <span class="d-block">2</span>
-                                        <i class="fa-solid fa-angle-right ml-1"></i>
-                                        <span
-                                            class="d-block ml-5 font-weight-bold">90 VNĐ</span><i
-                                            class="fa-solid fa-trash ml-4 text-black-50"></i></div>
-                                </div>
+                                <c:forEach var="item" items="${sessionScope.cart.list}">
                                 
                                 <div class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
                                     <div class="d-flex flex-row"><img class="rounded"
-                                                                      src="http://dangcapquyong.com/userfiles/images/46704818_445274582668659_14080991009384234731520_n.jpg"
+                                                                      src="${item.product.linkImage}"
                                                                       height="120">
-                                        <div class="ml-5 a-space"><span class="font-weight-bold d-block">Giày Âu Nam
-                                                UIX</span><span class="spec">Size 43, Màu Đen</span></div>
+                                        <div class="ml-5 a-space"><span class="font-weight-bold d-block">${item.product.productName}</span>
+                                            <span class="spec">Size: ${item.product.size}</span></div>
                                     </div>
                                     <div class="d-flex flex-row align-items-center">
                                         <i class="fa-solid fa-angle-left mr-1"></i>
-                                        <span class="d-block">2</span>
+                                        <span class="d-block">${item.quantity}</span>
                                         <i class="fa-solid fa-angle-right ml-1"></i>
                                         <span
-                                            class="d-block ml-5 font-weight-bold">93 VNĐ</span><i
+                                            class="d-block ml-5 font-weight-bold">${item.soldPrice} VNĐ</span><i
                                             class="fa-solid fa-trash ml-4 text-black-50"></i></div>
                                 </div>
-
-
+                                </c:forEach>
 
                                 <div class="clear"></div>
                             </div>
@@ -139,42 +114,41 @@
                                             width="42"></div>
 
                                     <div>
-                                        <label class="credit-card-label">Name</label><input type="text"
+                                        <label class="credit-card-label">Name</label><input name="username" type="text"
                                                                                             class="form-control credit-inputs" placeholder="Name">
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-7">
                                             <label class="credit-card-label">Email</label>
-                                            <input type="text" class="form-control credit-inputs" placeholder="Email">
+                                            <input name="email" type="text" class="form-control credit-inputs" placeholder="Email">
                                         </div>
                                         <div class="col-md-5">
                                             <label class="credit-card-label">Phone number</label>
-                                            <input type="text" class="form-control credit-inputs" placeholder="Phone number">
+                                            <input name="phone" type="text" class="form-control credit-inputs" placeholder="Phone number">
                                         </div>
                                     </div>
 
                                     <div>
-                                        <label class="credit-card-label">Address</label><input type="text"
+                                        <label class="credit-card-label">Address</label><input name="address" type="text"
                                                                                                class="form-control credit-inputs" placeholder="Address">
                                     </div>
 
                                     <div>
-                                        <label class="credit-card-label">Voucher code:</label><input type="text"
+                                        <label class="credit-card-label">Voucher code:</label><input name="voucher" type="text"
                                                                                                      class="form-control credit-inputs" placeholder="Enter voucher...">
                                     </div>
 
                                     <hr class="line">
                                     <div class="d-flex justify-content-between information">
-                                        <span>Subtotal</span><span>$1262.00</span>
+                                        <span>Subtotal</span><span>${sessionScope.cart.subTotal}</span>
                                     </div>
                                     <div class="d-flex justify-content-between information">
-                                        <span>Discount</span><span>$20.00</span>
+                                        <span>Discount</span><span>${sessionScope.cart.discounted}</span>
                                     </div>
-                                    <div class="d-flex justify-content-between information"><span>Total(Incl.
-                                            taxes)</span><span>$1282.00</span></div><button
+                                    <div class="d-flex justify-content-between information"><span>Total</span><span>${sessionScope.cart.total}</span></div><button
                                         class="btn btn-primary btn-block d-flex justify-content-between mt-3"
-                                        type="submit"><span>$1282.00</span><span>Checkout<i
+                                        type="submit"><span>${sessionScope.cart.subTotal} VND</span><span>Checkout<i
                                                 class="fa fa-long-arrow-right ml-1"></i></span></button>
                                 </form>
                             </div>
