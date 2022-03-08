@@ -55,7 +55,7 @@
         <div>
             <!-- start header -->
             <jsp:include page="header.jsp"/>
-
+            ${requestScope.voucher}
             <!-- start slider -->
             <div class="gray_bg">
                 <div class="container p-3 rounded cart gray_bg">
@@ -74,28 +74,28 @@
                                                                                 </div>
                                                                         </div> -->
                                 </div>
-                                
+
                                 <c:if test="${sessionScope.cart.itemCount == 0}">
                                     <hr>
                                     <h1>Your cart is empty!!</h1>
                                 </c:if>
                                 <c:forEach var="item" items="${sessionScope.cart.list}">
-                                
-                                <div class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
-                                    <div class="d-flex flex-row"><img class="rounded"
-                                                                      src="${item.product.linkImage}"
-                                                                      height="120">
-                                        <div class="ml-5 a-space"><span class="font-weight-bold d-block">${item.product.productName}</span>
-                                            <span class="spec">Size: ${item.product.size}</span></div>
+
+                                    <div class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
+                                        <div class="d-flex flex-row"><img class="rounded"
+                                                                          src="${item.product.linkImage}"
+                                                                          height="120">
+                                            <div class="ml-5 a-space"><span class="font-weight-bold d-block">${item.product.productName}</span>
+                                                <span class="spec">Size: ${item.product.size}</span></div>
+                                        </div>
+                                        <div class="d-flex flex-row align-items-center">
+                                            <i class="fa-solid fa-angle-left mr-1"></i>
+                                            <span class="d-block">${item.quantity}</span>
+                                            <i class="fa-solid fa-angle-right ml-1"></i>
+                                            <span
+                                                class="d-block ml-5 font-weight-bold">${item.soldPrice} VNĐ</span><i
+                                                class="fa-solid fa-trash ml-4 text-black-50"></i></div>
                                     </div>
-                                    <div class="d-flex flex-row align-items-center">
-                                        <i class="fa-solid fa-angle-left mr-1"></i>
-                                        <span class="d-block">${item.quantity}</span>
-                                        <i class="fa-solid fa-angle-right ml-1"></i>
-                                        <span
-                                            class="d-block ml-5 font-weight-bold">${item.soldPrice} VNĐ</span><i
-                                            class="fa-solid fa-trash ml-4 text-black-50"></i></div>
-                                </div>
                                 </c:forEach>
 
                                 <div class="clear"></div>
@@ -114,41 +114,51 @@
                                             width="42"></div>
 
                                     <div>
-                                        <label class="credit-card-label">Name</label><input name="username" type="text"
-                                                                                            class="form-control credit-inputs" placeholder="Name">
+                                        <label class="credit-card-label">Name</label><input  name="username" type="text"
+                                                                                            class="form-control credit-inputs" placeholder="Name" required="true">
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-7">
-                                            <label class="credit-card-label">Email</label>
-                                            <input name="email" type="text" class="form-control credit-inputs" placeholder="Email">
-                                        </div>
-                                        <div class="col-md-5">
-                                            <label class="credit-card-label">Phone number</label>
-                                            <input name="phone" type="text" class="form-control credit-inputs" placeholder="Phone number">
-                                        </div>
+                                     <div>
+                                        <label class="credit-card-label">Phone number</label><input name="phone" type="text"
+                                                                                               class="form-control credit-inputs" placeholder="Phone number" required="true">
                                     </div>
 
                                     <div>
                                         <label class="credit-card-label">Address</label><input name="address" type="text"
-                                                                                               class="form-control credit-inputs" placeholder="Address">
+                                                                                               class="form-control credit-inputs" placeholder="Address" required="true">
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-8">
+                                           <label class="credit-card-label">Voucher code:</label><input name="voucher" type="text"
+                                                                                                     class="form-control credit-inputs" placeholder="Voucher">
+                                        </div>
+                                        
+                                        <div class="col-4">
+                                            <a class="btn btn-primary btn-sm" href="cart?action=checkVoucher&voucherId=TetHoliday" >Check</a>
+                                        </div>
+                                        
+                                    </div>
+                                    
                                     <div>
-                                        <label class="credit-card-label">Voucher code:</label><input name="voucher" type="text"
-                                                                                                     class="form-control credit-inputs" placeholder="Enter voucher...">
+                                        <label class="credit-card-label">Note...: </label>
+                                        <textarea name="note" type="text" class="form-control credit-inputs" placeholder="Note"> 
+                                        </textarea>
                                     </div>
 
                                     <hr class="line">
+                                    <div class="d-flex justify-content-between information"><span>Total</span><span>${sessionScope.cart.total} (VNĐ)</span></div>
+                                    
                                     <div class="d-flex justify-content-between information">
-                                        <span>Subtotal</span><span>${sessionScope.cart.subTotal}</span>
+                                        <span>Discount: </span><span>${sessionScope.cart.discounted} (VNĐ)</span>
                                     </div>
+                                    
                                     <div class="d-flex justify-content-between information">
-                                        <span>Discount</span><span>${sessionScope.cart.discounted}</span>
+                                        <span>Final total:</span><span>${sessionScope.cart.subTotal} (VNĐ)</span>
                                     </div>
-                                    <div class="d-flex justify-content-between information"><span>Total</span><span>${sessionScope.cart.total}</span></div><button
+                                    <button
                                         class="btn btn-primary btn-block d-flex justify-content-between mt-3"
-                                        type="submit"><span>${sessionScope.cart.subTotal} VND</span><span>Checkout<i
+                                        type="submit"><span>${sessionScope.cart.subTotal} (VNĐ)</span><span>Checkout<i
                                                 class="fa fa-long-arrow-right ml-1"></i></span></button>
                                 </form>
                             </div>

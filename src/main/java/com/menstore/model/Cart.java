@@ -9,8 +9,17 @@ public class Cart {
     private double discounted;
     private double total;
     private double subTotal;
+    private String voucherId;
 
     public Cart() {
+    }
+
+    public String getVoucherId() {
+        return voucherId;
+    }
+
+    public void setVoucherId(String voucherId) {
+        this.voucherId = voucherId;
     }
 
     public ArrayList getList() {
@@ -35,6 +44,7 @@ public class Cart {
     
      public void setDiscounted(double discounted) {
         this.discounted = discounted;
+        calculateOrderSubTotal();
     }
     
     public double getDiscounted() {
@@ -59,8 +69,7 @@ public class Cart {
 
     public void addCart(CartItem cartItem) {
        list.add(cartItem);
-       calculateOrderTotal();
-       calculateOrderSubTotal();
+       updateCartMoney();
     }
 
     
@@ -78,6 +87,16 @@ public class Cart {
         double plus;
         plus = total - discounted;
         setSubTotal(plus);
+    }
+    
+    public void updateCartMoney(){
+       calculateOrderTotal();
+       calculateOrderSubTotal();
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" + " discounted=" + discounted + ", total=" + total + ", subTotal=" + subTotal + '}';
     }
     
 }

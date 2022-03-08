@@ -10,7 +10,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>The Fooseshoes Website Template | Home :: w3layouts</title>
+        <title>Menstore</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
@@ -203,11 +203,11 @@
                 <div class="main1">
                     <div class="image1_of_3">
                         <img src="https://cdn.shopify.com/s/files/1/0246/3668/6402/products/black_front_ab4cc71d-5e23-462d-8938-f7f6278f4c71_2048x2048.jpg?v=1577127966" alt=""/>
-                        <a href="details.html"><span class="tag">on sale</span></a>
+                        <a href="products?show=onsale"><span class="tag">on sale</span></a>
                     </div>
                     <div class="image1_of_3">
                         <img src="https://www.hobbycorner.co.nz/user/images/6340_300_300.jpg?t=1507071001" alt=""/>
-                        <a href="details.html"><span class="tag">special offers</span></a>
+                        <a href="products?list=are"><span class="tag">special offers</span></a>
                     </div>
                     <div class="image1_of_3">
                         <img src="https://znews-photo.zadn.vn/w660/Uploaded/rohunwa/2020_04_13/skinny_jeans.jpg" alt=""/>
@@ -222,9 +222,8 @@
         <div class="main_bg">
             <div class="wrap">
                 <div class="main">
-                    <div class="top_main">
-                        <h2>new arrivals on MenStore</h2>
-                        <a href="######">show all</a>
+                    <div class="top_main" >
+                        <h2>Best seller at MenStore</h2>
                         <div class="clear"></div>
                     </div>
                     <!-- start grids_of_3 -->
@@ -255,7 +254,6 @@
                     </div>
                     <div class="top_main">
                         <h2>best sellers of the month</h2>
-                        <a href="######">show all</a>
                         <div class="clear"></div>
                     </div>
                     <!-- start grids_of_3 -->

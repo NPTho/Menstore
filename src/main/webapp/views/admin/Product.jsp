@@ -68,11 +68,18 @@
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="${pageContext.request.contextPath}/product">All</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SH">Shirt</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=PA">Pant</a> 
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SHO">Shoes</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=TS">T-Shirt</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=JA">Jacket</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=AC">Accessories</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=BZ">Blazer</a> 
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=CT">Coat</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=HT">Hat</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=JK">Jacket</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=JN">Jeans</a> 
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=PT">Pants</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SRT">Shorts</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SS">Shoes</a> 
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=ST">Shirt</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SU">Suit</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=TST">T-Shirt</a>
                             </div>
                         </div>
 
@@ -163,7 +170,8 @@
                                                                         <div class="modal-body">					
                                                                             <div class="form-group">
                                                                                 <label>Product ID</label>
-                                                                                <input name="id" disabled type="text" class="form-control" value="${product.productId}" required>
+                                                                                <input name="id" type="hidden" class="form-control" value="${product.productId}" required>
+                                                                                <input disabled type="text" class="form-control" value="${product.productId}" required>
                                                                             </div>
                                                                             <div class="form-group">
                                                                                 <label>Product name</label>
@@ -234,8 +242,7 @@
                                                                 </c:otherwise>
                                                             </c:choose>
                                                         </c:forEach>
-
-                                                    <c:if test="${currentPage lt noOfPages}">
+                                                        <c:if test="${currentPage lt noOfPages}">
                                                         <li class="page-item"><a href="product?action=sort&direction=${param.direction}&by=${param.by}&page=${currentPage + 1}">Next</a></li>
                                                         </c:if>                
                                                 </ul>
@@ -260,6 +267,29 @@
 
                                                     <c:if test="${currentPage lt noOfPages}">
                                                         <li class="page-item"><a href="product?action=listBy&category=${param.category}&page=${currentPage + 1}">Next</a></li>
+                                                        </c:if>                
+                                                </ul>
+                                            </c:when>
+                                            
+                                            <c:when test = "${param.action == 'search'}">
+                                                <ul class="pagination">
+
+                                                    <c:if test="${currentPage != 1}">
+                                                        <li class="page-item"><a href="product?action=search&by=${param.by}&keyword=${param.keyword}&page=${currentPage - 1}">Previous</a></li>
+                                                        </c:if>
+                                                        <c:forEach begin="1" end="${noOfPages}" var="i">
+                                                            <c:choose>
+                                                                <c:when test="${currentPage eq i}">
+                                                                <li class="page-item"><a class="page-link">${i}</a></li>
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                <li class="page-item"><a href="product?action=search&by=${param.by}&keyword=${param.keyword}&page=${i}" class="page-link">${i}</a></li>
+                                                                </c:otherwise>
+                                                            </c:choose>
+                                                        </c:forEach>
+
+                                                    <c:if test="${currentPage lt noOfPages}">
+                                                        <li class="page-item"><a href="product?action=search&by=${param.by}&keyword=${param.keyword}&page=${currentPage + 1}">Next</a></li>
                                                         </c:if>                
                                                 </ul>
                                             </c:when>

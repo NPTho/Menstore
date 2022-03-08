@@ -39,6 +39,7 @@ public class CartItem {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+        calculatTotalCost();
     }
 
     public double getTotalCost() {
@@ -49,6 +50,8 @@ public class CartItem {
         this.totalCost = totalCost;
     }
 
-    
+    protected void calculatTotalCost(){
+        setTotalCost(quantity*soldPrice);
+    }
     
 }

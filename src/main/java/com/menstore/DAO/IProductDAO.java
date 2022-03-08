@@ -19,7 +19,7 @@ public interface IProductDAO {
     
     boolean edit(Product product);
     
-    List<Product> search(String by, String keyword);
+    List<Product> search(int start, int recordsPerPage, String by, String keyword);
     
     //List<Product> listBy(String category);
     

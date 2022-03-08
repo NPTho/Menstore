@@ -266,9 +266,7 @@ public class ProductDAO implements IProductDAO {
             ps.setString(7, product.getCategoryId());
             ps.setString(8, product.getLinkImage());
 
-            if (ps.execute()) {
-                return true;
-            }
+            return ps.execute();
 
         } catch (Exception ex) {
 
@@ -280,7 +278,7 @@ public class ProductDAO implements IProductDAO {
     }
 
     @Override
-    public List<Product> search(String by, String keyword) {
+    public List<Product> search(int start, int recordsPerPage, String by, String keyword) {
 
         ArrayList<Product> list;
         list = new ArrayList<Product>();
@@ -291,7 +289,9 @@ public class ProductDAO implements IProductDAO {
                 + "    WHEN  'ProductName' THEN ProductName\n"
                 + "    WHEN  'CategoryID' THEN CategoryID\n"
                 + "    WHEN  'Status' THEN Status\n"
-                + "	END like ?";
+                + "	END like ?\n"
+                + " Order by ProductID\n"
+                + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
 
         try {
 
@@ -299,8 +299,10 @@ public class ProductDAO implements IProductDAO {
 
             PreparedStatement ps = conn.prepareStatement(sql);
 
+            ps.setInt(3, start);
+            ps.setInt(4, recordsPerPage);
             ps.setString(1, by);
-            ps.setString(2, keyword);
+            ps.setString(2, "%" + keyword + "%");
 
             ResultSet rs = ps.executeQuery();
 
@@ -316,7 +318,6 @@ public class ProductDAO implements IProductDAO {
                 product.setCategoryId(rs.getString("CategoryID"));
                 product.setLinkImage(rs.getString("Link_image"));
                 list.add(product);
-                System.out.println(product);
             }
 
         } catch (Exception ex) {
