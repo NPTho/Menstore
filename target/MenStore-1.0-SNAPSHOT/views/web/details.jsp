@@ -22,6 +22,7 @@
     <script src="${linkSource}/js/jquery.min.js" type="text/javascript"></script>
     <link type="text/css" rel="stylesheet" href="${linkSource}/css/jquery.mmenu.all.css" />
     <script type="text/javascript" src="${linkSource}/js/jquery.mmenu.js"></script>
+   
     <script type="text/javascript">
         //	The menu on the left
         $(function () {
@@ -136,7 +137,9 @@
                         <div class="span1_of_1_des">
                             <div class="desc1">
                                 <h3>${requestScope.product.productName}</h3>
-                                <h5>${requestScope.product.price} <span>${requestScope.product.price + 99000}</span> VNĐ</h5>
+                                <h5>${requestScope.product.price - requestScope.product.price*(requestScope.product.discount)/100} 
+                                    <c:if test="${requestScope.product.discount > 0}"><span>${requestScope.product.price}</span> </c:if> VNĐ
+                                </h5>
                                 <div class="available">
                                     <div class="btn_form">
                                         <form action="cart?action=buy" method="post">
@@ -147,6 +150,7 @@
 
                                     </div>
                                     <p>Size: ${requestScope.product.size}, Đồ đẹp bao mặc, 1 đêm duy nhất 1 đêm duy nhất</p>
+                                    <c:if test="${requestScope.product.discount > 0}"><p>Sản phẩm được giảm giá lên tới ${requestScope.product.discount}%, nhanh tayyyy</p></c:if>
                                 </div>
                                 <div class="share-desc">
                                     <div class="share">

@@ -45,7 +45,7 @@
     <div class="header_btm">
         <div class="menu">
             <ul>
-                <li class="active"><a href="${pageContext.request.contextPath}/home">Home</a></li>
+                <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
                 <li><a href="${pageContext.request.contextPath}/products">Product</a></li>
                 <div class="clear"></div>
             </ul>
@@ -62,8 +62,8 @@
         </nav>
         <div class="header_right">
             <ul>
-                <li><a href="#"><i  class="art"></i><span class="color1">${sessionScope.usersession.user.point}</span></a></li>
-                <li><a href="${pageContext.request.contextPath}/cart"><i  class="cart"></i><span>${sessionScope.cart.itemCount}</span></a></li>
+                <li><a><i  class="art"></i><span class="color1">${(sessionScope.usersession.user.point == null)?0:sessionScope.usersession.user.point}</span></a></li>
+                <li><a href="${pageContext.request.contextPath}/cart"><i  class="cart"></i><span>${(sessionScope.cart.itemCount == null)?0:sessionScope.cart.itemCount}</span></a></li>
             </ul>
         </div>
         <div class="clear"></div>

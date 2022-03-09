@@ -13,29 +13,49 @@ import java.sql.Date;
  */
 public class Order {
     private String invoiceID;
-    private String discountedMoney;
+    private double discountedMoney;
     private Date orderDate;
     private double total;
     private String note;
+    private String status;
     private String userId;
     private String voucherId;
 
     public Order() {
     }
 
+    public Order(String invoiceID, double discountedMoney, Date orderDate, double total, String note, String status, String userId, String voucherId) {
+        this.invoiceID = invoiceID;
+        this.discountedMoney = discountedMoney;
+        this.orderDate = orderDate;
+        this.total = total;
+        this.note = note;
+        this.status = status;
+        this.userId = userId;
+        this.voucherId = voucherId;
+    }
+
     public String getInvoiceID() {
         return invoiceID;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setInvoiceID(String invoiceID) {
         this.invoiceID = invoiceID;
     }
 
-    public String getDiscountedMoney() {
+    public double getDiscountedMoney() {
         return discountedMoney;
     }
 
-    public void setDiscountedMoney(String discountedMoney) {
+    public void setDiscountedMoney(double discountedMoney) {
         this.discountedMoney = discountedMoney;
     }
 

@@ -6,7 +6,6 @@
 package com.menstore.DAO;
 
 import com.menstore.model.Order;
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -15,11 +14,11 @@ import java.util.List;
  */
 public interface IOrderDAO {
     
+    int getNoOfRecords();
+    
     List<Order> list();
     
-    boolean save(String InvoiceId, String discountedMoney, 
-            Date orderDate, double total, String note, String status, 
-            String userId, String VoucherID);
+    boolean save(Order order);
     
     
             

@@ -40,8 +40,8 @@ public class LoginController extends HttpServlet {
             if (us.getUser().getRole().equals("admin")) {
                 response.sendRedirect(request.getContextPath() + "/admin");
             } else {
-                Cart cart = new Cart();
-                ss.setAttribute("cart", cart);
+//                Cart cart = new Cart();
+//                ss.setAttribute("cart", cart);
                 response.sendRedirect(request.getContextPath() + "/home");
             }
         } else {

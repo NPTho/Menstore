@@ -5,18 +5,29 @@
  */
 package com.menstore.Controller.web;
 
+import com.menstore.DAO.IOrderDAO;
+import com.menstore.DAO.IUserDAO;
 import com.menstore.DAO.IVoucherDAO;
+import com.menstore.DAOimpl.OrderDAO;
 import com.menstore.DAOimpl.ProductDAO;
+import com.menstore.DAOimpl.UserDAO;
 import com.menstore.DAOimpl.VoucherDAO;
 import com.menstore.model.Cart;
 import com.menstore.model.CartItem;
+import com.menstore.model.UserSession;
 import java.io.IOException;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import com.menstore.DAO.IOrderDetailDAO;
+import com.menstore.DAOimpl.OrderDetailDAO;
+import com.menstore.model.Order;
+import com.menstore.model.OrderDetail;
+import com.menstore.model.User;
 
 /**
  *
@@ -35,8 +46,12 @@ public class CartController extends HttpServlet {
                 doGet_Buy(request, response);
             } else if (action.equalsIgnoreCase("remove")) {
                 doGet_Remove(request, response);
+            } else if (action.equalsIgnoreCase("update")) {
+                doGet_Update(request, response);
             } else if (action.equalsIgnoreCase("checkVoucher")) {
                 doGet_CheckVoucher(request, response);
+            } else if (action.equalsIgnoreCase("checkout")) {
+                doGet_Checkout(request, response);
             }
         }
     }
@@ -46,12 +61,74 @@ public class CartController extends HttpServlet {
         request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
     }
 
+    protected void doGet_Checkout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        UserSession userSession = (UserSession) session.getAttribute("usersession");
+
+        if (cart == null || cart.getItemCount() == 0) {
+            request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
+        } else {
+            IOrderDAO orderDAO = new OrderDAO();
+            IUserDAO userDAO = new UserDAO();
+            IOrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+
+            String invoiceId = "HD" + (orderDAO.getNoOfRecords() + 1);
+            double discountedPrice = cart.getDiscounted();
+            Date orderDate = new Date(System.currentTimeMillis());
+            double total = cart.getTotal();
+            String note = request.getParameter("note");
+            String status = "Đang xử lý";
+            String userId;
+            if (userSession != null) {
+                userId = userSession.getUser().getUserId();
+            } else {
+                userId = "US" + (userDAO.getNoOfRecords() + 1);
+                userDAO.saveWalkInGuest(userId, request.getParameter("name"), request.getParameter("phone"), request.getParameter("address"));
+            }
+            String voucher = cart.getVoucherId();
+
+            Order order = new Order(invoiceId, discountedPrice, orderDate, total, note, status, userId, voucher);
+            if (orderDAO.save(order) == true) {
+                for (CartItem item : cart.getList()) {
+                    OrderDetail orderDetail = new OrderDetail(invoiceId, item.getProduct().getProductId(), item.getSoldPrice(), item.getQuantity());
+                    orderDetailDAO.save(orderDetail);
+                }
+            }
+            
+            response.sendRedirect("views/common/newjsp.jsp");
+        }
+        
+        
+    }
+
+    protected void doGet_Update(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        int index = isExisting(request.getParameter("id"), cart);
+        String direction = request.getParameter("direc");
+        int updatedQuantity = ((CartItem) cart.getList().get(index)).getQuantity() + (direction.equals("up") ? 1 : -1);
+        if (updatedQuantity > 0) {
+            ((CartItem) cart.getList().get(index)).setQuantity(updatedQuantity);
+            cart.updateCartMoney();
+            session.setAttribute("cart", cart);
+            response.sendRedirect("cart");
+        } else {
+            doGet_Remove(request, response);
+        }
+
+    }
+
     protected void doGet_Remove(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         int index = isExisting(request.getParameter("id"), cart);
         cart.getList().remove(index);
+        cart.updateCartMoney();
         session.setAttribute("cart", cart);
         response.sendRedirect("cart");
     }
@@ -86,21 +163,20 @@ public class CartController extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         String voucherId = request.getParameter("voucherId");
         IVoucherDAO voucherDAO = new VoucherDAO();
-        
+
         int voucher_DiscountPercent = voucherDAO.loadDiscountedPercent(voucherId);
-        if(voucher_DiscountPercent > 0){
+        if (voucher_DiscountPercent > 0) {
             request.setAttribute("voucher_discountPercent", voucher_DiscountPercent);
 
-            double discountedMoney = (voucher_DiscountPercent/100.0)*cart.getTotal();
-            
+            double discountedMoney = (voucher_DiscountPercent / 100.0) * cart.getTotal();
+
             cart.setDiscounted(discountedMoney);
             cart.setVoucherId(voucherId);
-        }
-        else{
+        } else {
             cart.setVoucherId(null);
             cart.setDiscounted(0);
         }
-        
+
         request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
     }
 

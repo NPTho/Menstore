@@ -1,12 +1,13 @@
 
 package com.menstore.DAO;
 
+import com.menstore.model.OrderDetail;
 import java.util.List;
 
-public interface IOrderDetailDao {
-    List<IOrderDetailDao> list(String OrderId);
+public interface IOrderDetailDAO {
+    List<IOrderDetailDAO> list(String OrderId);
     
-    boolean save(String OrderId, String productId, int soldPrice,String quantity);
+    boolean save(OrderDetail orderDetail);
     
     
 }

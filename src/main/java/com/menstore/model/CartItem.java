@@ -51,7 +51,7 @@ public class CartItem {
     }
 
     protected void calculatTotalCost(){
-        setTotalCost(quantity*soldPrice);
+        setTotalCost(quantity*(soldPrice-soldPrice*product.getDiscount()/100));
     }
     
 }

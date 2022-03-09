@@ -19,6 +19,10 @@
         <script src="${linkSource}/js/jquery.min.js" type="text/javascript"></script>
         <link type="text/css" rel="stylesheet" href="${linkSource}/css/jquery.mmenu.all.css" />
         <script type="text/javascript" src="${linkSource}/js/jquery.mmenu.js"></script>
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+        
         <script type="text/javascript">
             //	The menu on the left
             $(function () {
@@ -90,11 +94,13 @@
                                         </div>
                                         <div class="d-flex flex-row align-items-center">
                                             <i class="fa-solid fa-angle-left mr-1"></i>
-                                            <span class="d-block">${item.quantity}</span>
+                                            <a href="${pageContext.request.contextPath}/cart?action=update&id=${item.product.productId}&direc=down"><i class="material-icons">arrow_downward</i></a>
+                                            <span class="d-block"> ${item.quantity} </span>
+                                            <a href="${pageContext.request.contextPath}/cart?action=update&id=${item.product.productId}&direc=up"><i class="material-icons">arrow_upward</i></a>
                                             <i class="fa-solid fa-angle-right ml-1"></i>
-                                            <span
-                                                class="d-block ml-5 font-weight-bold">${item.soldPrice} VNĐ</span><i
-                                                class="fa-solid fa-trash ml-4 text-black-50"></i></div>
+                                            <span class="d-block ml-5 font-weight-bold">${item.soldPrice} VNĐ</span>
+                                            <a href="${pageContext.request.contextPath}/cart?action=remove&id=${item.product.productId}"><i class="material-icons">close</i></a>
+                                        </div>
                                     </div>
                                 </c:forEach>
 
@@ -107,31 +113,32 @@
 
                         <div  class="col-md-4 stick-board">
                             <div class="payment-info">
-                                <form action="####" method="post">
+                                <form action="cart" method="post">
+                                    <input type="hidden" name="action" value="checkout"/>
                                     <div class="d-flex justify-content-between align-items-center"><span>Card details</span><img
                                             class="rounded"
                                             src="https://img.hoidap247.com/picture/question/20200508/large_1588936738888.jpg"
                                             width="42"></div>
 
                                     <div>
-                                        <label class="credit-card-label">Name</label><input  name="username" type="text"
-                                                                                            class="form-control credit-inputs" placeholder="Name" required="true">
+                                        <label class="credit-card-label">Name</label><input value="${sessionScope.usersession.user.name}"  name="name" type="text"
+                                                                                            class="form-control credit" placeholder="Name" required="true">
                                     </div>
 
                                      <div>
-                                        <label class="credit-card-label">Phone number</label><input name="phone" type="text"
-                                                                                               class="form-control credit-inputs" placeholder="Phone number" required="true">
+                                        <label class="credit-card-label">Phone number</label><input value="${sessionScope.usersession.user.phoneNumber}" name="phone" type="text"
+                                                                                               class="form-control credit" placeholder="Phone number" required="true">
                                     </div>
 
                                     <div>
-                                        <label class="credit-card-label">Address</label><input name="address" type="text"
-                                                                                               class="form-control credit-inputs" placeholder="Address" required="true">
+                                        <label class="credit-card-label">Address</label><input value="${sessionScope.usersession.user.address}" name="address" type="text"
+                                                                                               class="form-control credit" placeholder="Address" required="true">
                                     </div>
 
                                     <div class="row">
                                         <div class="col-8">
                                            <label class="credit-card-label">Voucher code:</label><input name="voucher" type="text"
-                                                                                                     class="form-control credit-inputs" placeholder="Voucher">
+                                                                                                     class="form-control credit" placeholder="Voucher">
                                         </div>
                                         
                                         <div class="col-4">
@@ -142,23 +149,22 @@
                                     
                                     <div>
                                         <label class="credit-card-label">Note...: </label>
-                                        <textarea name="note" type="text" class="form-control credit-inputs" placeholder="Note"> 
+                                        <textarea name="note" type="text" class="form-control credit" placeholder="Note"> 
                                         </textarea>
                                     </div>
 
                                     <hr class="line">
-                                    <div class="d-flex justify-content-between information"><span>Total</span><span>${sessionScope.cart.total} (VNĐ)</span></div>
+                                    <div class="d-flex justify-content-between information"><span>Total</span><span>${sessionScope.cart.total/1000}k (VNĐ)</span></div>
                                     
                                     <div class="d-flex justify-content-between information">
-                                        <span>Discount: </span><span>${sessionScope.cart.discounted} (VNĐ)</span>
+                                        <span>Discount: </span><span>${sessionScope.cart.discounted/1000}k (VNĐ)</span>
                                     </div>
                                     
                                     <div class="d-flex justify-content-between information">
-                                        <span>Final total:</span><span>${sessionScope.cart.subTotal} (VNĐ)</span>
+                                        <span>Final total:</span><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span>
                                     </div>
-                                    <button
-                                        class="btn btn-primary btn-block d-flex justify-content-between mt-3"
-                                        type="submit"><span>${sessionScope.cart.subTotal} (VNĐ)</span><span>Checkout<i
+                                    <button class="btn btn-primary btn-block d-flex justify-content-between mt-3"
+                                        type="submit"><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span><span>Checkout<i
                                                 class="fa fa-long-arrow-right ml-1"></i></span></button>
                                 </form>
                             </div>

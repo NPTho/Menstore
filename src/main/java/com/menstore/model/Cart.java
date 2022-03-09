@@ -22,7 +22,7 @@ public class Cart {
         this.voucherId = voucherId;
     }
 
-    public ArrayList getList() {
+    public ArrayList<CartItem> getList() {
         return (ArrayList) list;
     }
 
