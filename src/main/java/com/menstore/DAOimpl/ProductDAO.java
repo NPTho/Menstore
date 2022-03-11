@@ -455,4 +455,54 @@ public class ProductDAO implements IProductDAO {
         return product;
     }
 
+    @Override
+    public List<Product> runningOutList(int i, int i1, String string, String string1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Product> runningOutList(int start, int recordsPerPage) {
+        ArrayList<Product> list;
+        list = new ArrayList<Product>();
+
+        String sql = "SELECT *\n"
+                + " FROM Product\n"
+                + " WHERE quantity <= 10\n"
+                + " ORDER BY ProductID\n"
+                + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, start);
+            ps.setInt(2, recordsPerPage);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductId(rs.getString("ProductID"));
+                product.setProductName(rs.getString("ProductName"));
+                product.setSize(rs.getString("Size"));
+                product.setPrice(rs.getInt("Price"));
+                product.setStatus(rs.getString("Status"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setCategoryId(rs.getString("CategoryID"));
+                product.setLinkImage(rs.getString("Link_image"));
+                list.add(product);
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return list;
+    }
+
 }

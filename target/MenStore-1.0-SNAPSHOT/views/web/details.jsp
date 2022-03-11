@@ -144,7 +144,7 @@
                                     <div class="btn_form">
                                         <form action="cart?action=buy" method="post">
                                             <input type="hidden" name="id" value="${requestScope.product.productId}">
-                                            <input type="hidden" name="price" value="${requestScope.product.price}">
+                                            <input type="hidden" name="price" value="${requestScope.product.price - requestScope.product.price*(requestScope.product.discount/100)}">
                                             <input type="submit" value="Add to Cart" />
                                         </form>
 
