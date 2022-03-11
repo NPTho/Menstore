@@ -90,13 +90,13 @@ public class CartController extends HttpServlet {
             }
             String voucher = cart.getVoucherId();
 
-            Order order = new Order(invoiceId, discountedPrice, orderDate, total, note, status, userId, voucher);
-            if (orderDAO.save(order) == true) {
-                for (CartItem item : cart.getList()) {
-                    OrderDetail orderDetail = new OrderDetail(invoiceId, item.getProduct().getProductId(), item.getSoldPrice(), item.getQuantity());
-                    orderDetailDAO.save(orderDetail);
-                }
-            }
+            Order order = new Order(invoiceId, note ,discountedPrice,total, orderDate,status,voucher, userId);
+//            if (orderDAO.save(order) == true) {
+//                for (CartItem item : cart.getList()) {
+//                    OrderDetail orderDetail = new OrderDetail(invoiceId, item.getProduct().getProductId(), item.getSoldPrice(), item.getQuantity());
+//                    orderDetailDAO.save(orderDetail);
+//                }
+//            }
             
             response.sendRedirect("views/common/newjsp.jsp");
         }

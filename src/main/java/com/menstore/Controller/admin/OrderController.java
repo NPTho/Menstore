@@ -5,8 +5,11 @@
  */
 package com.menstore.Controller.admin;
 
+import com.menstore.DAOimpl.OrderDAO;
+import com.menstore.model.Order;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,9 +23,46 @@ public class OrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        RequestDispatcher rd = request.getRequestDispatcher("/views/admin/Order.jsp");
-        rd.forward(request, response);
+        
+        int page = 1;
+        int recordsPerPage = 4;
+        if (request.getParameter("page") != null) {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+        OrderDAO orderDAO = new OrderDAO();
+        List<Order> list = new ArrayList<>();
+        
+        int noOfRecords = orderDAO.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+        
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
+        
+        String action = request.getParameter("action");
+        
+        if (action == null) {
+            list = orderDAO.list((page - 1) * recordsPerPage, recordsPerPage);
+//            list = orderDAO.list();
+            request.setAttribute("list", list);
+
+            RequestDispatcher rd = request.getRequestDispatcher("views/admin/Order.jsp");
+            rd.forward(request, response);
+            
+        } else if (action.equals("sort")){
+            String direction = request.getParameter("direction");
+                String by = request.getParameter("by");
+
+                list = orderDAO.list((page - 1) * recordsPerPage, recordsPerPage, direction, by);
+                request.setAttribute("list", list);
+
+                RequestDispatcher rd = request.getRequestDispatcher("views/admin/Order.jsp");
+                rd.forward(request, response);
+        } else{
+            
+        }
+        
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

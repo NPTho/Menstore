@@ -5,74 +5,46 @@
  */
 package com.menstore.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
- * @author MyPC
+ * @author nhduy
  */
 public class Order {
-    private String invoiceID;
-    private double discountedMoney;
-    private Date orderDate;
-    private double total;
+    private String orderId;
     private String note;
+    private int discuntPrice;
+    private int total;
+    private Date date;
     private String status;
-    private String userId;
-    private String voucherId;
+    private String voucher;
+    private String user;
 
     public Order() {
     }
 
-    public Order(String invoiceID, double discountedMoney, Date orderDate, double total, String note, String status, String userId, String voucherId) {
-        this.invoiceID = invoiceID;
-        this.discountedMoney = discountedMoney;
-        this.orderDate = orderDate;
-        this.total = total;
+    public Order(String orderId, String note, int discuntPrice, int total, Date date, String status, String voucher, String user) {
+        this.orderId = orderId;
         this.note = note;
-        this.status = status;
-        this.userId = userId;
-        this.voucherId = voucherId;
-    }
-
-    public String getInvoiceID() {
-        return invoiceID;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setInvoiceID(String invoiceID) {
-        this.invoiceID = invoiceID;
-    }
-
-    public double getDiscountedMoney() {
-        return discountedMoney;
-    }
-
-    public void setDiscountedMoney(double discountedMoney) {
-        this.discountedMoney = discountedMoney;
-    }
-
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
+        this.discuntPrice = discuntPrice;
         this.total = total;
+        this.date = date;
+        this.status = status;
+        this.voucher = voucher;
+        this.user = user;
+    }
+
+    public Order(String invoiceId, String note, double discountedPrice, double total, java.sql.Date orderDate, String status, String voucher, String userId) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public String getNote() {
@@ -83,20 +55,52 @@ public class Order {
         this.note = note;
     }
 
-    public String getUserId() {
-        return userId;
+    public int getDiscuntPrice() {
+        return discuntPrice;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setDiscuntPrice(int discuntPrice) {
+        this.discuntPrice = discuntPrice;
     }
 
-    public String getVoucherId() {
-        return voucherId;
+    public int getTotal() {
+        return total;
     }
 
-    public void setVoucherId(String voucherId) {
-        this.voucherId = voucherId;
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getVoucher() {
+        return voucher;
+    }
+
+    public void setVoucher(String voucher) {
+        this.voucher = voucher;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
     
     

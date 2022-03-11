@@ -10,16 +10,22 @@ import java.util.List;
 
 /**
  *
- * @author MyPC
+ * @author nhduy
  */
 public interface IOrderDAO {
+    List<Order> list();
     
     int getNoOfRecords();
     
-    List<Order> list();
+    List<Order> list(int start, int recordsPerPage, String direction, String by);
     
-    boolean save(Order order);
+    List<Order> list(int start, int recordsPerPage);
     
+    boolean delete(String productId);
     
-            
+    boolean add(Order product);
+    
+    boolean edit(Order product);
+    
+    List<Order> search(String by, String keyword);
 }
