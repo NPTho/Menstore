@@ -100,7 +100,7 @@
                     <div class="container-fluid">
                         <div class="table-responsive">
                             <div class="table-wrapper">
-                                <form action="product?action=delete" method="post">
+                                <form action="running-out-stock?action=delete" method="post">
                                     <div class="table-title">
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -122,12 +122,12 @@
                                                         <label for="selectAll"></label>
                                                     </span>
                                                 </th>
-                                                <th><span>Mã</span><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=down&by=id"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/product?action=sort&direction=up&by=id"><i class="material-icons">arrow_upward</i></a></th>
-                                                <th><span>Tên</span><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=down&by=name"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/product?action=sort&direction=up&by=name"><i class="material-icons">arrow_upward</i></a></th>
+                                                <th><span>Mã</span><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=down&by=id"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=up&by=id"><i class="material-icons">arrow_upward</i></a></th>
+                                                <th><span>Tên</span><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=down&by=name"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=up&by=name"><i class="material-icons">arrow_upward</i></a></th>
                                                 <th>Size</th>
-                                                <th><span>Giá</span><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=down&by=price"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/product?action=sort&direction=up&by=price"><i class="material-icons">arrow_upward</i></a></th>
+                                                <th><span>Giá</span><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=down&by=price"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=up&by=price"><i class="material-icons">arrow_upward</i></a></th>
                                                 <th>Giảm giá(%)</th>
-                                                <th><span>Số lượng</span><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=down&by=quantity"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/product?action=sort&direction=up&by=quantity"><i class="material-icons">arrow_upward</i></a></th>
+                                                <th><span>Số lượng</span><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=down&by=quantity"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/running-out-stock?action=sort&direction=up&by=quantity"><i class="material-icons">arrow_upward</i></a></th>
                                                 <th>Loại hàng</th>
                                                 <th>Trạng thái</th>
                                                 <th>Action</th>
@@ -156,7 +156,7 @@
                                                     <td>
                                                         <a href="${product.linkImage}" target="_blank" class="see"><i class="material-icons" data-toggle="tooltip" title="Image">visibility</i></a>
                                                         </form>
-                                                        <form action="product?action=edit" method="post">
+                                                        <form action="running-out-stock?action=edit" method="post">
                                                             <a href="#editProduct${count}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                                             <!-- Edit Modal HTML -->
                                                             <div id="editProduct${count}" class="modal fade">

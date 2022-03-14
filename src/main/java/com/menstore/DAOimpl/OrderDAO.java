@@ -116,7 +116,7 @@ public class OrderDAO implements IOrderDAO {
 
     @Override
     public List<Order> list(int start, int recordsPerPage, String direction, String by) {
-        System.out.println(start);
+
         ArrayList<Order> list;
         list = new ArrayList<Order>();
         String sql = " DECLARE @col as varchar(255) = ?\n";

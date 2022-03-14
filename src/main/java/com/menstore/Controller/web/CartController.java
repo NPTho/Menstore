@@ -53,7 +53,7 @@ public class CartController extends HttpServlet {
                 doGet_CheckVoucher(request, response);
             } else if (action.equalsIgnoreCase("checkout")) {
                 doGet_Checkout(request, response);
-            }
+            } 
         }
     }
 
@@ -70,6 +70,7 @@ public class CartController extends HttpServlet {
         UserSession userSession = (UserSession) session.getAttribute("usersession");
 
         if (cart == null || cart.getItemCount() == 0) {
+            request.setAttribute("message", "Giỏ hàng trống");
             request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
         } else {
             IOrderDAO orderDAO = new OrderDAO();
@@ -79,7 +80,7 @@ public class CartController extends HttpServlet {
             String invoiceId = "HD" + (orderDAO.getNoOfRecords() + 1);
             double discountedPrice = cart.getDiscounted();
             Date orderDate = new Date(System.currentTimeMillis());
-            double total = cart.getTotal();
+            double subTotal = cart.getSubTotal();
             String note = request.getParameter("note");
             String status = "Đang xử lý";
             String userId;
@@ -90,8 +91,15 @@ public class CartController extends HttpServlet {
                 userDAO.saveWalkInGuest(userId, request.getParameter("name"), request.getParameter("phone"), request.getParameter("address"));
             }
             String voucher = cart.getVoucherId();
+            
+            String checkPoint = request.getParameter("point");
+            if(checkPoint.equals("yes")){
+                discountedPrice += userSession.getUser().getPoint()*1000;
+                subTotal -= userSession.getUser().getPoint()*1000;
+                userDAO.resetPoint(userId);
+            }
 
-            Order order = new Order(invoiceId, discountedPrice, orderDate, total, note, status, userId, voucher);
+            Order order = new Order(invoiceId, discountedPrice, orderDate, subTotal, note, status, userId, voucher);
             if (orderDAO.save(order) == true) {
                 for (CartItem item : cart.getList()) {
                     OrderDetail orderDetail = new OrderDetail(invoiceId, item.getProduct().getProductId(), item.getSoldPrice(), item.getQuantity());
@@ -99,8 +107,9 @@ public class CartController extends HttpServlet {
                 }
             }
             
-            RequestDispatcher rd = request.getRequestDispatcher("views/common/newjsp.jsp");
-            request.setAttribute("success_message", "Đặt hàng thành công");
+            session.setAttribute("cart", new Cart());
+            RequestDispatcher rd = request.getRequestDispatcher("views/web/cart.jsp");
+            request.setAttribute("message", "Đặt hàng thành công");
             rd.forward(request, response);
         }
         

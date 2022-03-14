@@ -115,10 +115,11 @@
                             <div class="payment-info">
                                 <form action="cart" method="post">
                                     <input type="hidden" name="action" value="checkout"/>
-                                    <div class="d-flex justify-content-between align-items-center"><span>Card details</span><img
+                                        <div class="d-flex justify-content-between align-items-center"><span>Card details</span>${message}<img
                                             class="rounded"
                                             src="https://img.hoidap247.com/picture/question/20200508/large_1588936738888.jpg"
-                                            width="42"></div>
+                                            width="42">
+                                    </div>
 
                                     <div>
                                         <label class="credit-card-label">Name</label><input value="${sessionScope.usersession.user.name}"  name="name" type="text"
@@ -135,8 +136,26 @@
                                                                                                class="form-control credit" placeholder="Address" required="true">
                                     </div>
 
+
                                     <div>
-                                        <label class="credit-card-label">Note...: </label>
+                                        <label class="credit-card-label">Điểm </label><input name="point" type="text"
+                                            class="form-control credit" disabled="" 
+                                            placeholder="Điểm hiện có: ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}, giảm ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}k khi sử dụng">
+                                    </div>
+
+                                    <div class="row" style="margin-top: 7px; margin-bottom: 10px;">
+                                        <div class="col-md-6">
+                                            <input type="radio" name="point" value="yes"/><span>Sử dụng</span> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="radio" name="point" value="no" checked="checked" /><span>Không Sử dụng</span> 
+                                        </div>
+                                    </div>
+
+                                   
+
+                                    <div>
+                                        <label class="credit-card-label">Note: </label>
                                         <textarea name="note" type="text" class="form-control credit" placeholder="Note"> 
                                         </textarea>
                                     </div>
@@ -150,16 +169,16 @@
                                 <form action="cart" method="post">
                                     <input type="hidden" name="action" value="checkVoucher"/>
                                     <div class="row">
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8">
                                             <input name="voucherId" type="text"
                                                    class="form-control credit" placeholder="Voucher">
                                         </div>
-                                        <div class="col-sm-3">
-                                            <input style="display: block;height: 100%; border-radius: 10%; border: none; color: white; background-color: gray" type="submit" value="Check"/>
+                                        <div class="col-sm-4">
+                                            <input style="display: block;height: 100%; border-radius: 10%; border: none; color: white; background-color: gray" type="submit" value="Kiểm tra"/>
                                         </div>
                                         <div>${voucher_message}</div>
                                     </div>
-                                </form>                                                    
+                                </form>
 
                                 <hr class="line">
                                 <div class="d-flex justify-content-between information"><span>Total</span><span>${sessionScope.cart.total/1000}k (VNĐ)</span></div>

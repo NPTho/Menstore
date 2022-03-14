@@ -30,5 +30,6 @@ com\menstore\DAO\IVoucherDAO.class
 com\menstore\DAOimpl\RunningOutProductDAO.class
 com\menstore\model\Cart.class
 com\menstore\Controller\admin\OrderController.class
+com\menstore\Controller\common\InformationServlet.class
 com\menstore\DAOimpl\OrderDAO.class
 com\menstore\Controller\web\CartController.class

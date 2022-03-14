@@ -50,7 +50,6 @@ public class VoucherDAO implements IVoucherDAO{
                voucher.setRequired(rs.getDouble("Required"));
                voucher.setDescription(rs.getString("Description"));
             }
-            System.out.println(voucher);
         } catch (Exception ex) {
 
             ex.printStackTrace();

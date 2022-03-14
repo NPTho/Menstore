@@ -108,16 +108,44 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public boolean checkExist(String username) {
-         String sql = "SELECT * FROM Users "
-                 + " WHERE UserName like ?";
+        String sql = "SELECT * FROM Users "
+                + " WHERE UserName like ?";
 
         try {
 
             Connection conn = DBUtils.getConnection();
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            
+
             ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return true;
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+        return false;
+    }
+
+    @Override
+    public boolean resetPoint(String id) {
+        String sql = "UPDATE Users \n"
+                + "SET Point = 0\n"
+                + "WHERE UserID like ? ";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, id);
 
             ResultSet rs = ps.executeQuery();
 

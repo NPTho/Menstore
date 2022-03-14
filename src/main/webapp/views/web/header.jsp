@@ -20,7 +20,7 @@
             <c:if test="${sessionScope.usersession != null}">
                 <div class="log_reg">             
                     <ul>
-                        <li><a href="">Hello ${sessionScope.usersession.user.name}</a> </li>
+                        <li><a href="${pageContext.request.contextPath}/information">Hello ${sessionScope.usersession.user.name}</a> </li>
                         <span class="log"> | </span>
                         <li><a href="${pageContext.request.contextPath}/logout">Log out</a> </li>								   
                         <div class="clear"></div>
