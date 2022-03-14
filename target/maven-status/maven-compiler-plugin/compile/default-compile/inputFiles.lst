@@ -9,6 +9,8 @@ C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\web\CartController.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\DAOimpl\AccessManager.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\web\DetailController.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\DAOimpl\RunningOutProductDAO.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\common\HandleInternalException.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\common\NotFoundExeptionHandler.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\model\Product.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\admin\OrderController.java
@@ -24,6 +26,7 @@ C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\admin\VoucherController.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\model\Cart.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\DAOimpl\UserDAO.java
+C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\Controller\web\RegisterController.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\DAOimpl\OrderDAO.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\DAO\IOrderDetailDAO.java
 C:\Users\MyPC\Desktop\Spring2022\PRJ301\Projects\prj301-se1602-03\src\main\java\com\menstore\model\Order.java

@@ -20,6 +20,16 @@ public interface IOrderDAO {
     
     boolean save(Order order);
     
+    List<Order> list(int start, int recordsPerPage, String direction, String by);
     
+    List<Order> list(int start, int recordsPerPage);
+    
+    boolean delete(String productId);
+    
+    boolean add(Order product);
+    
+    boolean edit(Order product);
+    
+    List<Order> search(String by, String keyword);
             
 }

@@ -16,5 +16,7 @@ public interface IUserDAO {
     
     boolean save(User user);
     
+    boolean checkExist(String username);
+    
     boolean saveWalkInGuest(String id, String name, String phone, String address);
 }

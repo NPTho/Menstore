@@ -7,6 +7,7 @@ package com.menstore.Controller.admin;
 
 import com.menstore.DAO.IProductDAO;
 import com.menstore.DAOimpl.ProductDAO;
+import com.menstore.DAOimpl.RunningOutProductDAO;
 import com.menstore.model.Product;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,7 +50,7 @@ public class RunningOutStockController extends HttpServlet {
                 page = Integer.parseInt(request.getParameter("page"));
             }
 
-            IProductDAO productDAO = new ProductDAO();
+            IProductDAO productDAO = new RunningOutProductDAO();
             List<Product> list = new ArrayList<>();
 
             int noOfRecords = productDAO.getNoOfRecords();
@@ -58,7 +59,7 @@ public class RunningOutStockController extends HttpServlet {
             request.setAttribute("noOfPages", noOfPages);
             request.setAttribute("currentPage", page);
             
-            list = productDAO.runningOutList((page - 1) * recordsPerPage, recordsPerPage);
+            list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
             request.setAttribute("list", list);
 
             RequestDispatcher rd = request.getRequestDispatcher("views/admin/RunningOutStock.jsp");
@@ -74,7 +75,7 @@ public class RunningOutStockController extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         }
 
-        IProductDAO productDAO = new ProductDAO();
+        IProductDAO productDAO = new RunningOutProductDAO();
         List<Product> list = new ArrayList<>();
 
         int noOfRecords = productDAO.getNoOfRecords();
@@ -101,7 +102,7 @@ public class RunningOutStockController extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         }
 
-        IProductDAO productDAO = new ProductDAO();
+        IProductDAO productDAO = new RunningOutProductDAO();
         List<Product> list = new ArrayList<>();
 
         int noOfRecords = productDAO.getNoOfRecords();
@@ -128,7 +129,7 @@ public class RunningOutStockController extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         }
 
-        IProductDAO productDAO = new ProductDAO();
+        IProductDAO productDAO = new RunningOutProductDAO();
         List<Product> list = new ArrayList<>();
 
         int noOfRecords = productDAO.getNoOfRecords();
@@ -154,7 +155,7 @@ public class RunningOutStockController extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         }
 
-        IProductDAO productDAO = new ProductDAO();
+        IProductDAO productDAO = new RunningOutProductDAO();
         List<Product> list = new ArrayList<>();
 
         int noOfRecords = productDAO.getNoOfRecords();
@@ -180,7 +181,7 @@ public class RunningOutStockController extends HttpServlet {
             page = Integer.parseInt(request.getParameter("page"));
         }
 
-        IProductDAO productDAO = new ProductDAO();
+        IProductDAO productDAO = new RunningOutProductDAO();
         List<Product> list = new ArrayList<>();
 
         int noOfRecords = productDAO.getNoOfRecords();

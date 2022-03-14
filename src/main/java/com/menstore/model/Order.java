@@ -12,7 +12,7 @@ import java.sql.Date;
  * @author MyPC
  */
 public class Order {
-    private String invoiceID;
+    private String orderId;
     private double discountedMoney;
     private Date orderDate;
     private double total;
@@ -25,7 +25,7 @@ public class Order {
     }
 
     public Order(String invoiceID, double discountedMoney, Date orderDate, double total, String note, String status, String userId, String voucherId) {
-        this.invoiceID = invoiceID;
+        this.orderId = invoiceID;
         this.discountedMoney = discountedMoney;
         this.orderDate = orderDate;
         this.total = total;
@@ -35,8 +35,8 @@ public class Order {
         this.voucherId = voucherId;
     }
 
-    public String getInvoiceID() {
-        return invoiceID;
+    public String getOrderId() {
+        return orderId;
     }
 
     public String getStatus() {
@@ -47,8 +47,8 @@ public class Order {
         this.status = status;
     }
 
-    public void setInvoiceID(String invoiceID) {
-        this.invoiceID = invoiceID;
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
     }
 
     public double getDiscountedMoney() {

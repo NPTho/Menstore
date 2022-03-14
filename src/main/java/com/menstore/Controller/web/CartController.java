@@ -28,6 +28,7 @@ import com.menstore.DAOimpl.OrderDetailDAO;
 import com.menstore.model.Order;
 import com.menstore.model.OrderDetail;
 import com.menstore.model.User;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -98,7 +99,9 @@ public class CartController extends HttpServlet {
                 }
             }
             
-            response.sendRedirect("views/common/newjsp.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("views/common/newjsp.jsp");
+            request.setAttribute("success_message", "Đặt hàng thành công");
+            rd.forward(request, response);
         }
         
         
@@ -172,11 +175,12 @@ public class CartController extends HttpServlet {
 
             cart.setDiscounted(discountedMoney);
             cart.setVoucherId(voucherId);
+            
         } else {
-            cart.setVoucherId(null);
             cart.setDiscounted(0);
+            request.setAttribute("voucher_message", "Voucher không tồn tại");
         }
-
+        
         request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
     }
 

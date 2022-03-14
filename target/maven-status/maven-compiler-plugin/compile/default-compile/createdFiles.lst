@@ -16,6 +16,7 @@ com\menstore\Controller\common\LoginController.class
 com\menstore\DAO\IOrderDAO.class
 com\menstore\utils\DBUtils.class
 com\menstore\Controller\common\NotFoundExeptionHandler.class
+com\menstore\Controller\web\RegisterController.class
 com\menstore\model\User.class
 com\menstore\DAO\IProductDAO.class
 com\menstore\DAO\IUserDAO.class
@@ -24,7 +25,9 @@ com\menstore\DAOimpl\VoucherDAO.class
 com\menstore\model\Voucher.class
 com\menstore\DAOimpl\AccessManager.class
 com\menstore\Controller\web\DetailController.class
+com\menstore\Controller\common\HandleInternalException.class
 com\menstore\DAO\IVoucherDAO.class
+com\menstore\DAOimpl\RunningOutProductDAO.class
 com\menstore\model\Cart.class
 com\menstore\Controller\admin\OrderController.class
 com\menstore\DAOimpl\OrderDAO.class

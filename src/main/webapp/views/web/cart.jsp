@@ -19,10 +19,10 @@
         <script src="${linkSource}/js/jquery.min.js" type="text/javascript"></script>
         <link type="text/css" rel="stylesheet" href="${linkSource}/css/jquery.mmenu.all.css" />
         <script type="text/javascript" src="${linkSource}/js/jquery.mmenu.js"></script>
-        
+
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-        
+
         <script type="text/javascript">
             //	The menu on the left
             $(function () {
@@ -125,9 +125,9 @@
                                                                                             class="form-control credit" placeholder="Name" required="true">
                                     </div>
 
-                                     <div>
+                                    <div>
                                         <label class="credit-card-label">Phone number</label><input value="${sessionScope.usersession.user.phoneNumber}" name="phone" type="text"
-                                                                                               class="form-control credit" placeholder="Phone number" required="true">
+                                                                                                    class="form-control credit" placeholder="Phone number" required="true">
                                     </div>
 
                                     <div>
@@ -135,38 +135,44 @@
                                                                                                class="form-control credit" placeholder="Address" required="true">
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-8">
-                                           <label class="credit-card-label">Voucher code:</label><input name="voucher" type="text"
-                                                                                                     class="form-control credit" placeholder="Voucher">
-                                        </div>
-                                        
-                                        <div class="col-4">
-                                            <a class="btn btn-primary btn-sm" href="cart?action=checkVoucher&voucherId=TetHoliday" >Check</a>
-                                        </div>
-                                        
-                                    </div>
-                                    
                                     <div>
                                         <label class="credit-card-label">Note...: </label>
                                         <textarea name="note" type="text" class="form-control credit" placeholder="Note"> 
                                         </textarea>
                                     </div>
 
-                                    <hr class="line">
-                                    <div class="d-flex justify-content-between information"><span>Total</span><span>${sessionScope.cart.total/1000}k (VNĐ)</span></div>
-                                    
-                                    <div class="d-flex justify-content-between information">
-                                        <span>Discount: </span><span>${sessionScope.cart.discounted/1000}k (VNĐ)</span>
-                                    </div>
-                                    
-                                    <div class="d-flex justify-content-between information">
-                                        <span>Final total:</span><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span>
-                                    </div>
                                     <button class="btn btn-primary btn-block d-flex justify-content-between mt-3"
-                                        type="submit"><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span><span>Checkout<i
+                                            type="submit"><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span><span>Checkout<i
                                                 class="fa fa-long-arrow-right ml-1"></i></span></button>
-                                </form>
+                                </form>   
+
+                                <hr class="line">
+                                <form action="cart" method="post">
+                                    <input type="hidden" name="action" value="checkVoucher"/>
+                                    <div class="row">
+                                        <div class="col-sm-9">
+                                            <input name="voucherId" type="text"
+                                                   class="form-control credit" placeholder="Voucher">
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input style="display: block;height: 100%; border-radius: 10%; border: none; color: white; background-color: gray" type="submit" value="Check"/>
+                                        </div>
+                                        <div>${voucher_message}</div>
+                                    </div>
+                                </form>                                                    
+
+                                <hr class="line">
+                                <div class="d-flex justify-content-between information"><span>Total</span><span>${sessionScope.cart.total/1000}k (VNĐ)</span></div>
+
+                                <div class="d-flex justify-content-between information">
+                                    <span>Discount: </span><span>${sessionScope.cart.discounted/1000}k (VNĐ)</span>
+                                </div>
+
+                                <div class="d-flex justify-content-between information">
+                                    <span>Final total:</span><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -175,108 +181,7 @@
             <!-- start image1_of_3 -->
 
             <!-- start footer -->
-            <div class="footer_top">
-                <div class="wrap">
-                    <div class="footer">
-                        <!-- start grids_of_3 -->
-                        <div class="span_of_3">
-                            <div class="span1_of_3">
-                                <h3>text edit</h3>
-                                <p>But I must explain to you how all this mistaken idea of denouncing pleasure and praising
-                                    pain
-                                    was born and I will give you a complete account of the system, and expound the actual
-                                    teachings of the great explorer of the truth, the master-builder of human happiness.</p>
-                            </div>
-                            <div class="span1_of_3">
-                                <h3>twitter widget</h3>
-                                <p><a href="#">@Contrarypopular</a> I must explain to you how all this mistaken idea of
-                                    denouncing pleasure and praising pain was born and I will give <a
-                                        href="#">@accountofsystem</a> </p>
-                                <p class="top">19 days ago</p>
-                                <p class="top"><a href="#">@Contrarypopular</a> I must explain to you how all this mistaken
-                                    idea
-                                    of denouncing pleasure and praising pain was born and I will give <a
-                                        href="#">@accountofsystem</a> </p>
-                                <p class="top">19 days ago</p>
-                            </div>
-                            <div class="span1_of_3">
-                                <h3>flickr widget</h3>
-                                <ul class="f_nav">
-                                    <li><a href="#"><img src="images/f_pic1.jpg" alt="" /> </a></li>
-                                    <li><a href="#"><img src="images/f_pic2.jpg" alt="" /> </a></li>
-                                    <li><a href="#"><img src="images/f_pic3.jpg" alt="" /> </a></li>
-                                    <li><a href="#"><img src="images/f_pic4.jpg" alt="" /> </a></li>
-                                    <li><a href="#"><img src="images/f_pic5.jpg" alt="" /> </a></li>
-                                    <li><a href="#"><img src="images/f_pic6.jpg" alt="" /> </a></li>
-                                </ul>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- start footer -->
-            <div class="footer_mid">
-                <div class="wrap">
-                    <div class="footer">
-                        <div class="f_search">
-                            <form>
-                                <input type="text" value="" placeholder="Enter email for newsletter" />
-                                <input type="submit" value="" />
-                            </form>
-                        </div>
-                        <div class="soc_icons">
-                            <ul>
-                                <li><a class="icon1" href="#"></a></li>
-                                <li><a class="icon2" href="#"></a></li>
-                                <li><a class="icon3" href="#"></a></li>
-                                <li><a class="icon4" href="#"></a></li>
-                                <li><a class="icon5" href="#"></a></li>
-                            </ul>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </div>
-            <!-- start footer -->
-            <div class="footer_bg">
-                <div class="wrap">
-                    <div class="footer">
-                        <!-- scroll_top_btn -->
-                        <script type="text/javascript">
-                            $(document).ready(function () {
-
-                                var defaults = {
-                                    containerID: 'toTop', // fading element id
-                                    containerHoverID: 'toTopHover', // fading element hover id
-                                    scrollSpeed: 1200,
-                                    easingType: 'linear'
-                                };
-
-
-                                $().UItoTop({easingType: 'easeOutQuart'});
-
-                            });
-                        </script>
-                        <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
-                        <!--end scroll_top_btn -->
-                        <div class="f_nav1">
-                            <ul>
-                                <li><a href="#">home /</a></li>
-                                <li><a href="#">support /</a></li>
-                                <li><a href="#">Terms and conditions /</a></li>
-                                <li><a href="#">Faqs /</a></li>
-                                <li><a href="#">Contact us</a></li>
-                            </ul>
-                        </div>
-                        <div class="copy">
-                            <p class="link"><span>© All rights reserved | Template by&nbsp;<a href="http://w3layouts.com/">
-                                        W3Layouts</a></span></p>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                </div>
-            </div>
+            <jsp:include page="Footer.jsp"/>
             <script src="${linkSource}/js/bootstrap.bundle.min.js"></script>
     </body>
 

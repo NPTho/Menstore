@@ -16,7 +16,8 @@ import java.sql.ResultSet;
  *
  * @author MyPC
  */
-public class UserDAO implements IUserDAO{
+public class UserDAO implements IUserDAO {
+
     @Override
     public int getNoOfRecords() {
 
@@ -44,7 +45,35 @@ public class UserDAO implements IUserDAO{
 
     @Override
     public boolean save(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "INSERT INTO Users \n"
+                + " VALUES(?,?,?,?,?,?,?,?)";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, user.getUserId());
+            ps.setNString(2, user.getName());
+            ps.setNString(3, user.getUsername());
+            ps.setString(4, user.getPassword());
+            ps.setString(5, user.getRole());
+            ps.setInt(6, user.getPoint());
+            ps.setString(7, user.getAddress());
+            ps.setString(8, user.getPhoneNumber());
+
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return false;
     }
 
     @Override
@@ -74,6 +103,33 @@ public class UserDAO implements IUserDAO{
         }
 
         return false;
-    
+
+    }
+
+    @Override
+    public boolean checkExist(String username) {
+         String sql = "SELECT * FROM Users "
+                 + " WHERE UserName like ?";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return true;
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+        return false;
     }
 }
