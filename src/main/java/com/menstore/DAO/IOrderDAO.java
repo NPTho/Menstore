@@ -18,17 +18,17 @@ public interface IOrderDAO {
     
     List<Order> list();
     
-    boolean save(Order order);
+    List<Order> list(int start, int recordsPerPage);
     
     List<Order> list(int start, int recordsPerPage, String direction, String by);
     
-    List<Order> list(int start, int recordsPerPage);
+    boolean save(Order order);
     
-    boolean delete(String productId);
+    boolean delete(String orderId);
     
     boolean add(Order product);
     
-    boolean edit(Order product);
+    boolean updateStatus(String id, String status);
     
     List<Order> search(String by, String keyword);
             

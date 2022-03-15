@@ -220,7 +220,27 @@ public class OrderDAO implements IOrderDAO {
 
     @Override
     public boolean delete(String orderId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         String sql = "DELETE FROM Orders WHERE InvoiceID = ?;";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, orderId);
+
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return false;
     }
 
     @Override
@@ -229,13 +249,37 @@ public class OrderDAO implements IOrderDAO {
     }
 
     @Override
-    public boolean edit(Order product) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean updateStatus(String id, String status) {
+        String sql = "UPDATE Orders \n"
+                + " SET Status = ?\n"
+                + " WHERE InvoiceID LIKE ?";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setNString(1, status);
+            ps.setString(2, id);
+
+            if (ps.executeUpdate() > 0) {
+                return true;
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return false;
     }
 
     @Override
     public List<Order> search(String by, String keyword) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 }

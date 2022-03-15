@@ -45,7 +45,8 @@
                                 <div class="card-body ">
                                     <div class="table-responsive">
                                         <div class="table-wrapper">
-                                            <form action="admin?action=delete" method="post">
+                                            <form action="admin" method="post">
+                                                <input type="hidden" name="action" value="delete"/>
                                                 <div class="table-title">
                                                     <div class="row">
                                                         <div class="col-sm-6">
@@ -71,8 +72,8 @@
                                                             <th>Action</th>
                                                             <th>
                                                                 <span class="custom-checkbox">
-                                                                    <input type="checkbox" id="selectAllOrderCheckBox">
-                                                                    <label for="selectAllOrderCheckBox"></label>
+                                                                    <input type="checkbox" id="selectAll">
+                                                                    <label for="selectAll"></label>
                                                                 </span>
                                                             </th>
                                                         </tr>
@@ -94,53 +95,31 @@
                                                                     <a href="${pageContext.request.contextPath}/orderDetail?orderId=${order.orderId}" target="_blank" class="see"><i class="material-icons" data-toggle="tooltip" title="Image">visibility</i></a>
                                                                     </form>
 
-                                                                    <form action="admin?action=edit" method="post">
+                                                                    <form action="admin" method="post">
+                                                                        <input type="hidden" name="action" value="edit"/>
                                                                         <a href="#editProduct${count}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                                                         <!-- Edit Modal HTML -->
                                                                         <div id="editProduct${count}" class="modal fade">
                                                                             <div class="modal-dialog">
                                                                                 <div class="modal-content">
                                                                                     <div class="modal-header">						
-                                                                                        <h4 class="modal-title">PRODUCT TABLE</h4>
+                                                                                        <h4 class="modal-title">Chỉnh sửa hóa đơn</h4>
                                                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                                                     </div>
                                                                                     <div class="modal-body">					
                                                                                         <div class="form-group">
-                                                                                            <label>Product ID</label>
-                                                                                            <input name="id" type="hidden" class="form-control" value="${product.productId}" required>
-                                                                                            <input disabled type="text" class="form-control" value="${product.productId}" required>
+                                                                                            <label>Mã hóa đơn</label>
+                                                                                            <input name="id" type="hidden" class="form-control" value="${order.orderId}" required>
+                                                                                            <input disabled type="text" class="form-control" value="${order.orderId}" required>
                                                                                         </div>
                                                                                         <div class="form-group">
-                                                                                            <label>Product name</label>
-                                                                                            <input name="name" type="text" class="form-control" value="${product.productName}" required>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Size</label>
-                                                                                            <input name="size" type="text" class="form-control" value="${product.size}" required>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Price</label>
-                                                                                            <input name="price" type="text" class="form-control" value="${product.price}" required>  
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Discount</label>
-                                                                                            <input name="discount" type="text" class="form-control" value="${product.discount}" required>
-                                                                                        </div>	
-                                                                                        <div class="form-group">
-                                                                                            <label>Quantity</label>
-                                                                                            <input name="quantity" type="text" class="form-control" value="${product.quantity}" required>
-                                                                                        </div>	
-                                                                                        <div class="form-group">
-                                                                                            <label>Category</label>
-                                                                                            <input name="categoryId" type="text" class="form-control" value="${product.categoryId}" required>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Status</label>
-                                                                                            <input name="status" type="text" class="form-control" value="${product.status}" required>
-                                                                                        </div>
-                                                                                        <div class="form-group">
-                                                                                            <label>Link image</label>
-                                                                                            <input name="linkImage" type="text" class="form-control" value="${product.linkImage}" required>
+                                                                                            <label for="status">Trạng thái</label>
+                                                                                            <select name="status" class="form-control" id="status">
+                                                                                                <option value="${order.status}">${order.status}</option>
+                                                                                                <option value="Đã thanh toán">Đã thanh toán</option>
+                                                                                                <option value="Đơn bị hủy">Đơn hủy</option>
+                                                                                                <option value="Đang xử lý">Đang xử lý</option>
+                                                                                            </select>
                                                                                         </div>				
                                                                                     </div>
                                                                                     <div class="modal-footer">
@@ -154,8 +133,8 @@
                                                                 </td>
                                                                 <td>
                                                                     <span class="custom-checkbox">
-                                                                        <input class="CustomerOrderCheckBox" type="checkbox" id="checkbox1" name="CustomerOrderOptions[]" value="b? id dô">
-                                                                        <label for="checkbox1"></label>
+                                                                        <input class="CheckBox" type="checkbox" id="checkbox2" name="options" value="${order.orderId}">
+                                                                        <label for="checkbox"></label>
                                                                     </span>
                                                                 </td>
                                                             </tr>
@@ -264,6 +243,10 @@
 
 
                                                 </div>
+                                                <div style="color: green;">
+                                                    ${message}
+                                                </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -294,8 +277,8 @@
 
 <script type="text/javascript">
                                                                 $(document).ready(function () {
-                                                                    $("#selectAllOrderCheckBox").click(function () {
-                                                                        $(".CustomerOrderCheckBox").not(this).prop('checked', this.checked);
+                                                                    $("#selectAll").click(function () {
+                                                                        $(".CheckBox").not(this).prop('checked', this.checked);
                                                                     });
                                                                 });
 

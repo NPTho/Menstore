@@ -23,41 +23,17 @@ public class OrderController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        int page = 1;
-        int recordsPerPage = 4;
-        if (request.getParameter("page") != null) {
-            page = Integer.parseInt(request.getParameter("page"));
-        }
-        IOrderDAO orderDAO = new OrderDAO();
-        List<Order> list = new ArrayList<>();
-        
-        int noOfRecords = orderDAO.getNoOfRecords();
-        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-        
-        request.setAttribute("noOfPages", noOfPages);
-        request.setAttribute("currentPage", page);
-        
         String action = request.getParameter("action");
-        
+
         if (action == null) {
-            list = orderDAO.list((page - 1) * recordsPerPage, recordsPerPage);
-//            list = orderDAO.list();
-            request.setAttribute("list", list);
-
-            RequestDispatcher rd = request.getRequestDispatcher("views/admin/Order.jsp");
-            rd.forward(request, response);
-            
-        } else if (action.equals("sort")){
-            String direction = request.getParameter("direction");
-                String by = request.getParameter("by");
-
-                list = orderDAO.list((page - 1) * recordsPerPage, recordsPerPage, direction, by);
-                request.setAttribute("list", list);
-
-                RequestDispatcher rd = request.getRequestDispatcher("views/admin/Order.jsp");
-                rd.forward(request, response);
-        } else{
+            doGet_Display(request, response);
+        } else if (action.equals("sort")) {
+            doGet_Sort(request, response);
+        } else if(action.equals("edit")){
+            doGet_Update(request, response);
+        } else if(action.equals("delete")){
+            doPost_delete(request, response);
+        } else if(action.equals("search")){
             
         }
     }
@@ -101,4 +77,78 @@ public class OrderController extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    protected void doGet_Display(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int page = 1;
+        int recordsPerPage = 4;
+        if (request.getParameter("page") != null) {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+        IOrderDAO orderDAO = new OrderDAO();
+        List<Order> list = new ArrayList<>();
+
+        int noOfRecords = orderDAO.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
+
+        list = orderDAO.list((page - 1) * recordsPerPage, recordsPerPage);
+//            list = orderDAO.list();
+        request.setAttribute("list", list);
+
+        RequestDispatcher rd = request.getRequestDispatcher("views/admin/Order.jsp");
+        rd.forward(request, response);
+    }
+
+    protected void doGet_Sort(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int page = 1;
+        int recordsPerPage = 4;
+        if (request.getParameter("page") != null) {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+        IOrderDAO orderDAO = new OrderDAO();
+        List<Order> list = new ArrayList<>();
+
+        int noOfRecords = orderDAO.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
+        
+        String direction = request.getParameter("direction");
+        String by = request.getParameter("by");
+
+        list = orderDAO.list((page - 1) * recordsPerPage, recordsPerPage, direction, by);
+        request.setAttribute("list", list);
+
+        RequestDispatcher rd = request.getRequestDispatcher("views/admin/Order.jsp");
+        rd.forward(request, response);
+    }
+
+    private void doGet_Update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String orderId = request.getParameter("id");
+        String status = request.getParameter("status");
+        
+        IOrderDAO orderDAO = new OrderDAO();
+        if(orderDAO.updateStatus(orderId, status)){
+            request.setAttribute("message", "Cập nhật thành công");
+        } else{
+            request.setAttribute("message", "Cập nhật thất bại");
+        }
+        
+        doGet_Display(request, response);
+    }
+
+    protected void doPost_delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {    
+
+        IOrderDAO orderDAO = new OrderDAO();
+        
+        if (request.getParameterValues("options") != null) {
+            for (String id : request.getParameterValues("options")) {
+                orderDAO.delete(id);
+            }
+        }
+
+        doGet_Display(request, response);
+    }
 }

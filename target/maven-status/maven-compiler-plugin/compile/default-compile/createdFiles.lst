@@ -17,6 +17,7 @@ com\menstore\DAO\IOrderDAO.class
 com\menstore\utils\DBUtils.class
 com\menstore\Controller\common\NotFoundExeptionHandler.class
 com\menstore\Controller\web\RegisterController.class
+com\menstore\Controller\admin\OrderDetailServlet.class
 com\menstore\model\User.class
 com\menstore\DAO\IProductDAO.class
 com\menstore\DAO\IUserDAO.class
