@@ -5,8 +5,13 @@
  */
 package com.menstore.Controller.web;
 
+import com.menstore.DAO.IProductDAO;
+import com.menstore.DAOimpl.ProductDAO;
+import com.menstore.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +25,13 @@ public class HomeController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        IProductDAO productDAO = new ProductDAO();
+        List<Product> list = new ArrayList<>();
+        
+        list = productDAO.top3_list();
+        request.setAttribute("list", list);
+        
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
         rd.forward(request, response);
     }
@@ -36,11 +48,6 @@ public class HomeController extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

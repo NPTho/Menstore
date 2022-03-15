@@ -151,7 +151,7 @@ public class CartController extends HttpServlet {
         HttpSession session = request.getSession();
         if (session.getAttribute("cart") == null) {
             Cart cart = new Cart();
-            cart.addCart(new CartItem(productDAO.find(request.getParameter("id")), Double.parseDouble(request.getParameter("price")),
+            cart.addCart(new CartItem(productDAO.find(request.getParameter("name"),request.getParameter("size")), Double.parseDouble(request.getParameter("price")),
                     1, Double.parseDouble(request.getParameter("price"))));
             session.setAttribute("cart", cart);
         } else {

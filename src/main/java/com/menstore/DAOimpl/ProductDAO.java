@@ -378,9 +378,9 @@ public class ProductDAO implements IProductDAO {
     }
 
     @Override
-    public Product find(String id) {
+    public Product find(String name) {
         Product product = new Product();
-        String sql = "SELECT * FROM Product WHERE ProductID = ?";
+        String sql = "SELECT * FROM Product WHERE ProductName = ?";
 
         try {
 
@@ -388,7 +388,7 @@ public class ProductDAO implements IProductDAO {
 
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            ps.setString(1, id);
+            ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -411,6 +411,115 @@ public class ProductDAO implements IProductDAO {
         }
 
         return product;
+    }
+    
+     @Override
+    public Product find(String name, String size) {
+        Product product = new Product();
+        String sql = "SELECT * FROM Product WHERE ProductName like ? and size like ?";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setNString(1, name);
+            ps.setString(1, size);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                product.setProductId(rs.getString("ProductID"));
+                product.setProductName(rs.getString("ProductName"));
+                product.setSize(rs.getString("Size"));
+                product.setPrice(rs.getInt("Price"));
+                product.setStatus(rs.getString("Status"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setCategoryId(rs.getString("CategoryID"));
+                product.setLinkImage(rs.getString("Link_image"));
+
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return product;
+    }
+
+    public List<Product> top3_list() {
+        ArrayList<Product> list;
+        list = new ArrayList<Product>();
+
+        String sql = "Select Top 3 p.ProductID, p.ProductName, p.Price, p.Discount, p.Link_image, sum(o.Quantity) as 'Sold'\n"
+                + " From Product p join OrderDetail o on p.ProductID = o.ProductID\n"
+                + " Group by p.ProductID, p.ProductName, p.Price, p.Link_image, p.Discount\n"
+                + " Order by Sold desc";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductId(rs.getString("ProductID"));
+                product.setProductName(rs.getString("ProductName"));
+                product.setPrice(rs.getInt("Price"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setLinkImage(rs.getString("Link_image"));
+                list.add(product);
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return list;
+    }
+
+    public List<Product> top3Shirt_list() {
+        ArrayList<Product> list;
+        list = new ArrayList<Product>();
+
+        String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
+                + " From Product p\n"
+                + " WHERE CategoryID like 'BZ' or CategoryID like 'CT' or CategoryID like 'JK' or CategoryID like 'ST'\n"
+                + "	or CategoryID like 'SU' or CategoryID like 'TST'\n"
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductName(rs.getString("ProductName"));
+                product.setPrice(rs.getInt("Price"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setLinkImage(rs.getString("Link_image"));
+                list.add(product);
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return list;
     }
 
 }

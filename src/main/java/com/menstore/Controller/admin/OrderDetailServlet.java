@@ -6,8 +6,14 @@ package com.menstore.Controller.admin;
  * and open the template in the editor.
  */
 
+import com.menstore.DAO.IOrderDetailDAO;
+import com.menstore.DAOimpl.OrderDetailDAO;
+import com.menstore.model.OrderDetail;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -80,12 +86,40 @@ public class OrderDetailServlet extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    protected void doGet_Display(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected void doGet_Display(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int page = 1;
+        int recordsPerPage = 10;
+        if (request.getParameter("page") != null) {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+        IOrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+        List<OrderDetail> list = new ArrayList<>();
+
+        int noOfRecords = orderDetailDAO.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
+
+        list = orderDetailDAO.list((page - 1) * recordsPerPage, recordsPerPage);
+//            list = orderDAO.list();
+        request.setAttribute("list", list);
+
+        RequestDispatcher rd = request.getRequestDispatcher("views/admin/OrderDetail.jsp");
+        rd.forward(request, response);
     }
 
-    private void doGet_Search(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private void doGet_Search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String orderId = request.getParameter("orderId");
+        
+        IOrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+        List<OrderDetail> list = new ArrayList<>();
+        
+        list = orderDetailDAO.list(orderId);
+        request.setAttribute("list", list);
+
+        RequestDispatcher rd = request.getRequestDispatcher("views/admin/OrderDetail.jsp");
+        rd.forward(request, response);
     }
 
 }

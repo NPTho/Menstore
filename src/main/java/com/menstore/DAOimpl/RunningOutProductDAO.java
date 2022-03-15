@@ -421,4 +421,19 @@ public class RunningOutProductDAO implements IProductDAO {
         return product;
     }
 
+    @Override
+    public List<Product> top3_list() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Product> top3Shirt_list() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Product find(String string, String string1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

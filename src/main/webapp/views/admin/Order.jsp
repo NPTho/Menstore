@@ -35,7 +35,14 @@
 
             <div class="main-panel">
                 <!-- Navbar -->
-
+                <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+                    <div class="container-fluid">
+                        <form action="order" method="post"> 
+                            <input type="hidden" name="action" value="search"/>
+                            <input name="keyword" class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Enter ID..." aria-label="Search">
+                        </form>
+                    </div>
+                </nav>
                 <!-- End Navbar -->
                 <div class="content">
                     <div class="container-fluid">
@@ -92,7 +99,7 @@
                                                                 <td>${order.status}</td>
                                                                 <td>${order.voucherId}</td>
                                                                 <td>
-                                                                    <a href="${pageContext.request.contextPath}/orderDetail?orderId=${order.orderId}" target="_blank" class="see"><i class="material-icons" data-toggle="tooltip" title="Image">visibility</i></a>
+                                                                    <a href="${pageContext.request.contextPath}/orderDetail?action=search&orderId=${order.orderId}" target="_blank" class="see"><i class="material-icons" data-toggle="tooltip" title="Image">visibility</i></a>
                                                                     </form>
 
                                                                     <form action="admin" method="post">

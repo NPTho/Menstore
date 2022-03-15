@@ -22,6 +22,15 @@ public class Voucher {
     public Voucher() {
     }
 
+    public Voucher(String voucherID, int discountedPercent, Date dueDate, double maximumDiscount, double required, String description) {
+        this.voucherID = voucherID;
+        this.discountedPercent = discountedPercent;
+        this.dueDate = dueDate;
+        this.maximumDiscount = maximumDiscount;
+        this.required = required;
+        this.description = description;
+    }
+
     public String getVoucherID() {
         return voucherID;
     }

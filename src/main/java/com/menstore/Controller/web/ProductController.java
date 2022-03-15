@@ -5,8 +5,13 @@
  */
 package com.menstore.Controller.web;
 
+import com.menstore.DAO.IProductDAO;
+import com.menstore.DAOimpl.ProductDAO;
+import com.menstore.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,17 +26,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ProductController", urlPatterns = {"/products"})
 public class ProductController extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        IProductDAO productDAO = new ProductDAO();
+        List<Product> shirtList = new ArrayList<>();
+        
+        shirtList = productDAO.top3Shirt_list();
+        
+        request.setAttribute("shirtList", shirtList);
         
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/products.jsp");
         rd.forward(request, response);

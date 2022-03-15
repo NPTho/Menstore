@@ -45,30 +45,34 @@ public class ProductController extends HttpServlet {
             }
 
         } else {
-            int page = 1;
-            int recordsPerPage = 10;
-            if (request.getParameter("page") != null) {
-                page = Integer.parseInt(request.getParameter("page"));
-            }
-
-            IProductDAO productDAO = new ProductDAO();
-            List<Product> list = new ArrayList<>();
-
-            int noOfRecords = productDAO.getNoOfRecords();
-            int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-
-            request.setAttribute("noOfPages", noOfPages);
-            request.setAttribute("currentPage", page);
-            
-            list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
-            request.setAttribute("list", list);
-
-            RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
-            rd.forward(request, response);
+            display(request, response);
         }
 
     }
-    
+
+    protected void display(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int page = 1;
+        int recordsPerPage = 10;
+        if (request.getParameter("page") != null) {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+
+        IProductDAO productDAO = new ProductDAO();
+        List<Product> list = new ArrayList<>();
+
+        int noOfRecords = productDAO.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
+
+        list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);
+        request.setAttribute("list", list);
+
+        RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
+        rd.forward(request, response);
+    }
+
     protected void sortList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int page = 1;
         int recordsPerPage = 10;
@@ -115,7 +119,7 @@ public class ProductController extends HttpServlet {
         String keyword = request.getParameter("keyword");
         String by = request.getParameter("by");
 
-        list = productDAO.search((page - 1) * recordsPerPage,recordsPerPage,by, keyword);
+        list = productDAO.search((page - 1) * recordsPerPage, recordsPerPage, by, keyword);
         request.setAttribute("list", list);
 
         RequestDispatcher rd = request.getRequestDispatcher("views/admin/Product.jsp");
@@ -236,8 +240,7 @@ public class ProductController extends HttpServlet {
         String linkImage = request.getParameter("linkImage");
 
         Product product = new Product(id, name, status, size, discount, price, quantity, categoryId, linkImage);
-        System.out.println(product);
-
+    
         productDAO.edit(product);
 
         //list = productDAO.list((page - 1) * recordsPerPage, recordsPerPage);

@@ -35,9 +35,9 @@ public class DetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String productId = request.getParameter("productId");
+        String productName = request.getParameter("productName");
         ProductDAO productDAO = new ProductDAO();
-        Product product = new ProductDAO().find(productId);
+        Product product = productDAO.find(productName);
         
         request.setAttribute("product", product);
         

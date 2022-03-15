@@ -5,7 +5,14 @@ import com.menstore.model.OrderDetail;
 import java.util.List;
 
 public interface IOrderDetailDAO {
-    List<IOrderDetailDAO> list(String OrderId);
+    
+    int getNoOfRecords();
+    
+    List<OrderDetail> list();
+    
+    List<OrderDetail> list(String OrderId);
+    
+    List<OrderDetail> list(int start, int recordsPerPage);
     
     boolean save(OrderDetail orderDetail);
     

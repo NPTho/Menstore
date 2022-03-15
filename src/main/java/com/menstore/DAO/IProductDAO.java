@@ -27,4 +27,12 @@ public interface IProductDAO {
     
     Product find(String id);
     
+    Product find(String name, String size);
+    
+    List<Product> top3_list();
+    
+    List<Product> top3Shirt_list();
+    
+    
+    
 }
