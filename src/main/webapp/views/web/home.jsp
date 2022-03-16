@@ -252,6 +252,7 @@
                             </div>
                         </c:forEach>
                     </div>
+                    <div class="clear"></div>   
                     <!-- start grids_of_3 -->
 
 

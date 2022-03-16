@@ -51,7 +51,7 @@
                 <div class="main">
                     <div class="top_main">
                         <h2>Áo/Áo khoác</h2>
-                        <a href="products/Shirt">show all</a>
+                        <a href="products?listType=Ao">show all</a>
                         <div class="clear"></div>
                     </div>
 
@@ -81,7 +81,7 @@
 
                 <div class="top_main">
                     <h2>Quần</h2>
-                    <a href="products/Pant">show all</a>
+                    <a href="products?listType=Quan">show all</a>
                     <div class="clear"></div>
                 </div>
                     
@@ -111,7 +111,7 @@
 
                 <div class="top_main">
                     <h2>Giày dép/ Phụ kiện</h2>
-                    <a href="products/Accessory">show all</a>
+                    <a href="products?listType=Phu kien">show all</a>
                     <div class="clear"></div>
                 </div>
                 <!-- start grids_of_3 -->

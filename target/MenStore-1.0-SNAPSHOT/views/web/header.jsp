@@ -10,9 +10,9 @@
             <c:if test="${sessionScope.usersession == null}">
                 <div class="log_reg">
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/login">Login</a> </li>
+                        <li><a href="${pageContext.request.contextPath}/access">Login</a> </li>
                         <span class="log"> or </span>
-                        <li><a href="${pageContext.request.contextPath}/login">Register</a> </li>								   
+                        <li><a href="${pageContext.request.contextPath}/access">Register</a> </li>								   
                         <div class="clear"></div>
                     </ul>
                 </div>
@@ -22,7 +22,7 @@
                     <ul>
                         <li><a href="${pageContext.request.contextPath}/information">Hello ${sessionScope.usersession.user.name}</a> </li>
                         <span class="log"> | </span>
-                        <li><a href="${pageContext.request.contextPath}/logout">Log out</a> </li>								   
+                        <li><a href="${pageContext.request.contextPath}/access?action=logout">Log out</a> </li>								   
                         <div class="clear"></div>
                     </ul>
                 </div>

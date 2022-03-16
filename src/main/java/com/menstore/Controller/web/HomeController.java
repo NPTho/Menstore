@@ -6,11 +6,9 @@
 package com.menstore.Controller.web;
 
 import com.menstore.DAO.IProductDAO;
-import com.menstore.DAOimpl.ProductDAO;
 import com.menstore.DAOimpl.WebProductDAO;
 import com.menstore.model.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;

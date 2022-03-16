@@ -31,7 +31,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav-link" href="${pageContext.request.contextPath}/logout">
+                <a class="nav-link" href="${pageContext.request.contextPath}/access?action=logout">
                     <i class="fa fa-circle"></i> 
                     <p>Log out</p>
                 </a>

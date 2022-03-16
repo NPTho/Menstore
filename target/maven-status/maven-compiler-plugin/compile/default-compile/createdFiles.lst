@@ -10,13 +10,10 @@ com\menstore\DAO\IOrderDetailDAO.class
 com\menstore\model\CartItem.class
 com\menstore\DAOimpl\UserDAO.class
 com\menstore\Controller\admin\VoucherController.class
-com\menstore\Controller\common\LogoutController.class
 com\menstore\DAOimpl\OrderDetailDAO.class
-com\menstore\Controller\common\LoginController.class
 com\menstore\DAO\IOrderDAO.class
 com\menstore\utils\DBUtils.class
 com\menstore\Controller\common\NotFoundExeptionHandler.class
-com\menstore\Controller\web\RegisterController.class
 com\menstore\DAOimpl\WebProductDAO.class
 com\menstore\Controller\admin\OrderDetailServlet.class
 com\menstore\model\User.class
@@ -26,6 +23,7 @@ com\menstore\model\UserSession.class
 com\menstore\DAOimpl\VoucherDAO.class
 com\menstore\model\Voucher.class
 com\menstore\DAOimpl\AccessManager.class
+com\menstore\Controller\common\AccessController.class
 com\menstore\Controller\web\DetailController.class
 com\menstore\Controller\common\HandleInternalException.class
 com\menstore\DAO\IVoucherDAO.class

@@ -26,18 +26,40 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ProductController", urlPatterns = {"/products"})
 public class ProductController extends HttpServlet {
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        
+        String listType = request.getParameter("listType");
+        
+        if (listType == null) {
+            doDisplay(request, response);
+        } else if (listType.equals("Ao")) {
+            RequestDispatcher rd = request.getRequestDispatcher("/views/web/ProductInType.jsp");
+            rd.forward(request, response);
+        } else if (listType.equals("Quan")) {
+            RequestDispatcher rd = request.getRequestDispatcher("/views/web/ProductInType.jsp");
+            rd.forward(request, response);
+        } else if (listType.equals("PhuKien")) {
+            RequestDispatcher rd = request.getRequestDispatcher("/views/web/ProductInType.jsp");
+            rd.forward(request, response);
+        } else{
+            response.sendRedirect("/products");
+        }
+        
+    }
+    
+    protected void doDisplay(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         IProductDAO webProductDAO = new WebProductDAO();
         List<Product> shirtList = new ArrayList<>();
         List<Product> pantList = new ArrayList<>();
-         List<Product> accessoryList = new ArrayList<>();
+        List<Product> accessoryList = new ArrayList<>();
         
-        shirtList =((WebProductDAO)webProductDAO).top3Shirt_list();
-        pantList = ((WebProductDAO)webProductDAO).top3Pant_list();
-        accessoryList = ((WebProductDAO)webProductDAO).top3Accessory_list();
+        shirtList = ((WebProductDAO) webProductDAO).top3Shirt_list();
+        pantList = ((WebProductDAO) webProductDAO).top3Pant_list();
+        accessoryList = ((WebProductDAO) webProductDAO).top3Accessory_list();
         
         request.setAttribute("shirtList", shirtList);
         request.setAttribute("pantList", pantList);

@@ -108,19 +108,20 @@
                             <div class="registration_left">
                                 <div class="registration_form">
                                     <!-- Form -->
-                                    <form id="registration_form" action="${pageContext.request.contextPath}/login" method="post">
+                                    <form id="registration_form" action="access" method="post">
+                                        <input type="hidden" name="action" value="login"/>
                                         <div>
                                             <label>
-                                                <input name="username" placeholder="Username" type="text" tabindex="3" required="">
+                                                <input name="username" placeholder="Username" type="text" tabindex="1" required="">
                                             </label>
                                         </div>
                                         <div>
                                             <label>	
-                                                <input name="password" placeholder="password" type="password" tabindex="4" required="">
+                                                <input name="password" placeholder="password" type="password" tabindex="2" required="">
                                             </label>
                                         </div>									
                                         <div>
-                                            <input type="submit" value="sign in" id="register-submit">
+                                            <input type="submit" value="sign in" id="register-submit"> <span style="color: red;">${login_mess}</span>
                                         </div>
                                     </form>
                                     <!-- /Form -->
@@ -135,10 +136,11 @@
                         <div class="registration_left">
                             <div class="registration_form">
                                 <!-- Form -->
-                                <form id="registration_form" action="${pageContext.request.contextPath}/register" method="post">
+                                <form id="registration_form" action="access" method="post">
+                                    <input type="hidden" name="action" value="register"/>
                                     <div>
                                         <label>
-                                            <input name="register_name" placeholder="Name" type="text" tabindex="4" required="" autofocus="">
+                                            <input name="register_name" placeholder="Name" type="text" tabindex="3" required="" autofocus="">
                                         </label>
                                     </div>
 
@@ -168,11 +170,9 @@
                                         </label>
                                     </div>
                                     <div>
-                                        <input type="submit" value="create an account" id="register-submit">
+                                        <input type="submit" value="create an account" id="register-submit"> <span> ${register_mess}</span>
                                     </div>
-                                    <div class="alert alert-warning" role="alert">
-                                        ${message}
-                                    </div>
+                                    
                                 </form>
                                 <!-- /Form -->
                             </div>
