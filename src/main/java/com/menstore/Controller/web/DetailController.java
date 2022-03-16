@@ -34,7 +34,7 @@ public class DetailController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        request.setCharacterEncoding("UTF-8");
         String productName = request.getParameter("productName");
         ProductDAO productDAO = new ProductDAO();
         Product product = productDAO.find(productName);

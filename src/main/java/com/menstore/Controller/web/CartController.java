@@ -27,6 +27,7 @@ import com.menstore.DAO.IOrderDetailDAO;
 import com.menstore.DAOimpl.OrderDetailDAO;
 import com.menstore.model.Order;
 import com.menstore.model.OrderDetail;
+import com.menstore.model.Product;
 import com.menstore.model.User;
 import javax.servlet.RequestDispatcher;
 
@@ -39,6 +40,7 @@ public class CartController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         if (action == null) {
             doGet_DisplayCart(request, response);
@@ -147,18 +149,21 @@ public class CartController extends HttpServlet {
 
     protected void doGet_Buy(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         ProductDAO productDAO = new ProductDAO();
         HttpSession session = request.getSession();
+        System.out.println(request.getParameter("name") +" va "+ request.getParameter("size"));
         if (session.getAttribute("cart") == null) {
             Cart cart = new Cart();
             cart.addCart(new CartItem(productDAO.find(request.getParameter("name"),request.getParameter("size")), Double.parseDouble(request.getParameter("price")),
                     1, Double.parseDouble(request.getParameter("price"))));
             session.setAttribute("cart", cart);
         } else {
+            Product product = productDAO.find(request.getParameter("name"),request.getParameter("size"));
             Cart cart = (Cart) session.getAttribute("cart");
-            int index = isExisting(request.getParameter("id"), cart);
+            int index = isExisting(product.getProductId(), cart);
             if (index == -1) {
-                cart.addCart(new CartItem(productDAO.find(request.getParameter("id")), Double.parseDouble(request.getParameter("price")),
+                cart.addCart(new CartItem(product, Double.parseDouble(request.getParameter("price")),
                         1, Double.parseDouble(request.getParameter("price"))));
             } else {
                 int quantity = ((CartItem) cart.getList().get(index)).getQuantity() + 1;

@@ -416,7 +416,7 @@ public class ProductDAO implements IProductDAO {
      @Override
     public Product find(String name, String size) {
         Product product = new Product();
-        String sql = "SELECT * FROM Product WHERE ProductName like ? and size like ?";
+        String sql = "SELECT * FROM Product WHERE ProductName like ? and Size like ?";
 
         try {
 
@@ -425,7 +425,7 @@ public class ProductDAO implements IProductDAO {
             PreparedStatement ps = conn.prepareStatement(sql);
 
             ps.setNString(1, name);
-            ps.setString(1, size);
+            ps.setString(2, size);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -446,7 +446,7 @@ public class ProductDAO implements IProductDAO {
             ex.printStackTrace();
 
         }
-
+         System.out.println(product);
         return product;
     }
 

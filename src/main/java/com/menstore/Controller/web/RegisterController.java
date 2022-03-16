@@ -29,6 +29,7 @@ public class RegisterController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         IUserDAO userDAO = new UserDAO();
 
         String userId = "US" + (userDAO.getNoOfRecords() + 1);

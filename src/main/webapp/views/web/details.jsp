@@ -7,7 +7,7 @@
     <head>
         <c:url var="linkSource" value="${request.contextPath}/views/web" />
 
-        <title>The Fooseshoes Website Template | Details :: w3layouts</title>
+        <title>Chi tiết sản phẩm</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500' rel='stylesheet' type='text/css'>

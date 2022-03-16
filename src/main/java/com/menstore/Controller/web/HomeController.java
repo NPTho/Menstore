@@ -25,7 +25,7 @@ public class HomeController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        request.setCharacterEncoding("UTF-8");
         IProductDAO productDAO = new ProductDAO();
         List<Product> list = new ArrayList<>();
         
