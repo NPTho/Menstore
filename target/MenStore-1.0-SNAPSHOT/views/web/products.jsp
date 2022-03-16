@@ -61,11 +61,11 @@
                      <c:forEach  var="product" items="${shirtList}">
                         <div class="grid1_of_3">
                         <a href="detail?productName=${product.productName}">
-                                    <img src="${product.linkImage}" width="230" height="270"/>
+                                    <img src="${product.linkImage}" width="260" height="300"/>
 
                                     <h3>    ${product.productName}   </h3>
 
-                                    <c:set var="actuaPrice" value="${product.price - product.price*product.discount/100}"/>
+                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
 
                                     <span class="price">${actuaPrice}</span>
 
@@ -91,11 +91,11 @@
                      <c:forEach  var="product" items="${pantList}">
                         <div class="grid1_of_3">
                         <a href="detail?productName=${product.productName}">
-                                    <img src="${product.linkImage}" width="230" height="270"/>
+                                    <img src="${product.linkImage}" width="260" height="300"/>
 
                                     <h3>    ${product.productName}   </h3>
 
-                                    <c:set var="actuaPrice" value="${product.price - product.price*product.discount/100}"/>
+                                   <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
 
                                     <span class="price">${actuaPrice}</span>
 
@@ -110,8 +110,8 @@
                 </div>
 
                 <div class="top_main">
-                    <h2>Giày dép/ Phụ kiện</h2>
-                    <a href="products?listType=Phu kien">show all</a>
+                    <h2>Giày</h2>
+                    <a href="products?listType=Giay">show all</a>
                     <div class="clear"></div>
                 </div>
                 <!-- start grids_of_3 -->
@@ -121,11 +121,11 @@
                     <c:forEach  var="product" items="${accessoryList}">
                         <div class="grid1_of_3">
                         <a href="detail?productName=${product.productName}">
-                                    <img src="${product.linkImage}" width="230" height="270"/>
+                                    <img src="${product.linkImage}" width="260" height="300"/>
 
                                     <h3>    ${product.productName}   </h3>
 
-                                    <c:set var="actuaPrice" value="${product.price - product.price*product.discount/100}"/>
+                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
 
                                     <span class="price">${actuaPrice}</span>
 

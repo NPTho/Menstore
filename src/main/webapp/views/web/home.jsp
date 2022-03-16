@@ -63,137 +63,37 @@
             <div class="image-slider">
                 <div class="wrapper">
                     <div id="ei-slider" class="ei-slider">
-                        <ul class="ei-slider-large">
-                            <li>
-                                <img src="${pageContext.request.contextPath}/views/web/images/slider-image2.jpg" alt="image04"/>
-                                <div class="ei-title">
-                                    <h3 class="btn">$145.99</h3>
-                                    <h2>Chelsea Boot <br>	2022 collections</h2>
-                                    <h3 class="active">This is Chelsea boot from new collections<br>
+                        <c:set var="productList" value="${requestScope.top7list}" />
+                        <ul  class="ei-slider-large">
+                            <c:forEach var="product" items="${productList}">
+                                <c:url var="productDetail" value="${request.contextPath}/detail" scope="request">
+                                    <c:param name="productName" value="${product.productName}"></c:param>
+                                </c:url>
+                                <li>
+                                    <img src="${pageContext.request.contextPath}/views/web/images/slider-image2.jpg" alt="image04"/>
+                                    <div class="ei-title">
+                                        <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
+                                        <h3 class="btn">${actuaPrice} VNĐ</h3>
+                                        <h2>${product.productName}</h2>
 
-                                    </h3>
-                                    <h3>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_1.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_2.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_3.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_4.png" alt=""></a>
-                                    </h3>
-                                </div>
-                            </li>
+                                        <h3>
+                                            <a class="ei_icons" href="${productDetail}"><img src="${pageContext.request.contextPath}/views/web/images/icon_1.png" alt=""></a>
+                                        </h3>
+                                    </div>
+                                </li>
+                            </c:forEach>
 
-                            <li>
-                                <img src="${pageContext.request.contextPath}/views/web/images/slider-image2.jpg" alt="image04"/>
-                                <div class="ei-title">
-                                    <h3 class="btn">$145.99</h3>
-                                    <h2>Chelsea Boot <br>	2022 collections</h2>
-                                    <h3 class="active">This is Chelsea boot from new collections<br>
-
-                                    </h3>
-                                    <h3>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_1.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_2.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_3.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_4.png" alt=""></a>
-                                    </h3>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="${pageContext.request.contextPath}/views/web/images/slider-image2.jpg" alt="image04"/>
-                                <div class="ei-title">
-                                    <h3 class="btn">$145.99</h3>
-                                    <h2>Chelsea Boot <br>	2022 collections</h2>
-                                    <h3 class="active">This is Chelsea boot from new collections<br>
-
-                                    </h3>
-                                    <h3>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_1.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_2.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_3.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_4.png" alt=""></a>
-                                    </h3>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="${pageContext.request.contextPath}/views/web/images/slider-image2.jpg" alt="image04"/>
-                                <div class="ei-title">
-                                    <h3 class="btn">$145.99</h3>
-                                    <h2>Chelsea Boot <br>	2022 collections</h2>
-                                    <h3 class="active">This is Chelsea boot from new collections<br>
-
-                                    </h3>
-                                    <h3>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_1.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_2.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_3.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_4.png" alt=""></a>
-                                    </h3>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="${pageContext.request.contextPath}/views/web/images/slider-image2.jpg" alt="image04"/>
-                                <div class="ei-title">
-                                    <h3 class="btn">$145.99</h3>
-                                    <h2>Chelsea Boot <br>	2022 collections</h2>
-                                    <h3 class="active">This is Chelsea boot from new collections<br>
-
-                                    </h3>
-                                    <h3>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_1.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_2.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_3.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_4.png" alt=""></a>
-                                    </h3>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="${pageContext.request.contextPath}/views/web/images/slider-image2.jpg" alt="image04"/>
-                                <div class="ei-title">
-                                    <h3 class="btn">$145.99</h3>
-                                    <h2>Chelsea Boot <br>	2022 collections</h2>
-                                    <h3 class="active">This is Chelsea boot from new collections<br>
-
-                                    </h3>
-                                    <h3>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_1.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_2.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_3.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_4.png" alt=""></a>
-                                    </h3>
-                                </div>
-                            </li>
-                            <li>
-                                <img src="${pageContext.request.contextPath}/views/web/images/slider-image2.jpg"/>
-                                <div class="ei-title">
-                                    <h3 class="btn">$145.99</h3>
-                                    <h2>Chelsea Boot <br>	2022 collections</h2>
-                                    <h3 class="active">This is Chelsea boot from new collections<br>
-
-                                    </h3>
-                                    <h3>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_1.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_2.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_3.png" alt=""></a>
-                                        <a class="ei_icons" href="#########"><img src="${pageContext.request.contextPath}/views/web/images/icon_4.png" alt=""></a>
-                                    </h3>
-                                </div>
-                            </li>
                         </ul>
                         <!-- ei-slider-large -->
-                        <ul class="ei-slider-thumbs">
-                            <li class="ei-slider-element">Current</li>
-                            <li>
-                                <a href="#">
-                                    <span class="active">T Shirt</span>
-                                    <p>now of $145.99</p> 
-                                </a>
-                                <img src="${pageContext.request.contextPath}/views/web/images/thumbs/1.jpg" alt="thumb01" />
-                            </li>
-                            <li class="hide"><a href="#"><span>T Shirt</span><p>limited edition</p> </a><img src="${pageContext.request.contextPath}/views/web/images/thumbs/2.jpg" alt="thumb01" /></li>
-                            <li  class="hide1"><a href="#"><span>T Shirt</span><p>summer is coming</p></a><img src="${pageContext.request.contextPath}/views/web/images/thumbs/3.jpg" alt="thumb02" /></li>
-                            <li class="hide1"><a href="#"><span>T Shirt</span><p>all colors available</p> </a><img src="${pageContext.request.contextPath}/views/web/images/thumbs/4.jpg" alt="thumb03" /></li>
-                            <li><a href="#"><span>T Shirt</span><p>free delivery</p> </a><img src="${pageContext.request.contextPath}/views/web/images/thumbs/1.jpg" alt="thumb04" /></li>
-                            <li><a href="#"><span>T Shirt</span><p>limited edition</p> </a><img src="${pageContext.request.contextPath}/views/web/images/thumbs/5.jpg" alt="thumb05" /></li>
-                            <li><a href="#"><span>T Shirt</span><p>limited edition</p> </a><img src="${pageContext.request.contextPath}/views/web/images/thumbs/3.jpg" alt="thumb07" /></li>
+                        <ul class="ei-slider-thumbs">                            
+                            <c:set var="productList" value="${requestScope.top7list}" />                          
+                            <c:forEach var="product" items="${productList}">
+                                <c:url var="productDetail" value="${request.contextPath}/detail" scope="request">
+                                    <c:param name="productName" value="${product.productName}"></c:param>
+                                </c:url>
+                                <li><a href="${productDetail}"><span>T Shirt</span> <p>ssss</p></a><img src="${product.linkImage}" alt="thumb07" /></li>
+                                </c:forEach>
+
                         </ul><!-- ei-slider-thumbs -->
 
                     </div><!-- ei-slider -->
@@ -237,12 +137,12 @@
                         <c:forEach var="product" items="${productList}">
                             <div class="grid1_of_3">
                                 <a href="detail?productName=${product.productName}">
-                                    <img src="${product.linkImage}" width="230" height="270"/>
+                                    <img src="${product.linkImage}" width="260" height="300"/>
 
-                                    <h3>${product.productName}</h3>
-                                    
-                                    <c:set var="actuaPrice" value="${product.price - product.price*product.discount/100}"/>
-                                    
+                                    <h3 style="text-align: center;">${product.productName}</h3>
+
+                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
+
                                     <span class="price">${actuaPrice}</span>
 
                                     <c:if test="${product.discount != 0}">

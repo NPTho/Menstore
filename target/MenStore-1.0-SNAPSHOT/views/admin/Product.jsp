@@ -155,7 +155,22 @@
                                                     <td>${product.categoryId}</td>
                                                     <td>${product.status}</td>
                                                     <td>
-                                                        <a href="${product.linkImage}" target="_blank" class="see"><i class="material-icons" data-toggle="tooltip" title="Image">visibility</i></a>
+                                                        <a href="#seeImage${count}" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Image">visibility</i></a>
+
+                                                        <div id="seeImage${count}" class="modal fade">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">						
+                                                                        <h4 class="modal-title">Hình ảnh sản phẩm</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                    </div>
+                                                                    <div style="text-align: center" class="modal-body">					
+                                                                        <img src="${product.linkImage}" width="300" height="400" alt="alt"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                         </form>
                                                         <form action="product?action=edit" method="post">
                                                             <a href="#editProduct${count}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
@@ -270,7 +285,7 @@
                                                         </c:if>                
                                                 </ul>
                                             </c:when>
-                                            
+
                                             <c:when test = "${param.action == 'search'}">
                                                 <ul class="pagination">
 

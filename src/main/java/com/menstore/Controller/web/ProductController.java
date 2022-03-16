@@ -26,45 +26,65 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ProductController", urlPatterns = {"/products"})
 public class ProductController extends HttpServlet {
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        
+
         String listType = request.getParameter("listType");
-        
+
         if (listType == null) {
             doDisplay(request, response);
-        } else if (listType.equals("Ao")) {
-            RequestDispatcher rd = request.getRequestDispatcher("/views/web/ProductInType.jsp");
-            rd.forward(request, response);
-        } else if (listType.equals("Quan")) {
-            RequestDispatcher rd = request.getRequestDispatcher("/views/web/ProductInType.jsp");
-            rd.forward(request, response);
-        } else if (listType.equals("PhuKien")) {
-            RequestDispatcher rd = request.getRequestDispatcher("/views/web/ProductInType.jsp");
-            rd.forward(request, response);
-        } else{
+        } else if (listType.equals("Ao") || listType.equals("Quan") || listType.equals("Giay")) {
+            doDisplayShirtList(request, response);
+        } else {
             response.sendRedirect("/products");
         }
-        
+
     }
-    
+
+    protected void doDisplayShirtList(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        IProductDAO webProductDAO = new WebProductDAO();
+        String listType = request.getParameter("listType");
+        List<Product> list = new ArrayList<>();
+
+        int page = 1;
+        int recordsPerPage = 9;
+        if (request.getParameter("page") != null) {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+
+        int noOfRecords = ((WebProductDAO) webProductDAO).getNoOfRecordsBy(listType);
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
+        request.setAttribute("listType", listType);
+
+        list = ((WebProductDAO) webProductDAO).showList((page - 1) * recordsPerPage, recordsPerPage,listType);
+        request.setAttribute("list", list);
+
+        RequestDispatcher rd = request.getRequestDispatcher("views/web/ProductInType.jsp");
+        rd.forward(request, response);
+    }
+
     protected void doDisplay(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         IProductDAO webProductDAO = new WebProductDAO();
         List<Product> shirtList = new ArrayList<>();
         List<Product> pantList = new ArrayList<>();
         List<Product> accessoryList = new ArrayList<>();
-        
+
         shirtList = ((WebProductDAO) webProductDAO).top3Shirt_list();
         pantList = ((WebProductDAO) webProductDAO).top3Pant_list();
-        accessoryList = ((WebProductDAO) webProductDAO).top3Accessory_list();
-        
+        accessoryList = ((WebProductDAO) webProductDAO).top3Shoes_list();
+
         request.setAttribute("shirtList", shirtList);
         request.setAttribute("pantList", pantList);
         request.setAttribute("accessoryList", accessoryList);
-        
+
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/products.jsp");
         rd.forward(request, response);
     }

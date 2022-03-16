@@ -18,8 +18,68 @@ import java.util.List;
  *
  * @author MyPC
  */
-public class WebProductDAO implements IProductDAO{
-        public List<Product> top3_list() {
+public class WebProductDAO implements IProductDAO {
+
+    public List<Product> showList(int start, int recordsPerPage, String catagory) {
+        ArrayList<Product> list;
+        list = new ArrayList<Product>();
+
+        String sql = "";
+
+        if (catagory.equals("Ao")) {
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+                    + " From Product p\n"
+                    + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " ORDER BY ProductName\n"
+                    + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        } else if (catagory.equals("Quan")) {
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+                    + " From Product p\n"
+                    + " WHERE CategoryID like 'QJ' OR CategoryID like 'QT'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " ORDER BY ProductName\n"
+                    + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        } else{
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+                    + " From Product p\n"
+                    + " WHERE CategoryID like 'GI'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " ORDER BY ProductName\n"
+                    + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        }
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, start);
+            ps.setInt(2, recordsPerPage);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductName(rs.getString("ProductName"));
+                product.setPrice(rs.getInt("Price"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setLinkImage(rs.getString("Link_image"));
+                product.setCategoryId(rs.getString("CategoryID"));
+                list.add(product);
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return list;
+    }
+
+    public List<Product> top3_list() {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
@@ -55,14 +115,47 @@ public class WebProductDAO implements IProductDAO{
         return list;
     }
 
+    public List<Product> top7_list() {
+        ArrayList<Product> list;
+        list = new ArrayList<Product>();
+
+        String sql = "Select Top 7 p.ProductName, p.Price, p.Discount, p.Link_image\n"
+                + " From Product p \n"
+                + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductName(rs.getString("ProductName"));
+                product.setPrice(rs.getInt("Price"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setLinkImage(rs.getString("Link_image"));
+                list.add(product);
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return list;
+    }
+
     public List<Product> top3Shirt_list() {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
         String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
                 + " From Product p\n"
-                + " WHERE CategoryID like 'BZ' or CategoryID like 'CT' or CategoryID like 'JK' or CategoryID like 'ST'\n"
-                + "	or CategoryID like 'SU' or CategoryID like 'TST'\n"
+                + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
                 + " Group by ProductName, Price, Link_image, Discount,CategoryID";
 
         try {
@@ -79,6 +172,7 @@ public class WebProductDAO implements IProductDAO{
                 product.setPrice(rs.getInt("Price"));
                 product.setDiscount(rs.getFloat("Discount"));
                 product.setLinkImage(rs.getString("Link_image"));
+                product.setCategoryId(rs.getString("CategoryID"));
                 list.add(product);
             }
 
@@ -97,7 +191,7 @@ public class WebProductDAO implements IProductDAO{
 
         String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
                 + " From Product p\n"
-                + " WHERE CategoryID like 'JN' or CategoryID like 'PT' or CategoryID like 'SRT'\n"
+                + " WHERE CategoryID like 'QJ' or CategoryID like 'QT' \n"
                 + " Group by ProductName, Price, Link_image, Discount,CategoryID";
 
         try {
@@ -114,6 +208,7 @@ public class WebProductDAO implements IProductDAO{
                 product.setPrice(rs.getInt("Price"));
                 product.setDiscount(rs.getFloat("Discount"));
                 product.setLinkImage(rs.getString("Link_image"));
+                product.setCategoryId(rs.getString("CategoryID"));
                 list.add(product);
             }
 
@@ -126,13 +221,13 @@ public class WebProductDAO implements IProductDAO{
         return list;
     }
 
-    public List<Product> top3Accessory_list() {
+    public List<Product> top3Shoes_list() {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
         String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
                 + " From Product p\n"
-                + " WHERE CategoryID like 'AC' or CategoryID like 'HT' or CategoryID like 'SS'\n"
+                + " WHERE CategoryID like 'GI' \n"
                 + " Group by ProductName, Price, Link_image, Discount,CategoryID";
 
         try {
@@ -149,6 +244,7 @@ public class WebProductDAO implements IProductDAO{
                 product.setPrice(rs.getInt("Price"));
                 product.setDiscount(rs.getFloat("Discount"));
                 product.setLinkImage(rs.getString("Link_image"));
+                product.setCategoryId(rs.getString("CategoryID"));
                 list.add(product);
             }
 
@@ -197,6 +293,48 @@ public class WebProductDAO implements IProductDAO{
         }
 
         return list;
+    }
+
+    public int getNoOfRecordsBy(String category) {
+        String sql = "";
+        if (category.equals("Ao")) {
+            sql = "SELECT COUNT(p.ProductName) as noOfRecords FROM \n"
+                    + "		(select ProductName,CategoryID\n"
+                    + "		From Product \n"
+                    + "		WHERE CategoryID LIKE 'SM' OR CategoryID LIKE 'AT'\n"
+                    + "		Group by ProductName, CategoryID) AS p";
+        } else if (category.equals("Quan")) {
+            sql = "SELECT COUNT(p.ProductName) as noOfRecords FROM \n"
+                    + "		(select ProductName,CategoryID\n"
+                    + "		From Product \n"
+                    + "		WHERE CategoryID LIKE 'QT' OR CategoryID LIKE 'QJ'\n"
+                    + "		Group by ProductName, CategoryID) AS p";
+        } else {
+            sql = "SELECT COUNT(p.ProductName) as noOfRecords FROM \n"
+                    + "		(select ProductName,CategoryID\n"
+                    + "		From Product \n"
+                    + "		WHERE CategoryID LIKE 'GI'\n"
+                    + "		Group by ProductName, CategoryID) AS p";
+        }
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return rs.getInt("noOfRecords");
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+        return 0;
     }
 
     @Override

@@ -27,9 +27,12 @@ public class HomeController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         IProductDAO webProductDAO = new WebProductDAO();
         List<Product> list = new ArrayList<>();
+        List<Product> top7list = new ArrayList<>();
         
         list = ((WebProductDAO)webProductDAO).top3_list();
+        top7list = ((WebProductDAO)webProductDAO).top7_list();
         request.setAttribute("list", list);
+        request.setAttribute("top7list", top7list);
         
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
         rd.forward(request, response);

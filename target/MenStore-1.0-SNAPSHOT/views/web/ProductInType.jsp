@@ -32,6 +32,27 @@
                 });
             });
         </script>
+
+        <style>
+            .pagination {
+                display: inline-block;
+            }
+
+            .pagination a {
+                color: black;
+                float: left;
+                padding: 8px 16px;
+                text-decoration: none;
+                transition: background-color .3s;
+            }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+            }
+
+            .pagination a:hover:not(.active) {background-color: #ddd;}
+        </style>
     </head>
     <body>
         <!-- start header -->
@@ -50,35 +71,93 @@
             <div class="wrap">
                 <div class="main">
                     <div class="top_main">
-                        <a style="position: absolute;" href="products/Shirt">PREVIOUS</a>
-                        
-                        <a href="products/Shirt">NEXT</a>
+                        <a style="position: absolute;" href="products">Trở lại</a>
+
+                        <br>
                         <div class="clear"></div>
                     </div>
 
                     <!-- start grids_of_3 -->
-                    <c:set var="shirtList" value="${requestScope.shirtList}" />
+                    <c:set var="list" value="${requestScope.list}" />
                     <c:set var="count" value="${1}"/>
-                    
-                    <c:forEach begin="${1}" end="${3}">
-                        <div class="grids_of_3">
-                            <c:forEach begin="${1}" end="${3}">
-                            <div class="grid1_of_3">
-                                <a href="#######">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NrICZGfSxeHsGhc4b4NhJE9yQFf-2gsD6A&usqp=CAU" alt="">
-                                    <h3>buffalo decollete</h3>
-                                    <span class="price">$145,99</span>
+
+                    <c:forEach var="product" items="${requestScope.list}">
+                        <c:if test="${count == 1 or count == 4 or count == 7}">
+                            <div class="grids_of_3">
+                            </c:if>
+                            <div style="text-align: center !important;" class="grid1_of_3">
+                                <c:url var="productDetail" value="${request.contextPath}/detail" scope="request">
+                                    <c:param name="productName" value="${product.productName}"></c:param>
+                                </c:url>
+                                <a href="${productDetail}">
+                                    <img src="${product.linkImage}" width="260" height="300" alt="">
+                                    <h3 >${product.productName}</h3>
+                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
+                                    <span class="price">${actuaPrice}</span>
+                                    <c:if test="${product.discount != 0}">
+                                        <span class="price1 bg">on sale</span>
+                                    </c:if>
                                 </a>
                             </div>
-                            </c:forEach>
-                            
-                            <div class="clear"></div>
-                        </div>
+                            <c:if test="${count == 3 or count == 6}">
+                                <div class="clear"></div> 
+                            </c:if>            
+                            <c:if test="${count == 1 or count == 4 or count == 7}">
+                            </div>
+                        </c:if>
+                        <c:set var="count" value="${count + 1}"/>
                     </c:forEach>
+
+                    <div class="clear"></div>   <br>       
+
+
+                    <c:if test="${param.listType != null}">
+                        <div style="text-align: center; margin-top: 20px;">
+                            <div class="pagination">
+                                <c:if test="${currentPage != 1}">
+                                    <a href="products?listType=${requestScope.listType}&page=${currentPage - 1}">PREVIOUS</a>
+                                </c:if>
+                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                    <c:choose>
+                                        <c:when test="${currentPage eq i}">
+                                            <a class="page-link active">${i}</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="products?listType=${requestScope.listType}&page=${i}" class="page-link">${i}</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+
+                                <c:if test="${currentPage lt noOfPages}">
+                                    <a href="products?listType=${requestScope.listType}&page=${currentPage + 1}">NEXT</a>
+                                </c:if>   
+                            </div>
+                        </div>
+                    </c:if>
                     
+                    <c:if test="${param.listType == null}">
+                        <div style="text-align: center; margin-top: 20px;">
+                            <div class="pagination">
+                                <c:if test="${currentPage != 1}">
+                                    <a href="products?page=${currentPage - 1}">PREVIOUS</a>
+                                </c:if>
+                                <c:forEach begin="1" end="${noOfPages}" var="i">
+                                    <c:choose>
+                                        <c:when test="${currentPage eq i}">
+                                            <a class="page-link">${i}</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="products?page=${i}" class="page-link">${i}</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
 
-                    <div class="clear"></div>                     
-
+                                <c:if test="${currentPage lt noOfPages}">
+                                    <a href="products?page=${currentPage + 1}">NEXT</a>
+                                </c:if>   
+                            </div>
+                        </div>
+                    </c:if>
                 </div>
             </div>
         </div>
