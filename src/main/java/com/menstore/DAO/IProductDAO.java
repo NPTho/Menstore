@@ -21,18 +21,8 @@ public interface IProductDAO {
     
     List<Product> search(int start, int recordsPerPage, String by, String keyword);
     
-    //List<Product> listBy(String category);
-    
     List<Product> listBy(int start, int recordsPerPage, String category);
     
     Product find(String id);
-    
-    Product find(String name, String size);
-    
-    List<Product> top3_list();
-    
-    List<Product> top3Shirt_list();
-    
-    
-    
+
 }

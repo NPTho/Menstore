@@ -9,7 +9,6 @@ import com.menstore.DAO.IOrderDAO;
 import com.menstore.DAO.IUserDAO;
 import com.menstore.DAO.IVoucherDAO;
 import com.menstore.DAOimpl.OrderDAO;
-import com.menstore.DAOimpl.ProductDAO;
 import com.menstore.DAOimpl.UserDAO;
 import com.menstore.DAOimpl.VoucherDAO;
 import com.menstore.model.Cart;
@@ -24,11 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import com.menstore.DAO.IOrderDetailDAO;
+import com.menstore.DAO.IProductDAO;
 import com.menstore.DAOimpl.OrderDetailDAO;
+import com.menstore.DAOimpl.WebProductDAO;
 import com.menstore.model.Order;
 import com.menstore.model.OrderDetail;
 import com.menstore.model.Product;
-import com.menstore.model.User;
 import javax.servlet.RequestDispatcher;
 
 /**
@@ -150,16 +150,16 @@ public class CartController extends HttpServlet {
     protected void doGet_Buy(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        ProductDAO productDAO = new ProductDAO();
+        IProductDAO webProductDAO = new WebProductDAO();
         HttpSession session = request.getSession();
         System.out.println(request.getParameter("name") +" va "+ request.getParameter("size"));
         if (session.getAttribute("cart") == null) {
             Cart cart = new Cart();
-            cart.addCart(new CartItem(productDAO.find(request.getParameter("name"),request.getParameter("size")), Double.parseDouble(request.getParameter("price")),
+            cart.addCart(new CartItem(((WebProductDAO)webProductDAO).find(request.getParameter("name"),request.getParameter("size")), Double.parseDouble(request.getParameter("price")),
                     1, Double.parseDouble(request.getParameter("price"))));
             session.setAttribute("cart", cart);
         } else {
-            Product product = productDAO.find(request.getParameter("name"),request.getParameter("size"));
+            Product product =((WebProductDAO)webProductDAO).find(request.getParameter("name"),request.getParameter("size"));
             Cart cart = (Cart) session.getAttribute("cart");
             int index = isExisting(product.getProductId(), cart);
             if (index == -1) {

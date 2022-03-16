@@ -7,6 +7,7 @@ package com.menstore.Controller.web;
 
 import com.menstore.DAO.IProductDAO;
 import com.menstore.DAOimpl.ProductDAO;
+import com.menstore.DAOimpl.WebProductDAO;
 import com.menstore.model.Product;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,12 +30,18 @@ public class ProductController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        IProductDAO productDAO = new ProductDAO();
+        IProductDAO webProductDAO = new WebProductDAO();
         List<Product> shirtList = new ArrayList<>();
+        List<Product> pantList = new ArrayList<>();
+         List<Product> accessoryList = new ArrayList<>();
         
-        shirtList = productDAO.top3Shirt_list();
+        shirtList =((WebProductDAO)webProductDAO).top3Shirt_list();
+        pantList = ((WebProductDAO)webProductDAO).top3Pant_list();
+        accessoryList = ((WebProductDAO)webProductDAO).top3Accessory_list();
         
         request.setAttribute("shirtList", shirtList);
+        request.setAttribute("pantList", pantList);
+        request.setAttribute("accessoryList", accessoryList);
         
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/products.jsp");
         rd.forward(request, response);
