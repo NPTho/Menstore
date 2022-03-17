@@ -90,12 +90,24 @@
                                                 <form action="cart?action=buy" method="post">
                                                     <input type="hidden" name="name" value="${requestScope.product.productName}">
                                                 <input type="hidden" name="price" value="${requestScope.product.price - requestScope.product.price*(requestScope.product.discount/100)}">
-                                                
-                                                <select name="size" style="height: 42px; border-radius: 5px;" class="form-control">
-                                                    <option value="S">S   </option>
-                                                    <option value="M">M</option>
-                                                    <option value="L">L</option>
-                                                </select>
+                                           
+                                                <c:if test="${requestScope.product.categoryId == 'GI'}">
+                                                    <select name="size" style="height: 42px; border-radius: 5px;" class="form-control">
+                                                        <option value="39">39</option>
+                                                        <option value="40">40</option>
+                                                        <option value="41">41</option>
+                                                        <option value="42">42</option>
+                                                        <option value="43">43</option>
+                                                    </select>
+                                                </c:if>
+                                                <c:if test="${requestScope.product.categoryId != 'GI'}">
+                                                    <select name="size" style="height: 42px; border-radius: 5px;" class="form-control">
+                                                        <option value="S">S</option>
+                                                        <option value="M">M</option>
+                                                        <option value="L">L</option>
+                                                    </select>
+                                                </c:if>
+
                                                 <input type="submit" value="Add to Cart" />
                                             </form>
 

@@ -8,6 +8,7 @@
     <c:url var="linkSource" value="${request.contextPath}/views/web" />
 
     <head>
+        <title>Giỏ hàng</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Mavsen+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
@@ -67,10 +68,10 @@
                         <div class="col-md-8 same-height">
 
                             <div class="product-details mr-2">
-                                <div class="d-flex flex-row align-items-center"><a href="home">Continue Shopping</a></div>
+                                <div class="d-flex flex-row align-items-center"><a href="home">Quay lại trang chủ</a></div>
                                 <hr>
-                                <h6 class="mb-0">SHOPPING CART</h6>
-                                <div class="d-flex justify-content-between"><span>You have ${sessionScope.cart.itemCount} items in your cart</span>
+                                <h6 class="mb-0">Giỏ hàng</h6>
+                                <div class="d-flex justify-content-between"><span>Bạn đang có ${sessionScope.cart.itemCount==null?0:1} món hàng trong giỏ</span>
                                     <!--                                     <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort
                                                                                         by:</span>
                                                                                 <div class="price-cart ml-2"><span class="mr-2">Price</span><i
@@ -115,30 +116,30 @@
                             <div class="payment-info">
                                 <form action="cart" method="post">
                                     <input type="hidden" name="action" value="checkout"/>
-                                        <div class="d-flex justify-content-between align-items-center"><span>Card details</span>${message}<img
+                                        <div class="d-flex justify-content-between align-items-center"><span>Thông tin khách</span>${message}<img
                                             class="rounded"
                                             src="https://img.hoidap247.com/picture/question/20200508/large_1588936738888.jpg"
                                             width="42">
                                     </div>
 
                                     <div>
-                                        <label class="credit-card-label">Name</label><input value="${sessionScope.usersession.user.name}"  name="name" type="text"
-                                                                                            class="form-control credit" placeholder="Name" required="true">
+                                        <label class="credit-card-label">Tên</label><input value="${sessionScope.usersession.user.name}"  name="name" type="text"
+                                                                                            class="form-control credit" placeholder="Tên" required="true">
                                     </div>
 
                                     <div>
-                                        <label class="credit-card-label">Phone number</label><input value="${sessionScope.usersession.user.phoneNumber}" name="phone" type="text"
-                                                                                                    class="form-control credit" placeholder="Phone number" required="true">
+                                        <label class="credit-card-label">Số điện thoại</label><input value="${sessionScope.usersession.user.phoneNumber}" name="phone" type="text"
+                                                                                                    class="form-control credit" placeholder="Số điện thoại" required="true">
                                     </div>
 
                                     <div>
-                                        <label class="credit-card-label">Address</label><input value="${sessionScope.usersession.user.address}" name="address" type="text"
-                                                                                               class="form-control credit" placeholder="Address" required="true">
+                                        <label class="credit-card-label">Địa chỉ</label><input value="${sessionScope.usersession.user.address}" name="address" type="text"
+                                                                                               class="form-control credit" placeholder="Địa chỉ" required="true">
                                     </div>
 
 
                                     <div>
-                                        <label class="credit-card-label">Điểm </label><input name="point" type="text"
+                                        <label class="credit-card-label">Điểm</label><input name="point" type="text"
                                             class="form-control credit" disabled="" 
                                             placeholder="Điểm hiện có: ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}, giảm ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}k khi sử dụng">
                                     </div>
@@ -161,7 +162,7 @@
                                     </div>
 
                                     <button class="btn btn-primary btn-block d-flex justify-content-between mt-3"
-                                            type="submit"><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span><span>Checkout<i
+                                            type="submit"><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span><span>Thanh toán<i
                                                 class="fa fa-long-arrow-right ml-1"></i></span></button>
                                 </form>   
 
@@ -181,14 +182,14 @@
                                 </form>
 
                                 <hr class="line">
-                                <div class="d-flex justify-content-between information"><span>Total</span><span>${sessionScope.cart.total/1000}k (VNĐ)</span></div>
+                                <div class="d-flex justify-content-between information"><span>Tổng tiền</span><span>${sessionScope.cart.total/1000}k (VNĐ)</span></div>
 
                                 <div class="d-flex justify-content-between information">
-                                    <span>Discount: </span><span>${sessionScope.cart.discounted/1000}k (VNĐ)</span>
+                                    <span>Đã giảm: </span><span>${sessionScope.cart.discounted/1000}k (VNĐ)</span>
                                 </div>
 
                                 <div class="d-flex justify-content-between information">
-                                    <span>Final total:</span><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span>
+                                    <span>Thành tiền:</span><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span>
                                 </div>
 
 

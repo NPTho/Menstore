@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!-- start header -->
 <div class="top_bg">
@@ -10,9 +11,9 @@
             <c:if test="${sessionScope.usersession == null}">
                 <div class="log_reg">
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/access">Login</a> </li>
-                        <span class="log"> or </span>
-                        <li><a href="${pageContext.request.contextPath}/access">Register</a> </li>								   
+                        <li><a href="${pageContext.request.contextPath}/access">Đăng nhập</a> </li>
+                        <span class="log"> | </span>
+                        <li><a href="${pageContext.request.contextPath}/access">Đăng ký</a> </li>								   
                         <div class="clear"></div>
                     </ul>
                 </div>
@@ -20,9 +21,9 @@
             <c:if test="${sessionScope.usersession != null}">
                 <div class="log_reg">             
                     <ul>
-                        <li><a href="${pageContext.request.contextPath}/information">Hello ${sessionScope.usersession.user.name}</a> </li>
+                        <li><a href="${pageContext.request.contextPath}/information">Chào ${sessionScope.usersession.user.name}</a> </li>
                         <span class="log"> | </span>
-                        <li><a href="${pageContext.request.contextPath}/access?action=logout">Log out</a> </li>								   
+                        <li><a href="${pageContext.request.contextPath}/access?action=logout">Đăng xuất</a> </li>								   
                         <div class="clear"></div>
                     </ul>
                 </div>
@@ -45,8 +46,8 @@
     <div class="header_btm">
         <div class="menu">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/products">Product</a></li>
+                <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
+                <li><a href="${pageContext.request.contextPath}/products">Sản phẩm</a></li>
                 <div class="clear"></div>
             </ul>
         </div>
@@ -55,8 +56,8 @@
         </div>
         <nav id="menu-left">
             <ul>
-                <li><a href="${pageContext.request.contextPath}/home">Home</a></li>
-                <li><a href="${pageContext.request.contextPath}/products">Product</a></li>
+                <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
+                <li><a href="${pageContext.request.contextPath}/products">Sản phẩm</a></li>
                 <div class="clear"></div>
             </ul>
         </nav>

@@ -5,10 +5,11 @@
  */
 package com.menstore.Controller.web;
 
+import com.menstore.DAO.IProductDAO;
 import com.menstore.DAOimpl.ProductDAO;
+import com.menstore.DAOimpl.WebProductDAO;
 import com.menstore.model.Product;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,8 +37,8 @@ public class DetailController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String productName = request.getParameter("productName");
-        ProductDAO productDAO = new ProductDAO();
-        Product product = productDAO.find(productName);
+        IProductDAO webProductDAO = new WebProductDAO();
+        Product product = webProductDAO.find(productName);
         
         request.setAttribute("product", product);
         

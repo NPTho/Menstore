@@ -405,6 +405,45 @@ public class WebProductDAO implements IProductDAO {
 
         return list;
     }
+    
+     public List<Product> searchList(String name) {
+        ArrayList<Product> list;
+        list = new ArrayList<Product>();
+        String sql = "SELECT * FROM Product WHERE ProductName LIKE ?";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, "%" + name + "%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductId(rs.getString("ProductID"));
+                product.setProductName(rs.getString("ProductName"));
+                product.setSize(rs.getString("Size"));
+                product.setPrice(rs.getInt("Price"));
+                product.setStatus(rs.getString("Status"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setQuantity(rs.getInt("Quantity"));
+                product.setCategoryId(rs.getString("CategoryID"));
+                product.setLinkImage(rs.getString("Link_image"));
+                list.add(product);
+            }
+            
+            return list;
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return null;
+    }
 
     @Override
     public List<Product> list(int start, int recordsPerPage, String direction, String by) {
@@ -695,6 +734,7 @@ public class WebProductDAO implements IProductDAO {
 
         return product;
     }
+    
 
     public Product find(String name, String size) {
         Product product = new Product();
