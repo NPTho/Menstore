@@ -411,10 +411,14 @@ public class WebProductDAO implements IProductDAO {
     public List<Product> searchList(String name) {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
+<<<<<<< HEAD
         String sql = " SELECT ProductName, Price, Discount, Link_image, CategoryID"
                 + " FROM Product "
                 + " WHERE ProductName like ? \n"
                 + " GROUP BY ProductName, Price, Discount, Link_image, CategoryID";
+=======
+        String sql = "SELECT * FROM Product WHERE ProductName like '%?%'";
+>>>>>>> origin
 
         try {
 
