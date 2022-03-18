@@ -37,7 +37,9 @@ public class ProductController extends HttpServlet {
             doDisplayList(request, response);
         } else if (listType.equals("OnSale")) {
             doDisplay(request, response);
-        } else {
+        } else if (listType.equals("search")){
+            doDisplayByName(request, response);
+        } else{
             doDisplaySearchList(request, response);
         }
 
@@ -115,6 +117,20 @@ public class ProductController extends HttpServlet {
         rd.forward(request, response);
     }
 
+    protected void doDisplayByName(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        IProductDAO webProductDAO = new WebProductDAO();
+        List<Product> productList = new ArrayList<>();
+        
+        String searchName = (String) request.getAttribute("searchName");
+        productList = ((WebProductDAO) webProductDAO).searchList("searchName");
+
+        request.setAttribute("shirtList", productList);
+
+        RequestDispatcher rd = request.getRequestDispatcher("views/web/ProductInType.jsp");
+        rd.forward(request, response);
+    }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

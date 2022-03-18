@@ -409,7 +409,7 @@ public class WebProductDAO implements IProductDAO {
      public List<Product> searchList(String name) {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
-        String sql = "SELECT * FROM Product WHERE ProductName LIKE ?";
+        String sql = "SELECT * FROM Product WHERE ProductName like '%?%'";
 
         try {
 

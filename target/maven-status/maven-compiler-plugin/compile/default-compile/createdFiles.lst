@@ -6,12 +6,16 @@ com\menstore\Controller\admin\ProductController.class
 com\menstore\model\Order.class
 com\menstore\model\Product.class
 com\menstore\Controller\admin\RunningOutStockController.class
+com\menstore\DAO\IOrderDetailDAO.class
 com\menstore\model\CartItem.class
 com\menstore\DAOimpl\UserDAO.class
 com\menstore\Controller\admin\VoucherController.class
+com\menstore\DAOimpl\OrderDetailDAO.class
 com\menstore\DAO\IOrderDAO.class
+com\menstore\utils\DBUtils.class
 com\menstore\Controller\common\NotFoundExeptionHandler.class
 com\menstore\DAOimpl\WebProductDAO.class
+com\menstore\Controller\admin\OrderDetailServlet.class
 com\menstore\model\User.class
 com\menstore\DAO\IProductDAO.class
 com\menstore\DAO\IUserDAO.class
@@ -28,3 +32,4 @@ com\menstore\model\Cart.class
 com\menstore\Controller\admin\OrderController.class
 com\menstore\Controller\common\InformationServlet.class
 com\menstore\DAOimpl\OrderDAO.class
+com\menstore\Controller\web\CartController.class
