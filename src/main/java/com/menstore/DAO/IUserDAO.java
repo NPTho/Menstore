@@ -27,4 +27,6 @@ public interface IUserDAO {
     int changePassword(User user, String oldPassword, String newPassword);
     
     boolean updateInformation(User user);
+    
+    boolean updatePoint(String userId, int point);
 }

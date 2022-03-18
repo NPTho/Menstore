@@ -6,7 +6,7 @@
     <div class="wrap">
         <div class="header">
             <div class="logo">
-                <a href="/home"><img src="${pageContext.request.contextPath}/views/web/images/MenStore.jpg" alt=""/></a>
+                <a href="./home"><img src="${pageContext.request.contextPath}/views/web/images/MenStore.jpg" alt=""/></a>
             </div>
             <c:if test="${sessionScope.usersession == null}">
                 <div class="log_reg">

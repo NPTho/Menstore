@@ -1,5 +1,5 @@
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.text.DecimalFormat" %> 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Da sua
 -->
@@ -57,103 +57,153 @@
     </head>
 
     <body>
-        <div>
-            <!-- start header -->
-            <jsp:include page="header.jsp"/>
-            ${requestScope.voucher}
-            <!-- start slider -->
-            <div class="gray_bg">
-                <div class="container p-3 rounded cart gray_bg">
-                    <div class="row no-gutters">
-                        <div class="col-md-8 same-height">
+        <c:if test="${not empty pointMsg}">
+            <script>
+                alert("${pointMsg}");
+            </script>
+            <c:remove var="pointMsg"/>
+        </c:if>
 
-                            <div class="product-details mr-2">
-                                <div class="d-flex flex-row align-items-center"><a href="home">Quay lại trang chủ</a></div>
-                                <hr>
-                                <h6 class="mb-0">Giỏ hàng</h6>
-                                <div class="d-flex justify-content-between"><span>Bạn đang có ${sessionScope.cart.itemCount==null?0:1} món hàng trong giỏ</span>
-                                    <!--                                     <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort
-                                                                                        by:</span>
-                                                                                <div class="price-cart ml-2"><span class="mr-2">Price</span><i
-                                                                                                class="fa fa-angle-down"></i>
-                                                                                </div>
-                                                                        </div> -->
-                                </div>
 
+        <!-- start header -->
+        <jsp:include page="header.jsp"/>
+
+        <!-- start slider -->
+        <div class="gray_bg">
+            <div class="container p-3 rounded cart gray_bg">
+                <div class="row no-gutters">
+                    <div class="col-md-8 same-height">
+
+                        <div class="product-details mr-2">
+                            <hr>
+                            <h6 class="mb-0">Giỏ hàng</h6>
+                            <div class="d-flex justify-content-between"><span>Bạn đang có ${sessionScope.cart.itemCount==null?0:1} món hàng trong giỏ</span>
+                                <!--                                     <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort
+                                                                                    by:</span>
+                                                                            <div class="price-cart ml-2"><span class="mr-2">Price</span><i
+                                                                                            class="fa fa-angle-down"></i>
+                                                                            </div>
+                                                                    </div> -->
+                            </div>
+                            <c:set var="msg" value="${message}"/>
+                            <c:if test="${empty msg}">
                                 <c:if test="${sessionScope.cart.itemCount == 0}">
                                     <hr>
                                     <h1>Your cart is empty!!</h1>
                                 </c:if>
-                                <c:forEach var="item" items="${sessionScope.cart.list}">
+                            </c:if>
+                            <c:if test="${not empty msg}">
+                                <hr>
+                                <h1 style="color: ${colorMessage}; font-size: 20px; text-transform: capitalize">${msg}</h1>
+                            </c:if>
+                            <c:forEach var="item" items="${sessionScope.cart.list}">
 
-                                    <div class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
-                                        <div class="d-flex flex-row"><img class="rounded"
-                                                                          src="${item.product.linkImage}"
-                                                                          height="120">
-                                            <div class="ml-5 a-space"><span class="font-weight-bold d-block">${item.product.productName}</span>
-                                                <span class="spec">Size: ${item.product.size}</span></div>
-                                        </div>
-                                        <div class="d-flex flex-row align-items-center">
-                                            <i class="fa-solid fa-angle-left mr-1"></i>
-                                            <a href="${pageContext.request.contextPath}/cart?action=update&id=${item.product.productId}&direc=down"><i class="material-icons">arrow_downward</i></a>
-                                            <span class="d-block"> ${item.quantity} </span>
-                                            <a href="${pageContext.request.contextPath}/cart?action=update&id=${item.product.productId}&direc=up"><i class="material-icons">arrow_upward</i></a>
-                                            <i class="fa-solid fa-angle-right ml-1"></i>
-                                            <span class="d-block ml-5 font-weight-bold">${item.soldPrice} VNĐ</span>
-                                            <a href="${pageContext.request.contextPath}/cart?action=remove&id=${item.product.productId}"><i class="material-icons">close</i></a>
-                                        </div>
+                                <div class="d-flex justify-content-between align-items-center mt-3 p-4 items rounded white_bg">
+                                    <div class="d-flex flex-row"><img class="rounded"
+                                                                      src="${item.product.linkImage}"
+                                                                      height="120">
+                                        <div class="ml-5 a-space"><span class="font-weight-bold d-block">${item.product.productName}</span>
+                                            <span class="spec">Size: ${item.product.size}</span></div>
                                     </div>
-                                </c:forEach>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <i class="fa-solid fa-angle-left mr-1"></i>
+                                        <a href="${pageContext.request.contextPath}/cart?action=update&id=${item.product.productId}&direc=down"><i class="material-icons">arrow_downward</i></a>
+                                        <span class="d-block"> ${item.quantity} </span>
+                                        <a href="${pageContext.request.contextPath}/cart?action=update&id=${item.product.productId}&direc=up"><i class="material-icons">arrow_upward</i></a>
+                                        <i class="fa-solid fa-angle-right ml-1"></i>
+                                        <span class="d-block ml-5 font-weight-bold">${item.soldPrice} VNĐ</span>
+                                        <a href="${pageContext.request.contextPath}/cart?action=remove&id=${item.product.productId}"><i class="material-icons">close</i></a>
+                                    </div>
+                                </div>
+                            </c:forEach>
 
-                                <div class="clear"></div>
-                            </div>
                             <div class="clear"></div>
-
                         </div>
+                        <div class="clear"></div>
+
+                    </div>
 
 
-                        <div  class="col-md-4 stick-board">
-                            <div class="payment-info">
-                                <form action="cart" method="post">
-                                    <input type="hidden" name="action" value="checkout"/>
-                                        <div class="d-flex justify-content-between align-items-center"><span>Thông tin khách</span>${message}<img
-                                            class="rounded"
-                                            src="https://img.hoidap247.com/picture/question/20200508/large_1588936738888.jpg"
-                                            width="42">
+                    <div  class="col-md-4 stick-board">
+                        <div class="payment-info">
+                            <form action="cart" method="post">
+                                <input type="hidden" name="action" value="checkout"/>
+                                <div class="d-flex justify-content-between align-items-center"><span>Thông tin khách</span><img
+                                        class="rounded"
+                                        src="https://img.hoidap247.com/picture/question/20200508/large_1588936738888.jpg"
+                                        width="42">
+                                </div>
+
+                                <div>
+                                    <label class="credit-card-label">Tên</label><input value="${sessionScope.usersession.user.name}"  name="name" type="text"
+                                                                                       class="form-control credit" placeholder="Tên" required="true">
+                                </div>
+
+                                <div>
+                                    <label class="credit-card-label">Số điện thoại</label><input value="${sessionScope.usersession.user.phoneNumber}" name="phone" type="text"
+                                                                                                 class="form-control credit" placeholder="Số điện thoại" required="true">
+                                </div>
+
+                                <div>
+                                    <label class="credit-card-label">Địa chỉ</label><input value="${sessionScope.usersession.user.address}" name="address" type="text"
+                                                                                           class="form-control credit" placeholder="Địa chỉ" required="true">
+                                </div>
+
+
+                                <div>
+                                    <label class="credit-card-label">Điểm</label><input type="text"
+                                                                                        class="form-control credit" disabled="" 
+                                                                                        placeholder="Điểm hiện có: ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}  -  Giảm ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}k khi sử dụng">
+                                </div>
+
+                                <div class="row" style="margin-top: 7px; margin-bottom: 10px;">
+
+                                    <c:if test="${param.checked=='yes'}">
+                                        <c:set var="pointSs" value="yes" scope="session"/>
+                                        <c:set var="checkedSs" value="yes" scope="session"/>
+                                    </c:if>
+
+                                    <c:if test="${param.checked=='no'}">
+                                        <c:set var="pointSs" value="no" scope="session"/>
+                                        <c:set var="checkedSs" value="no" scope="session"/>
+                                    </c:if>
+
+
+                                    <c:if test="${empty param.checked && empty checkedSs}">
+                                        <c:if test="${param.checked=='no'}">
+                                            <c:set var="pointSs" value="no" scope="session"/>
+                                            <c:set var="checkedSs" value="no" scope="session"/>
+                                        </c:if>
+                                    </c:if>
+
+                                    <c:set var="userPoint" value="${usersession}"/>
+
+                                    <div class="col-md-6">
+                                        <input type="radio" name="point" value="yes"
+                                               <c:if test="${checkedSs=='yes' && userPoint.user.point>0}">checked="checked"</c:if>
+                                               <c:if test="${empty userPoint.user.point||userPoint.user.point<=0}">
+                                                   <c:set var="checkedSs" value="no"/>
+                                               </c:if>/>
+                                        <span>Sử dụng</span> 
                                     </div>
-
-                                    <div>
-                                        <label class="credit-card-label">Tên</label><input value="${sessionScope.usersession.user.name}"  name="name" type="text"
-                                                                                            class="form-control credit" placeholder="Tên" required="true">
-                                    </div>
-
-                                    <div>
-                                        <label class="credit-card-label">Số điện thoại</label><input value="${sessionScope.usersession.user.phoneNumber}" name="phone" type="text"
-                                                                                                    class="form-control credit" placeholder="Số điện thoại" required="true">
-                                    </div>
-
-                                    <div>
-                                        <label class="credit-card-label">Địa chỉ</label><input value="${sessionScope.usersession.user.address}" name="address" type="text"
-                                                                                               class="form-control credit" placeholder="Địa chỉ" required="true">
-                                    </div>
-
-
-                                    <div>
-                                        <label class="credit-card-label">Điểm</label><input name="point" type="text"
-                                            class="form-control credit" disabled="" 
-                                            placeholder="Điểm hiện có: ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}, giảm ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}k khi sử dụng">
-                                    </div>
-
-                                    <div class="row" style="margin-top: 7px; margin-bottom: 10px;">
-                                        <div class="col-md-6">
-                                            <input type="radio" name="point" value="yes"/><span>Sử dụng</span> 
+                                    <div class="col-md-6">
+                                        <input type="radio" name="point" value="no" 
+                                               <c:if test="${empty checkedSs || checkedSs=='no'}">checked="checked"</c:if> />
+                                               <span>Không Sử dụng</span> 
                                         </div>
-                                        <div class="col-md-6">
-                                            <input type="radio" name="point" value="no" checked="checked" /><span>Không Sử dụng</span> 
-                                        </div>
                                     </div>
-
-                                   
+                                    <script>
+                                        $(function () {
+                                            $("input[name$='point']").click(function () {
+                                                var value = $(this).val();
+                                                if (value == 'yes') {
+                                                    window.location.assign("cart?checked=yes");
+                                                } else if (value == 'no') {
+                                                    window.location.assign("cart?checked=no");
+                                                }
+                                            });
+                                        });
+                                    </script> 
 
                                     <div>
                                         <label class="credit-card-label">Note: </label>
@@ -161,48 +211,130 @@
                                         </textarea>
                                     </div>
 
-                                    <button class="btn btn-primary btn-block d-flex justify-content-between mt-3"
-                                            type="submit"><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span><span>Thanh toán<i
-                                                class="fa fa-long-arrow-right ml-1"></i></span></button>
-                                </form>   
 
-                                <hr class="line">
-                                <form action="cart" method="post">
-                                    <input type="hidden" name="action" value="checkVoucher"/>
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <input name="voucherId" type="text"
-                                                   class="form-control credit" placeholder="Voucher">
+                                <c:set var="total" value="${sessionScope.cart.total}"/>                        
+                                <c:set var="dis" value="${sessionScope.voucher.discountedPercent/100}"/>                     
+                                <jsp:setProperty name="cart" property="discounted" value="${total*dis}"/>                    
+                                <jsp:setProperty name="cart" property="subTotal" value="${total-total*dis}"/>
+
+                                <%! String num; %>
+                                <%! DecimalFormat priceFormatter = new DecimalFormat("$#0.0"); %>
+                                <button class="btn btn-primary btn-block d-flex justify-content-between mt-3 pb-4   "
+                                        type="submit"><span>
+                                        <c:set var="userPoint" value="${usersession}"/>
+                                        <c:set var="uPoint" value="${userPoint.user.point}" scope="request"/>
+                                        <c:if test="${not empty checkedSs && checkedSs=='yes'}">
+                                            <c:if test="${not empty userPoint}">
+                                                <c:if test="${userPoint.user.point>0}">
+                                                    <c:set var="tmpTotal" value="${sessionScope.cart.subTotal/1000}" scope="request"/>  
+                                                    
+                                                    <%
+                                                        num = priceFormatter.format((double) request.getAttribute("tmpTotal") - (int) request.getAttribute("uPoint"));
+                                                        out.print(num);
+                                                    %> k (VNĐ)
+                                                </c:if>
+                                            </c:if> 
+                                        </c:if>
+
+                                        <c:if test="${empty checkedSs || checkedSs=='no'}">
+                                            <c:set var="tmpTotal" value="${sessionScope.cart.subTotal/1000}" scope="request"/>  
+                                            <%  
+                                                num = priceFormatter.format((double) request.getAttribute("tmpTotal"));
+                                                if((double)request.getAttribute("tmpTotal")<(double)0)
+                                                    num="0";
+                                                out.print(num);
+                                            %>  
+                                            k (VNĐ)   
+                                        </c:if>
+
+                                    </span><span>Thanh toán<i
+                                            class="fa fa-long-arrow-right"></i></span></button>
+                            </form>   
+
+                            <hr class="line">
+
+                            <c:set var="voucher" value="${voucher}"/>
+                            <form action="cart" method="post">
+                                <input type="hidden" name="action" value="checkVoucher"/>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <input name="voucherId" type="text"
+                                               <c:if test="${not empty voucher}" > value="${voucher.voucherID}" </c:if>
+                                               <c:if test="${empty voucher}" > placeholder="Voucher" </c:if>
+                                                   class="form-control credit" >
                                         </div>
                                         <div class="col-sm-4">
                                             <input style="display: block;height: 100%; border-radius: 10%; border: none; color: white; background-color: gray" type="submit" value="Kiểm tra"/>
                                         </div>
-                                        <div>${voucher_message}</div>
-                                    </div>
-                                </form>
 
-                                <hr class="line">
-                                <div class="d-flex justify-content-between information"><span>Tổng tiền</span><span>${sessionScope.cart.total/1000}k (VNĐ)</span></div>
+                                        <div style="text-align: center; padding: 2px; margin-left: 15px; margin-top: 15px; color: #007bff">
+                                        <c:if test="${not empty sessionScope.voucherMsgSs}">
+                                            ${sessionScope.voucherMsgSs}${cart.discounted/1000}k (${voucher.discountedPercent}%)
+                                        </c:if>
+                                        ${voucher_message}</div>
 
-                                <div class="d-flex justify-content-between information">
-                                    <span>Đã giảm: </span><span>${sessionScope.cart.discounted/1000}k (VNĐ)</span>
+                                    <c:set var="userPoint" value="${usersession}"/>
+                                    <c:if test="${not empty checkedSs && checkedSs=='yes'}">
+                                        <c:if test="${not empty userPoint}">
+                                            <c:if test="${userPoint.user.point>0}">
+                                                <div style="text-align: center; padding: 2px; margin-left: 15px; margin-top: 15px; color: #007bff">
+                                                    Giảm giá từ Điểm thưởng: -${userPoint.user.point}k
+                                                </div>
+                                            </c:if>
+                                        </c:if> 
+                                    </c:if>
                                 </div>
+                            </form>
 
-                                <div class="d-flex justify-content-between information">
-                                    <span>Thành tiền:</span><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span>
-                                </div>
+                            <hr class="line">
+                            <div  class="d-flex justify-content-between information"><span style="font-size: 18px">Tổng tiền</span>
+                                <span style="font-size: 18px">
+                                    <c:set var="tmpTotal" value="${sessionScope.cart.total/1000}" scope="request"/>  
+                                            <%
+                                                num = priceFormatter.format((double) request.getAttribute("tmpTotal"));
+                                                out.print(num);
+                                            %>  
+                                    k (VNĐ)
+                                </span></div>
+
+                            <!-- up ~176-->               
+                            <c:if test="${sessionScope.cart.discounted>0}">
+                                <c:set var="colorDiscount" value="#3496ff"/>
+                            </c:if>
+                            <div class="d-flex justify-content-between information">
+                                <span style="color:${colorDiscount}; font-size: 18px">Đã giảm: </span>
 
 
+                                <c:if test="${not empty checkedSs && checkedSs=='yes'}">
+                                    <c:if test="${not empty userPoint}">
+                                        <c:if test="${userPoint.user.point>0}">
+                                            <c:set var="tmpDis" value="${sessionScope.cart.discounted/1000}"/>
+                                            <span style="color:${colorDiscount}; font-size: 18px">-${tmpDis+userPoint.user.point}k (VNĐ)</span>
+
+                                        </c:if>
+                                    </c:if> 
+                                </c:if>
+
+                                <c:if test="${empty checkedSs || checkedSs=='no'}">
+                                    <span style="color:${colorDiscount}; font-size: 18px">-${sessionScope.cart.discounted/1000}k (VNĐ)</span>
+                                </c:if>
                             </div>
+                            <!--
+                                                        <div class="d-flex justify-content-between information">
+                                                            <span>Thành tiền:</span><span>${sessionScope.cart.subTotal/1000}k (VNĐ)</span>
+                                                        </div>-->
+
+
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- start image1_of_3 -->
+        </div>
+        <!-- start image1_of_3 -->
 
-            <!-- start footer -->
-            <jsp:include page="Footer.jsp"/>
-            <script src="${linkSource}/js/bootstrap.bundle.min.js"></script>
+        <!-- start footer -->
+        <jsp:include page="Footer.jsp"/>
+        <script src="${linkSource}/js/bootstrap.bundle.min.js"></script>
     </body>
 
 </html>

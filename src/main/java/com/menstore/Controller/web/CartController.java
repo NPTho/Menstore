@@ -29,6 +29,7 @@ import com.menstore.DAOimpl.WebProductDAO;
 import com.menstore.model.Order;
 import com.menstore.model.OrderDetail;
 import com.menstore.model.Product;
+import com.menstore.model.User;
 import javax.servlet.RequestDispatcher;
 
 /**
@@ -55,12 +56,16 @@ public class CartController extends HttpServlet {
                 doGet_CheckVoucher(request, response);
             } else if (action.equalsIgnoreCase("checkout")) {
                 doGet_Checkout(request, response);
-            } 
+            }
         }
     }
 
     protected void doGet_DisplayCart(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession ss = request.getSession(true);
+        if (ss.getAttribute("cart") == null) {
+            ss.setAttribute("cart", new Cart());
+        }
         request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
     }
 
@@ -73,6 +78,7 @@ public class CartController extends HttpServlet {
 
         if (cart == null || cart.getItemCount() == 0) {
             request.setAttribute("message", "Giỏ hàng trống");
+            request.setAttribute("colorMessage", "#d84d66");  //red
             request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
         } else {
             IOrderDAO orderDAO = new OrderDAO();
@@ -93,14 +99,30 @@ public class CartController extends HttpServlet {
                 userDAO.saveWalkInGuest(userId, request.getParameter("name"), request.getParameter("phone"), request.getParameter("address"));
             }
             String voucher = cart.getVoucherId();
-            
-            String checkPoint = request.getParameter("point");
-            if(checkPoint.equals("yes")){
-                discountedPrice += userSession.getUser().getPoint()*1000;
-                subTotal -= userSession.getUser().getPoint()*1000;
-                userDAO.resetPoint(userId);
-            }
 
+//            System.out.println("subtotal: "+subTotal);
+//            System.out.println("dis: "+discountedPrice);
+            if (userSession != null) {
+                User user = userSession.getUser();
+                String checkPoint = request.getParameter("point");
+                if (checkPoint.equals("yes")) {
+                    System.out.println("Yes");
+                    discountedPrice += user.getPoint() * 1000;
+                    subTotal -= user.getPoint() * 1000;
+                    userDAO.resetPoint(userId);
+                    user.setPoint(0);
+                } else if (checkPoint.equals("no")) {
+                    int point = user.getPoint();
+                    point += subTotal / 10000;
+                    user.setPoint(point);
+                    userDAO.updatePoint(user.getUserId(), point);
+                    if (subTotal > 0) {
+                        request.setAttribute("pointMsg", "Xin chúc mừng! Bạn nhận được " + (int) (subTotal / 10000) + " điểm thưởng");
+                    }
+                }
+                userSession.setUser(user);
+            }
+            
             Order order = new Order(invoiceId, discountedPrice, orderDate, subTotal, note, status, userId, voucher);
             if (orderDAO.save(order) == true) {
                 for (CartItem item : cart.getList()) {
@@ -108,14 +130,16 @@ public class CartController extends HttpServlet {
                     orderDetailDAO.save(orderDetail);
                 }
             }
-            
+
+            session.setAttribute("checkedSs", null);
+            session.setAttribute("usersession", userSession);
             session.setAttribute("cart", new Cart());
             RequestDispatcher rd = request.getRequestDispatcher("views/web/cart.jsp");
             request.setAttribute("message", "Đặt hàng thành công");
+            request.setAttribute("colorMessage", "#13d493"); //green
             rd.forward(request, response);
         }
-        
-        
+
     }
 
     protected void doGet_Update(HttpServletRequest request, HttpServletResponse response)
@@ -129,6 +153,7 @@ public class CartController extends HttpServlet {
             ((CartItem) cart.getList().get(index)).setQuantity(updatedQuantity);
             cart.updateCartMoney();
             session.setAttribute("cart", cart);
+            RequestDispatcher rd = request.getRequestDispatcher("views/web/cart.jsp");
             response.sendRedirect("cart");
         } else {
             doGet_Remove(request, response);
@@ -149,17 +174,17 @@ public class CartController extends HttpServlet {
 
     protected void doGet_Buy(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         IProductDAO webProductDAO = new WebProductDAO();
         HttpSession session = request.getSession();
-        System.out.println(request.getParameter("name") +" va "+ request.getParameter("size"));
+        System.out.println(request.getParameter("name") + " va " + request.getParameter("size"));
         if (session.getAttribute("cart") == null) {
             Cart cart = new Cart();
-            cart.addCart(new CartItem(((WebProductDAO)webProductDAO).find(request.getParameter("name"),request.getParameter("size")), Double.parseDouble(request.getParameter("price")),
+            cart.addCart(new CartItem(((WebProductDAO) webProductDAO).find(request.getParameter("name"), request.getParameter("size")), Double.parseDouble(request.getParameter("price")),
                     1, Double.parseDouble(request.getParameter("price"))));
             session.setAttribute("cart", cart);
         } else {
-            Product product =((WebProductDAO)webProductDAO).find(request.getParameter("name"),request.getParameter("size"));
+            Product product = ((WebProductDAO) webProductDAO).find(request.getParameter("name"), request.getParameter("size"));
             Cart cart = (Cart) session.getAttribute("cart");
             int index = isExisting(product.getProductId(), cart);
             if (index == -1) {
@@ -184,17 +209,20 @@ public class CartController extends HttpServlet {
         int voucher_DiscountPercent = voucherDAO.loadDiscountedPercent(voucherId);
         if (voucher_DiscountPercent > 0) {
             request.setAttribute("voucher_discountPercent", voucher_DiscountPercent);
-
+            session.setAttribute("voucher", voucherDAO.find(voucherId));
             double discountedMoney = (voucher_DiscountPercent / 100.0) * cart.getTotal();
+//
+//            cart.setDiscounted(discountedMoney);
+//            cart.setVoucherId(voucherId);
+            session.setAttribute("voucherMsgSs", "Giảm giá từ Voucher: -");
 
-            cart.setDiscounted(discountedMoney);
-            cart.setVoucherId(voucherId);
-            
         } else {
-            cart.setDiscounted(0);
+//            cart.setDiscounted(0);
+            session.setAttribute("voucher", null);
+            session.setAttribute("voucherMsgSs", null);
             request.setAttribute("voucher_message", "Voucher không tồn tại");
         }
-        
+
         request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
     }
 
@@ -205,6 +233,7 @@ public class CartController extends HttpServlet {
             }
         }
         return -1;
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

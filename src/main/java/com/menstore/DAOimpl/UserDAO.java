@@ -135,9 +135,9 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public boolean resetPoint(String id) {
-        String sql = "UPDATE Users \n"
-                + "SET Point = 0\n"
-                + "WHERE UserID like ? ";
+        String sql = "UPDATE Users "
+                + " SET Point = 0 "
+                + " WHERE UserID like ? ";
 
         try {
 
@@ -219,6 +219,35 @@ public class UserDAO implements IUserDAO {
             return(ps.executeUpdate()>0);
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updatePoint(String userID, int point) {
+         String sql = "UPDATE Users "
+                + " SET Point = ? "
+                + " WHERE UserID like ? ";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            
+            ps.setInt(1, point);
+            ps.setString(2, userID);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                return true;
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
         }
         return false;
     }
