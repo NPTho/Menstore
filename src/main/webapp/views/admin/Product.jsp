@@ -84,14 +84,17 @@
                         </div>
 
                         <form action="product?action=search" method="post"> 
-                            <select name="by" class="form-control form-control-sm mr-3 w-75">
-                                <option value="" disabled selected>Choose</option>
-                                <option value="ProductID">Product ID</option>
-                                <option value="ProductName">Product Name</option>
-                                <option value="CategoryID">Category</option>
-                                <option value="Status">Status</option>
-                            </select>
-                            <input name="keyword" class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search..." aria-label="Search">
+                            <div class="input-group mt-3 mb-3">
+                                <div class="input-group-prepend">
+                                     <select name="by" > 
+                                    <option value="ProductID">Product ID</option>
+                                    <option value="ProductName">Product Name</option>
+                                    <option value="CategoryID">Category</option>
+                                    <option value="Status">Status</option>
+                                    </select>
+                                    <input name="keyword" type="text" placeholder="Search..." aria-label="Search">
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </nav>
@@ -108,8 +111,8 @@
                                             </div>
 
                                             <div class="col-sm-6">
-                                                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">Add New Product</a>
-                                                <input value="Delete" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
+                                                <input style="background-color: red" value="Delete" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
+                                                <a href="#addEmployeeModal" class="btn btn-success" style="background-color: #00BCD4" data-toggle="modal">Add New Product</a>
                                             </div>
                                         </div>
                                     </div>
