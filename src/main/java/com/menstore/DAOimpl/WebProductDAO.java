@@ -156,7 +156,8 @@ public class WebProductDAO implements IProductDAO {
         String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
                 + " From Product p\n"
                 + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
-                + " Group by ProductName, Price, Link_image, Discount,CategoryID";
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID"
+                + " Order by Discount desc";
 
         try {
 
@@ -192,8 +193,8 @@ public class WebProductDAO implements IProductDAO {
         String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
                 + " From Product p\n"
                 + " WHERE CategoryID like 'QJ' or CategoryID like 'QT' \n"
-                + " Group by ProductName, Price, Link_image, Discount,CategoryID";
-
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID"
+                + " Order by Discount desc";
         try {
 
             Connection conn = DBUtils.getConnection();
@@ -228,7 +229,8 @@ public class WebProductDAO implements IProductDAO {
         String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
                 + " From Product p\n"
                 + " WHERE CategoryID like 'GI' \n"
-                + " Group by ProductName, Price, Link_image, Discount,CategoryID";
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID"
+                + " Order by Discount desc";
 
         try {
 
@@ -409,7 +411,7 @@ public class WebProductDAO implements IProductDAO {
      public List<Product> searchList(String name) {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
-        String sql = "SELECT * FROM Product WHERE ProductName LIKE ?";
+        String sql = "SELECT * FROM Product WHERE ProductName like '%?%'";
 
         try {
 
