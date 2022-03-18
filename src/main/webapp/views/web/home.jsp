@@ -111,7 +111,7 @@
             <!---End-image-slider---->	
         </div>
         <!-- start image1_of_3 -->
-        <div class="top_bg">
+<!--        <div class="top_bg">
             <div class="wrap">
                 <div class="main1">
                     <div class="image1_of_3">
@@ -129,7 +129,7 @@
                     <div class="clear"></div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <!-- start main -->
         <div class="main_bg">

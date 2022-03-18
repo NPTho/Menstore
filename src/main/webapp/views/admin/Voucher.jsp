@@ -82,8 +82,8 @@
                                             </div>
 
                                             <div class="col-sm-6">
-                                                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">Thêm</a>
-                                                <input value="Xóa" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
+                                                <input style="background-color: red" value="Xóa" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
+                                                <a style="background-color: #00BCD4" href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">Thêm</a>
                                             </div>
                                         </div>
                                     </div>
@@ -273,8 +273,8 @@
 
                                                     <c:if test="${currentPage lt noOfPages}">
                                                         <li class="page-item"><a href="voucher?page=${currentPage + 1}">Next</a></li>
-                                                        
-                                                        </c:if>                
+
+                                                    </c:if>                
                                                 </ul>
                                             </c:otherwise>
                                         </c:choose>
@@ -320,7 +320,7 @@
                                             <label>Mô tả</label>
                                             <input name="description" type="text" class="form-control">
                                         </div>	
-                                      
+
 
                                     </div>
                                     <div class="modal-footer">

@@ -67,12 +67,13 @@
             </div>
         </div>
         <!-- start main -->
+        <c:set var="listType" value="${requestScope.listType}" />
+
         <div class="main_bg">
             <div class="wrap">
                 <div class="main">
                     <div class="top_main">
-                        <a style="position: absolute;" href="products">Trở lại</a>
-
+                            <a style="position: absolute;" href="products">Trở lại</a>
                         <br>
                         <div class="clear"></div>
                     </div>
@@ -82,7 +83,7 @@
                     <c:set var="count" value="${1}"/>
 
                     <c:forEach var="product" items="${requestScope.list}">
-                        <c:if test="${count == 1 or count == 4 or count == 7}">
+                        <c:if test="${(count%3)==1}">
                             <div class="grids_of_3">
                             </c:if>
                             <div style="text-align: center !important;" class="grid1_of_3">
@@ -99,10 +100,10 @@
                                     </c:if>
                                 </a>
                             </div>
-                            <c:if test="${count == 3 or count == 6}">
+                            <c:if test="${(count%3)==0}">
                                 <div class="clear"></div> 
                             </c:if>            
-                            <c:if test="${count == 1 or count == 4 or count == 7}">
+                            <c:if test="${(count%3)==1}">
                             </div>
                         </c:if>
                         <c:set var="count" value="${count + 1}"/>
@@ -111,7 +112,7 @@
                     <div class="clear"></div>   <br>       
 
 
-                    <c:if test="${param.listType != null}">
+                    <c:if test="${(param.listType=='Ao' || param.listType=='Quan' || param.listType=='Giay')}">
                         <div style="text-align: center; margin-top: 20px;">
                             <div class="pagination">
                                 <c:if test="${currentPage != 1}">
@@ -134,30 +135,7 @@
                             </div>
                         </div>
                     </c:if>
-                    
-                    <c:if test="${param.listType == null}">
-                        <div style="text-align: center; margin-top: 20px;">
-                            <div class="pagination">
-                                <c:if test="${currentPage != 1}">
-                                    <a href="products?page=${currentPage - 1}">PREVIOUS</a>
-                                </c:if>
-                                <c:forEach begin="1" end="${noOfPages}" var="i">
-                                    <c:choose>
-                                        <c:when test="${currentPage eq i}">
-                                            <a class="page-link">${i}</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a href="products?page=${i}" class="page-link">${i}</a>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
 
-                                <c:if test="${currentPage lt noOfPages}">
-                                    <a href="products?page=${currentPage + 1}">NEXT</a>
-                                </c:if>   
-                            </div>
-                        </div>
-                    </c:if>
                 </div>
             </div>
         </div>
