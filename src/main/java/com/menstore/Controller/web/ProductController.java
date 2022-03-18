@@ -39,11 +39,15 @@ public class ProductController extends HttpServlet {
             doDisplay(request, response);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         } else if (listType.equals("search")){
             doDisplayByName(request, response);
 >>>>>>> origin
         } else{
+=======
+        } else {
+>>>>>>> parent of c9e5590 (search function in user)
 =======
         } else {
 >>>>>>> parent of c9e5590 (search function in user)

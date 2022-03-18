@@ -411,6 +411,7 @@ public class WebProductDAO implements IProductDAO {
         list = new ArrayList<Product>();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         String sql = " SELECT ProductName, Price, Discount, Link_image, CategoryID"
                 + " FROM Product "
                 + " WHERE ProductName like ? \n"
@@ -418,6 +419,9 @@ public class WebProductDAO implements IProductDAO {
 =======
         String sql = "SELECT * FROM Product WHERE ProductName like '%?%'";
 >>>>>>> origin
+=======
+        String sql = "SELECT * FROM Product WHERE ProductName LIKE ?";
+>>>>>>> parent of c9e5590 (search function in user)
 =======
         String sql = "SELECT * FROM Product WHERE ProductName LIKE ?";
 >>>>>>> parent of c9e5590 (search function in user)
