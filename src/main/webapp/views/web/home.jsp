@@ -53,6 +53,15 @@
         </script>
     </head>
     <body>
+        <c:set var="changedMsg" value="${changed}"/>                   <!-- changed password success message-->
+        <c:if test="${not empty changedMsg}">
+        
+         <script>
+            confirm("${changedMsg}");
+         </script>   
+         <c:remove var="changed" scope="session"/>
+         </c:if>
+         
         <!-- Start header -->
         <jsp:include page="header.jsp"/>
         <!-- End Header -->

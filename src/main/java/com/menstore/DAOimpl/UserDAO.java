@@ -160,4 +160,66 @@ public class UserDAO implements IUserDAO {
         }
         return false;
     }
+
+    @Override
+    public boolean checkPassword(User user, String password) {
+        String sql = "Select password from Users where UserName like ?";
+
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getUsername());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                if (password.equals(rs.getString("password"))) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public int changePassword(User user, String oldPassword, String newPassword) {
+        String sql = "Update Users set password=? where username like ?";
+
+        if (checkPassword(user, oldPassword)) {
+            try {
+                Connection conn = DBUtils.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, newPassword);
+                ps.setString(2, user.getUsername());
+                return (ps.executeUpdate());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return -2; //fail
+        }
+        return -1;      //wrong pass
+    }
+
+    @Override
+    public boolean updateInformation(User user) {
+        if (user == null) {
+            return false;
+        }
+        String sql = "Update Users set NameOfUser=? , PhoneNumber=? ,Address=? where userID like ?";
+
+        try {
+            Connection conn = DBUtils.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getPhoneNumber());
+            ps.setString(3, user.getAddress());
+            ps.setString(4, user.getUserId());
+            return(ps.executeUpdate()>0);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
 }

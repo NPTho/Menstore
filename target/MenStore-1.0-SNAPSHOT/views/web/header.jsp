@@ -48,6 +48,13 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/home">Trang chủ</a></li>
                 <li><a href="${pageContext.request.contextPath}/products">Sản phẩm</a></li>
+                <c:set var="admincheck" value="${sessionScope.usersession.user.role}" />
+                <c:if test="${admincheck!=null}">
+                    <c:if test="${admincheck=='admin'}">
+                        <li><a href="${pageContext.request.contextPath}/admin">Admin</a></li>
+                    </c:if>
+                </c:if>
+                
                 <div class="clear"></div>
             </ul>
         </div>

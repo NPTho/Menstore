@@ -1,5 +1,5 @@
 
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!-- Da Sua
 -->
@@ -34,8 +34,25 @@
                 });
             });
         </script>
+
+        <style>
+            #mess{
+                color: #FF0000;
+                font-size: 20px;
+            }
+           
+
+        </style>
+        
+        
+
     </head>
     <body>
+        <c:set var="user" value="${usersession}"/>
+
+        <c:if test="${empty user}">
+            <c:redirect url="/login.jsp"/>
+        </c:if>
         <!-- start header -->
         <jsp:include page="../web/header.jsp"/>
 
@@ -53,90 +70,107 @@
                 <div class="main">
                     <div class="login_left">
                         <h3>Đổi mật khẩu</h3>
-                        <p>Recommend: Hãy đặ mật khẩu dễ nhớ</p>
-                        <!-- start registration -->
-                        <div class="registration">
-                            <!-- [if IE] 
-                                < link rel='stylesheet' type='text/css' href='ie.css'/>  
-                             [endif] -->  
 
-                            <!-- [if lt IE 7]>  
-                                < link rel='stylesheet' type='text/css' href='ie6.css'/>  
-                            <! [endif] -->  
-                            <script>
-                                (function () {
+                        <c:set var="e_mess" value="${msg}" />
 
-                                    // Create input element for testing
-                                    var inputs = document.createElement('input');
 
-                                    // Create the supports object
-                                    var supports = {};
+                        <c:if test="${empty e_mess}">
+                            <p>Recommend: Hãy đặt mật khẩu dễ nhớ</p>
+                        </c:if>
 
-                                    supports.autofocus = 'autofocus' in inputs;
-                                    supports.required = 'required' in inputs;
-                                    supports.placeholder = 'placeholder' in inputs;
+                            <c:if test="${not empty e_mess}"> <p  id="mess">${e_mess}</p></c:if>
 
-                                    // Fallback for autofocus attribute
-                                    if (!supports.autofocus) {
+                            <!-- start registration -->
+                            <div class="registration">
+                                <!-- [if IE] 
+                                    < link rel='stylesheet' type='text/css' href='ie.css'/>  
+                                 [endif] -->  
 
-                                    }
+                                <!-- [if lt IE 7]>  
+                                    < link rel='stylesheet' type='text/css' href='ie6.css'/>  
+                                <! [endif] -->  
+                                <script>
+                                    (function () {
 
-                                    // Fallback for required attribute
-                                    if (!supports.required) {
+                                        // Create input element for testing
+                                        var inputs = document.createElement('input');
 
-                                    }
+                                        // Create the supports object
+                                        var supports = {};
 
-                                    // Fallback for placeholder attribute
-                                    if (!supports.placeholder) {
+                                        supports.autofocus = 'autofocus' in inputs;
+                                        supports.required = 'required' in inputs;
+                                        supports.placeholder = 'placeholder' in inputs;
 
-                                    }
+                                        // Fallback for autofocus attribute
+                                        if (!supports.autofocus) {
 
-                                    // Change text inside send button on submit
-                                    var send = document.getElementById('register-submit');
-                                    if (send) {
-                                        send.onclick = function () {
-                                            this.innerHTML = '...Sending';
                                         }
-                                    }
 
-                                })();
-                            </script>
-                            <div class="registration_left">
-                                <div class="registration_form">
-                                    <!-- Form -->
-                                    <form id="registration_form" action="information" method="post">
-                                        <input type="hidden" name="action" value="updatePassword"/>
-                                        <div>
-                                            <label>
-                                                <span>Mật khẩu cũ</span><input name="username" placeholder="" type="password" tabindex="5" required="">
-                                            </label>
-                                        </div>
-                                        
-                                        <div>
-                                            <label>	
-                                               <span>Mật khẩu mới</span> <input name="password" placeholder="" type="password" tabindex="6" required="">
-                                            </label>
-                                        </div>
-                                        
-                                        <div>
-                                            <label>	
-                                               <span>Xác nhận mật khẩu</span> <input name="password" placeholder="" type="password" tabindex="7" required="">
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <input type="submit" value="Xác nhận" id="register-submit">
-                                        </div>
-                                        
-                                    </form>
-                                    <!-- /Form -->
+                                        // Fallback for required attribute
+                                        if (!supports.required) {
+
+                                        }
+
+                                        // Fallback for placeholder attribute
+                                        if (!supports.placeholder) {
+
+                                        }
+
+                                        // Change text inside send button on submit
+                                        var send = document.getElementById('register-submit');
+                                        if (send) {
+                                            send.onclick = function () {
+                                                this.innerHTML = '...Sending';
+                                            }
+                                        }
+
+                                    })();
+                                </script>
+                                <div class="registration_left">
+                                    <div class="registration_form">
+                                        <!-- Form -->
+                                        <form id="registration_form" action="information" method="post">
+                                            <input type="hidden" name="action" value="updatePassword"/>
+                                            <div>
+                                                <label>
+                                                    <span>Mật khẩu cũ</span><input name="oldPassword" placeholder="" type="password" tabindex="5" required="">
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <label>	
+                                                    <span>Mật khẩu mới</span> <input name="newPassword" placeholder="" type="password" tabindex="6" required="">
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <label>	
+                                                    <span>Xác nhận mật khẩu</span> <input name="rePassword" placeholder="" type="password" tabindex="7" required="">
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <input type="submit" value="Xác nhận" id="register-submit">
+                                            </div>
+
+                                        </form>
+                                        <!-- /Form -->
+                                    </div>
                                 </div>
                             </div>
+                            <!-- end registration -->
                         </div>
-                        <!-- end registration -->
-                    </div>
-                    <div class="login_left">
-                        <h3>Thông tin tài khoản</h3>
-                        <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping address, view and track your orders in your accoung and more.</p>
+                        <div class="login_left">
+                            <h3>Thông tin tài khoản</h3>
+                        <c:set var="ism" value="${ismsg}"/>
+                        <c:if test="${not empty ism}">
+                            <p style=" color: #4CBB17; font-size: 20px;">${ism}</p>
+                        </c:if>
+
+                        <c:set var="ifm" value="${ifmsg}"/>
+                        <c:if test="${not empty ifm}">
+                            <p class="mess">${ifm}</p>
+                        </c:if>
                         <div class="registration_left">
                             <div class="registration_form">
                                 <!-- Form -->
@@ -147,10 +181,10 @@
                                             <span>Tên người dùng</span><input name="name" value="${sessionScope.usersession.user.name}" type="text" tabindex="1" required="" autofocus="">
                                         </label>
                                     </div>
-                                   
+
                                     <div>
                                         <label>
-                                             <span>Số điện thoại</span><input name="phoneNumber" value="${sessionScope.usersession.user.phoneNumber}" type="text" tabindex="2" required="">
+                                            <span>Số điện thoại</span><input name="phoneNumber" value="${sessionScope.usersession.user.phoneNumber}" type="text" tabindex="2" required="">
                                         </label>
                                     </div>
                                     <div>
@@ -166,9 +200,7 @@
                                     <div>
                                         <input type="submit" value="Cập nhật tài khoản" id="register-submit">
                                     </div>
-                                    <div class="alert alert-warning" role="alert">
-                                        ${message}
-                                    </div>
+
                                 </form>
                                 <!-- /Form -->
                             </div>

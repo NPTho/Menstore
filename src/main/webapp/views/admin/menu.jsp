@@ -1,8 +1,11 @@
 <div class="sidebar" data-image="${pageContext.request.contextPath}/views/admin/img/sidebar-5.jpg">
     <div class="sidebar-wrapper">
         <div class="logo">
-            <a href="http://www.fb.com/TrGiang.ne" class="simple-text">
-                Admin Page
+            <a href="home" class="simple-text" style="font-size: 16px; display: inline">
+                Home
+            </a>
+            <a href="information" class="simple-text" style="font-size: 16px; display: inline; color: #fbfb0e">
+                | Information
             </a>
         </div>
         <ul class="nav">

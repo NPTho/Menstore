@@ -25,7 +25,10 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
-
+        
+        
+        System.out.println("admin action:"+action);
+        
         if (action == null) {
             doGet_Display(request, response);
         } else if (action.equals("sort")) {

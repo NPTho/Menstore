@@ -21,4 +21,10 @@ public interface IUserDAO {
     boolean checkExist(String username);
     
     boolean saveWalkInGuest(String id, String name, String phone, String address);
+    
+    boolean checkPassword(User user, String password);
+    
+    int changePassword(User user, String oldPassword, String newPassword);
+    
+    boolean updateInformation(User user);
 }
