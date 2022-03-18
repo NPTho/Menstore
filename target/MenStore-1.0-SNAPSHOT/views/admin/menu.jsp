@@ -21,12 +21,12 @@
                     <p>Product</p>
                 </a>
             </li>
-<!--            <li>
+            <li>
                 <a class="nav-link" href="${pageContext.request.contextPath}/running-out-stock">
                     <i class="fa fa-circle"></i> 
                     <p>Running out stock</p>
                 </a>
-            </li>-->
+            </li>
             <li>
                 <a class="nav-link" href="${pageContext.request.contextPath}/voucher">
                     <i class="fa fa-circle"></i> 

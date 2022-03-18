@@ -40,7 +40,7 @@ public class WebProductDAO implements IProductDAO {
                     + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
                     + " ORDER BY ProductName\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-        } else {
+        } else{
             sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
                     + " From Product p\n"
                     + " WHERE CategoryID like 'GI'\n"
@@ -156,8 +156,7 @@ public class WebProductDAO implements IProductDAO {
         String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
                 + " From Product p\n"
                 + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
-                + " Group by ProductName, Price, Link_image, Discount,CategoryID"
-                + " Order by Discount desc";
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID";
 
         try {
 
@@ -193,8 +192,8 @@ public class WebProductDAO implements IProductDAO {
         String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
                 + " From Product p\n"
                 + " WHERE CategoryID like 'QJ' or CategoryID like 'QT' \n"
-                + " Group by ProductName, Price, Link_image, Discount,CategoryID"
-                + " Order by Discount desc";
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID";
+
         try {
 
             Connection conn = DBUtils.getConnection();
@@ -229,8 +228,7 @@ public class WebProductDAO implements IProductDAO {
         String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
                 + " From Product p\n"
                 + " WHERE CategoryID like 'GI' \n"
-                + " Group by ProductName, Price, Link_image, Discount,CategoryID"
-                + " Order by Discount desc";
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID";
 
         try {
 
@@ -407,10 +405,11 @@ public class WebProductDAO implements IProductDAO {
 
         return list;
     }
-
-    public List<Product> searchList(String name) {
+    
+     public List<Product> searchList(String name) {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
+<<<<<<< HEAD
 <<<<<<< HEAD
         String sql = " SELECT ProductName, Price, Discount, Link_image, CategoryID"
                 + " FROM Product "
@@ -419,6 +418,9 @@ public class WebProductDAO implements IProductDAO {
 =======
         String sql = "SELECT * FROM Product WHERE ProductName like '%?%'";
 >>>>>>> origin
+=======
+        String sql = "SELECT * FROM Product WHERE ProductName LIKE ?";
+>>>>>>> parent of c9e5590 (search function in user)
 
         try {
 
@@ -431,14 +433,18 @@ public class WebProductDAO implements IProductDAO {
 
             while (rs.next()) {
                 Product product = new Product();
+                product.setProductId(rs.getString("ProductID"));
                 product.setProductName(rs.getString("ProductName"));
+                product.setSize(rs.getString("Size"));
                 product.setPrice(rs.getInt("Price"));
+                product.setStatus(rs.getString("Status"));
                 product.setDiscount(rs.getFloat("Discount"));
+                product.setQuantity(rs.getInt("Quantity"));
                 product.setCategoryId(rs.getString("CategoryID"));
                 product.setLinkImage(rs.getString("Link_image"));
                 list.add(product);
             }
-
+            
             return list;
 
         } catch (Exception ex) {
@@ -739,6 +745,7 @@ public class WebProductDAO implements IProductDAO {
 
         return product;
     }
+    
 
     public Product find(String name, String size) {
         Product product = new Product();

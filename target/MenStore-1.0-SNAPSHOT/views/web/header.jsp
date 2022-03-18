@@ -30,9 +30,8 @@
             </c:if>
 
             <div class="web_search">
-                <form action="products" method="POST">
-                    
-                    <input name="listType" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
+                <form>
+                    <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
                                 this.value = '';
                             }">
                     <input type="submit" value=" " />

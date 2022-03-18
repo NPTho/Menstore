@@ -68,7 +68,7 @@
                                                         </div>
 
                                                         <div class="col-sm-6">
-                                                            <input style="background-color: red" value="Xóa đơn hàng" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
+                                                            <input value="Xóa đơn hàng" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
                                                         </div>
 
                                                     </div>
