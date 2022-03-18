@@ -30,7 +30,7 @@
             </c:if>
 
             <div class="web_search">
-                <form>
+                <form action="">
                     <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {
                                 this.value = '';
                             }">
