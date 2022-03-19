@@ -65,6 +65,8 @@ public class CartController extends HttpServlet {
         HttpSession ss = request.getSession(true);
         if (ss.getAttribute("cart") == null) {
             ss.setAttribute("cart", new Cart());
+        } 
+        if(ss.getAttribute("usersession")==null) {
         }
         request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
     }

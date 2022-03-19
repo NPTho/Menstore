@@ -126,6 +126,7 @@
 
                     <div  class="col-md-4 stick-board">
                         <div class="payment-info">
+
                             <form action="cart" method="post">
                                 <input type="hidden" name="action" value="checkout"/>
                                 <div class="d-flex justify-content-between align-items-center"><span>Thông tin khách</span><img
@@ -135,81 +136,94 @@
                                 </div>
 
                                 <div>
-                                    <label class="credit-card-label">Tên</label><input value="${sessionScope.usersession.user.name}"  name="name" type="text"
-                                                                                       class="form-control credit" placeholder="Tên" required="true">
+                                    <label class="credit-card-label">Tên</label><input value="${sessionScope.usersession.user.name}"  
+                                                                                       name="name" type="text"
+                                                                                       class="form-control credit" id="nameW" placeholder="Tên" required="true">
+                                    </div>
+
+                                    <div>
+                                        <label class="credit-card-label">Số điện thoại</label><input value="${sessionScope.usersession.user.phoneNumber}" 
+                                                                                                     name="phone" type="text"
+                                                                                                     class="form-control credit" id="phoneW" placeholder="Số điện thoại" required="true">
+                                    </div>
+
+                                    <div>
+                                        <label class="credit-card-label">Địa chỉ</label><input value="${sessionScope.usersession.user.address}" 
+                                                                                               name="address" type="text"
+                                                                                               class="form-control credit " id="addressW" placeholder="Địa chỉ" required="true">
+                                    </div>
+
+
+                                    <div>
+                                        <label class="credit-card-label">Điểm</label>
+                                        <input type="text"
+                                               class="form-control credit" disabled="" 
+                                        <c:if test="${not empty usersession}">
+                                            value="Điểm hiện có: ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}  -  Giảm ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}k khi sử dụng"
+                                        </c:if>
+                                        <c:if test="${empty usersession}">
+                                            value="Đăng nhập ngay để sử dụng điểm thưởng!" style="color: #82bca7"
+                                        </c:if>   
+                                        >
                                 </div>
+                                <c:if test="${not empty usersession}">
+                                    <div class="row" style="margin-top: 7px; margin-bottom: 10px;">
 
-                                <div>
-                                    <label class="credit-card-label">Số điện thoại</label><input value="${sessionScope.usersession.user.phoneNumber}" name="phone" type="text"
-                                                                                                 class="form-control credit" placeholder="Số điện thoại" required="true">
-                                </div>
+                                        <c:if test="${param.checked=='yes'}">
+                                            <c:set var="pointSs" value="yes" scope="session"/>
+                                            <c:set var="checkedSs" value="yes" scope="session"/>
+                                        </c:if>
 
-                                <div>
-                                    <label class="credit-card-label">Địa chỉ</label><input value="${sessionScope.usersession.user.address}" name="address" type="text"
-                                                                                           class="form-control credit" placeholder="Địa chỉ" required="true">
-                                </div>
-
-
-                                <div>
-                                    <label class="credit-card-label">Điểm</label><input type="text"
-                                                                                        class="form-control credit" disabled="" 
-                                                                                        placeholder="Điểm hiện có: ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}  -  Giảm ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}k khi sử dụng">
-                                </div>
-
-                                <div class="row" style="margin-top: 7px; margin-bottom: 10px;">
-
-                                    <c:if test="${param.checked=='yes'}">
-                                        <c:set var="pointSs" value="yes" scope="session"/>
-                                        <c:set var="checkedSs" value="yes" scope="session"/>
-                                    </c:if>
-
-                                    <c:if test="${param.checked=='no'}">
-                                        <c:set var="pointSs" value="no" scope="session"/>
-                                        <c:set var="checkedSs" value="no" scope="session"/>
-                                    </c:if>
-
-
-                                    <c:if test="${empty param.checked && empty checkedSs}">
                                         <c:if test="${param.checked=='no'}">
                                             <c:set var="pointSs" value="no" scope="session"/>
                                             <c:set var="checkedSs" value="no" scope="session"/>
                                         </c:if>
-                                    </c:if>
 
-                                    <c:set var="userPoint" value="${usersession}"/>
 
-                                    <div class="col-md-6">
-                                        <input type="radio" name="point" value="yes"
-                                               <c:if test="${checkedSs=='yes' && userPoint.user.point>0}">checked="checked"</c:if>
-                                               <c:if test="${empty userPoint.user.point||userPoint.user.point<=0}">
-                                                   <c:set var="checkedSs" value="no"/>
-                                               </c:if>/>
-                                        <span>Sử dụng</span> 
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="radio" name="point" value="no" 
-                                               <c:if test="${empty checkedSs || checkedSs=='no'}">checked="checked"</c:if> />
-                                               <span>Không Sử dụng</span> 
+                                        <c:if test="${empty param.checked && empty checkedSs}">
+                                            <c:if test="${param.checked=='no'}">
+                                                <c:set var="pointSs" value="no" scope="session"/>
+                                                <c:set var="checkedSs" value="no" scope="session"/>
+                                            </c:if>
+                                        </c:if>
+
+                                        <c:set var="userPoint" value="${usersession}"/>
+
+                                        <div class="col-md-6">
+                                            <input type="radio" name="point" value="yes"
+
+                                                   <c:if test="${checkedSs=='yes' && userPoint.user.point>0}">checked="checked"</c:if>
+                                                   <c:if test="${empty userPoint.user.point||userPoint.user.point<=0}">
+                                                       <c:set var="checkedSs" value="no"/>
+                                                   </c:if>/>
+                                            <span>Sử dụng</span> 
                                         </div>
-                                    </div>
-                                    <script>
-                                        $(function () {
-                                            $("input[name$='point']").click(function () {
-                                                var value = $(this).val();
-                                                if (value == 'yes') {
-                                                    window.location.assign("cart?checked=yes");
-                                                } else if (value == 'no') {
-                                                    window.location.assign("cart?checked=no");
-                                                }
-                                            });
-                                        });
-                                    </script> 
+                                        <div class="col-md-6">
+                                            <input type="radio" name="point" value="no" 
+                                                   <c:if test="${empty checkedSs || checkedSs=='no'}">checked="checked"</c:if> />
+                                                   <span>Không Sử dụng</span> 
+                                            </div>
+                                        </div>
 
-                                    <div>
-                                        <label class="credit-card-label">Note: </label>
-                                        <textarea name="note" type="text" class="form-control credit" placeholder="Note"> 
-                                        </textarea>
-                                    </div>
+                                        <script>
+                                            $(function () {
+                                                $("input[name$='point']").click(function () {
+                                                    var value = $(this).val();
+                                                    if (value == 'yes') {
+                                                        window.location.assign("cart?checked=yes");
+                                                    } else if (value == 'no') {
+                                                        window.location.assign("cart?checked=no");
+                                                    }
+                                                });
+                                            });
+                                        </script> 
+                                </c:if>
+
+                                <div>
+                                    <label class="credit-card-label">Note: </label>
+                                    <textarea name="note" type="text" class="form-control credit" id="noteW" placeholder="Note"> 
+                                    </textarea>
+                                </div>
 
 
                                 <c:set var="total" value="${sessionScope.cart.total}"/>                        
@@ -218,7 +232,7 @@
                                 <jsp:setProperty name="cart" property="subTotal" value="${total-total*dis}"/>
 
                                 <%! String num; %>
-                                <%! DecimalFormat priceFormatter = new DecimalFormat("$#0.0"); %>
+                                <%! DecimalFormat priceFormatter = new DecimalFormat("$#0.0");%>
                                 <button class="btn btn-primary btn-block d-flex justify-content-between mt-3 pb-4   "
                                         type="submit"><span>
                                         <c:set var="userPoint" value="${usersession}"/>
@@ -227,7 +241,7 @@
                                             <c:if test="${not empty userPoint}">
                                                 <c:if test="${userPoint.user.point>0}">
                                                     <c:set var="tmpTotal" value="${sessionScope.cart.subTotal/1000}" scope="request"/>  
-                                                    
+
                                                     <%
                                                         num = priceFormatter.format((double) request.getAttribute("tmpTotal") - (int) request.getAttribute("uPoint"));
                                                         out.print(num);
@@ -238,10 +252,11 @@
 
                                         <c:if test="${empty checkedSs || checkedSs=='no'}">
                                             <c:set var="tmpTotal" value="${sessionScope.cart.subTotal/1000}" scope="request"/>  
-                                            <%  
+                                            <%
                                                 num = priceFormatter.format((double) request.getAttribute("tmpTotal"));
-                                                if((double)request.getAttribute("tmpTotal")<(double)0)
-                                                    num="0";
+                                                if ((double) request.getAttribute("tmpTotal") < (double) 0) {
+                                                    num = "0";
+                                                }
                                                 out.print(num);
                                             %>  
                                             k (VNĐ)   
@@ -249,7 +264,11 @@
 
                                     </span><span>Thanh toán<i
                                             class="fa fa-long-arrow-right"></i></span></button>
+
+
                             </form>   
+
+
 
                             <hr class="line">
 
@@ -290,10 +309,10 @@
                             <div  class="d-flex justify-content-between information"><span style="font-size: 18px">Tổng tiền</span>
                                 <span style="font-size: 18px">
                                     <c:set var="tmpTotal" value="${sessionScope.cart.total/1000}" scope="request"/>  
-                                            <%
-                                                num = priceFormatter.format((double) request.getAttribute("tmpTotal"));
-                                                out.print(num);
-                                            %>  
+                                    <%
+                                        num = priceFormatter.format((double) request.getAttribute("tmpTotal"));
+                                        out.print(num);
+                                    %>  
                                     k (VNĐ)
                                 </span></div>
 

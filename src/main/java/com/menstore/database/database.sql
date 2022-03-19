@@ -75,7 +75,7 @@ CREATE TABLE OrderDetail (
 go
 
 ALTER TABLE OrderDetail
-ADD FOREIGN KEY (InvoiceID) REFERENCES Orders(InvoiceID)
+ADD FOREIGN KEY (InvoiceID) REFERENCES Orders(InvoiceID) On Delete Cascade
 go
 ALTER TABLE OrderDetail
 ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
@@ -89,3 +89,4 @@ go
 ALTER TABLE Orders
 ADD FOREIGN KEY (VoucherID) REFERENCES Voucher(VoucherID)
 go
+
