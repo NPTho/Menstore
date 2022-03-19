@@ -66,8 +66,6 @@ public class CartController extends HttpServlet {
         if (ss.getAttribute("cart") == null) {
             ss.setAttribute("cart", new Cart());
         } 
-        if(ss.getAttribute("usersession")==null) {
-        }
         request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
     }
 
@@ -229,6 +227,7 @@ public class CartController extends HttpServlet {
     }
 
     private int isExisting(String id, Cart cart) {
+        if(cart==null) return -1;
         for (int i = 0; i < cart.getItemCount(); i++) {
             if (((CartItem) (cart.getList().get(i))).getProduct().getProductId().equalsIgnoreCase(id)) {
                 return i;

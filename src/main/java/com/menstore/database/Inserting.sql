@@ -4,9 +4,10 @@ delete Orders
 delete  Voucher
 delete  Users
 delete  Product
-delete  Category
+delete  Category 
 Go
-﻿INSERT INTO Category
+	
+INSERT INTO Category
 VALUES 
 ('AT',N'Áo Thun'),
 ('SM',N'Sơ mi'),
@@ -170,7 +171,7 @@ VALUES
 go
 
 INSERT INTO Voucher
-VALUES('TetHoliday', 0.1,'2022-2-10',200000,500000,N'Giảm giá nhân dịp năm mới')
+VALUES('TetHoliday', 10,'2022-2-10',200000,500000,N'Giảm giá nhân dịp năm mới')
 GO
 
 INSERT INTO Users

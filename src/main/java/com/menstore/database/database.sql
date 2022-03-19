@@ -1,4 +1,4 @@
-
+Use Menstore
 DROP TABLE OrderDetail
 DROP TABLE Orders
 DROP TABLE Voucher
@@ -58,7 +58,7 @@ CREATE TABLE Orders (
 	OrderDate Date,
 	Total int,
 	Note nvarchar(255),
-	Status varchar(255),
+	Status nvarchar(255),
 	UserID varchar(20),
 	VoucherID varchar(20),
     PRIMARY KEY (InvoiceID)
@@ -78,10 +78,10 @@ ALTER TABLE OrderDetail
 ADD FOREIGN KEY (InvoiceID) REFERENCES Orders(InvoiceID) On Delete Cascade
 go
 ALTER TABLE OrderDetail
-ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+ADD FOREIGN KEY (ProductID) REFERENCES Product(ProductID) On Delete Cascade
 go
 ALTER TABLE Product
-ADD FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID)
+ADD FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID) 
 go
 ALTER TABLE Orders
 ADD FOREIGN KEY (UserID) REFERENCES Users(UserID)

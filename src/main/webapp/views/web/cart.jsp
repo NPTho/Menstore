@@ -77,7 +77,10 @@
                         <div class="product-details mr-2">
                             <hr>
                             <h6 class="mb-0">Giỏ hàng</h6>
-                            <div class="d-flex justify-content-between"><span>Bạn đang có ${sessionScope.cart.itemCount==null?0:1} món hàng trong giỏ</span>
+                            <div class="d-flex justify-content-between">
+                                <c:if test="${sessionScope.cart.itemCount>0}">
+                                    <span>Bạn đang có ${sessionScope.cart.itemCount} món hàng trong giỏ</span>
+                                </c:if>
                                 <!--                                     <div class="d-flex flex-row align-items-center"><span class="text-black-50">Sort
                                                                                     by:</span>
                                                                             <div class="price-cart ml-2"><span class="mr-2">Price</span><i
@@ -89,7 +92,7 @@
                             <c:if test="${empty msg}">
                                 <c:if test="${sessionScope.cart.itemCount == 0}">
                                     <hr>
-                                    <h1>Your cart is empty!!</h1>
+                                    <h1>Giỏ hàng của bạn đang trống!!</h1>
                                 </c:if>
                             </c:if>
                             <c:if test="${not empty msg}">
@@ -139,32 +142,32 @@
                                     <label class="credit-card-label">Tên</label><input value="${sessionScope.usersession.user.name}"  
                                                                                        name="name" type="text"
                                                                                        class="form-control credit" id="nameW" placeholder="Tên" required="true">
-                                    </div>
+                                </div>
 
-                                    <div>
-                                        <label class="credit-card-label">Số điện thoại</label><input value="${sessionScope.usersession.user.phoneNumber}" 
-                                                                                                     name="phone" type="text"
-                                                                                                     class="form-control credit" id="phoneW" placeholder="Số điện thoại" required="true">
-                                    </div>
+                                <div>
+                                    <label class="credit-card-label">Số điện thoại</label><input value="${sessionScope.usersession.user.phoneNumber}" 
+                                                                                                 name="phone" type="text"
+                                                                                                 class="form-control credit" id="phoneW" placeholder="Số điện thoại" required="true">
+                                </div>
 
-                                    <div>
-                                        <label class="credit-card-label">Địa chỉ</label><input value="${sessionScope.usersession.user.address}" 
-                                                                                               name="address" type="text"
-                                                                                               class="form-control credit " id="addressW" placeholder="Địa chỉ" required="true">
-                                    </div>
+                                <div>
+                                    <label class="credit-card-label">Địa chỉ</label><input value="${sessionScope.usersession.user.address}" 
+                                                                                           name="address" type="text"
+                                                                                           class="form-control credit " id="addressW" placeholder="Địa chỉ" required="true">
+                                </div>
 
 
-                                    <div>
-                                        <label class="credit-card-label">Điểm</label>
-                                        <input type="text"
-                                               class="form-control credit" disabled="" 
-                                        <c:if test="${not empty usersession}">
-                                            value="Điểm hiện có: ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}  -  Giảm ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}k khi sử dụng"
-                                        </c:if>
-                                        <c:if test="${empty usersession}">
-                                            value="Đăng nhập ngay để sử dụng điểm thưởng!" style="color: #82bca7"
-                                        </c:if>   
-                                        >
+                                <div>
+                                    <label class="credit-card-label">Điểm</label>
+                                    <input type="text"
+                                           class="form-control credit" disabled="" 
+                                           <c:if test="${not empty usersession}">
+                                               value="Điểm hiện có: ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}  -  Giảm ${sessionScope.usersession.user.point==null?0:sessionScope.usersession.user.point}k khi sử dụng"
+                                           </c:if>
+                                           <c:if test="${empty usersession}">
+                                               value="Đăng nhập ngay để sử dụng điểm thưởng!" style="color: #82bca7"
+                                           </c:if>   
+                                           >
                                 </div>
                                 <c:if test="${not empty usersession}">
                                     <div class="row" style="margin-top: 7px; margin-bottom: 10px;">
@@ -283,7 +286,7 @@
                                                    class="form-control credit" >
                                         </div>
                                         <div class="col-sm-4">
-                                            <input style="display: block;height: 100%; border-radius: 10%; border: none; color: white; background-color: gray" type="submit" value="Kiểm tra"/>
+                                            <input style="display: block;height: 100%; border-radius: 10%; border: none; color: white; background-color: gray" type="submit" value="Áp dụng"/>
                                         </div>
 
                                         <div style="text-align: center; padding: 2px; margin-left: 15px; margin-top: 15px; color: #007bff">
