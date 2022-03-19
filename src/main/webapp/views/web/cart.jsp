@@ -229,10 +229,23 @@
                                 </div>
 
 
-                                <c:set var="total" value="${sessionScope.cart.total}"/>                        
-                                <c:set var="dis" value="${sessionScope.voucher.discountedPercent/100}"/>                     
-                                <jsp:setProperty name="cart" property="discounted" value="${total*dis}"/>                    
-                                <jsp:setProperty name="cart" property="subTotal" value="${total-total*dis}"/>
+                                <c:set var="total" value="${sessionScope.cart.total}"/> 
+                                <c:set var="dis" value="${sessionScope.voucher.discountedPercent/100}"/>  
+                                
+                                <c:set var="checkRequ" value="${sessionScope.voucher.required}"/>
+                                <c:if test="${total < checkRequ}">
+                                    <c:set var="dis" value="${0}"/>
+                                    <c:set var="requMsg" value="Chưa đạt đủ điều kiện để áp dụng Voucher"/>
+                                </c:if>
+                                
+                                <c:set var="checkDis" value="${total*dis}"/>
+                                <c:if test="${checkDis > sessionScope.voucher.maximumDiscount}">
+                                    <c:set var="checkDis" value="${sessionScope.voucher.maximumDiscount}"/>
+                                </c:if>
+                                
+
+                                <jsp:setProperty name="cart" property="discounted" value="${checkDis}"/>                    
+                                <jsp:setProperty name="cart" property="subTotal" value="${total-  checkDis}"/>
 
                                 <%! String num; %>
                                 <%! DecimalFormat priceFormatter = new DecimalFormat("$#0.0");%>
@@ -290,10 +303,10 @@
                                         </div>
 
                                         <div style="text-align: center; padding: 2px; margin-left: 15px; margin-top: 15px; color: #007bff">
-                                        <c:if test="${not empty sessionScope.voucherMsgSs}">
-                                            ${sessionScope.voucherMsgSs}${cart.discounted/1000}k (${voucher.discountedPercent}%)
+                                        <c:if test="${not empty sessionScope.voucherMsgSs && empty requMsg}">
+                                            ${sessionScope.voucherMsgSs}${cart.discounted/1000}k
                                         </c:if>
-                                        ${voucher_message}</div>
+                                        ${voucher_message}${requMsg}</div>
 
                                     <c:set var="userPoint" value="${usersession}"/>
                                     <c:if test="${not empty checkedSs && checkedSs=='yes'}">
