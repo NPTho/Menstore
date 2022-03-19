@@ -231,18 +231,18 @@
 
                                 <c:set var="total" value="${sessionScope.cart.total}"/> 
                                 <c:set var="dis" value="${sessionScope.voucher.discountedPercent/100}"/>  
-                                
+
                                 <c:set var="checkRequ" value="${sessionScope.voucher.required}"/>
                                 <c:if test="${total < checkRequ}">
                                     <c:set var="dis" value="${0}"/>
                                     <c:set var="requMsg" value="Chưa đạt đủ điều kiện để áp dụng Voucher"/>
                                 </c:if>
-                                
+
                                 <c:set var="checkDis" value="${total*dis}"/>
                                 <c:if test="${checkDis > sessionScope.voucher.maximumDiscount}">
                                     <c:set var="checkDis" value="${sessionScope.voucher.maximumDiscount}"/>
                                 </c:if>
-                                
+
 
                                 <jsp:setProperty name="cart" property="discounted" value="${checkDis}"/>                    
                                 <jsp:setProperty name="cart" property="subTotal" value="${total-  checkDis}"/>
@@ -257,11 +257,20 @@
                                             <c:if test="${not empty userPoint}">
                                                 <c:if test="${userPoint.user.point>0}">
                                                     <c:set var="tmpTotal" value="${sessionScope.cart.subTotal/1000}" scope="request"/>  
+                                                    <c:set var="checkMinus" value="${tmpTotal-uPoint}"/>
 
-                                                    <%
-                                                        num = priceFormatter.format((double) request.getAttribute("tmpTotal") - (int) request.getAttribute("uPoint"));
-                                                        out.print(num);
-                                                    %> k (VNĐ)
+                                                    <c:if test="${checkMinus<0}">
+                                                        $ 0.0k (VNĐ)
+                                                    </c:if>
+                                                    
+                                                    <c:if test="${checkMinus>=0}">
+                                                        <%
+                                                            num = priceFormatter.format((double) request.getAttribute("tmpTotal") - (int) request.getAttribute("uPoint"));
+                                                            out.print(num);
+                                                        %> 
+                                                        k (VNĐ)
+                                                    </c:if>
+                                                    
                                                 </c:if>
                                             </c:if> 
                                         </c:if>

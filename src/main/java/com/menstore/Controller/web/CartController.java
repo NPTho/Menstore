@@ -65,7 +65,7 @@ public class CartController extends HttpServlet {
         HttpSession ss = request.getSession(true);
         if (ss.getAttribute("cart") == null) {
             ss.setAttribute("cart", new Cart());
-        } 
+        }
         request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
     }
 
@@ -109,6 +109,10 @@ public class CartController extends HttpServlet {
                     System.out.println("Yes");
                     discountedPrice += user.getPoint() * 1000;
                     subTotal -= user.getPoint() * 1000;
+                    if (subTotal < 0) {
+                        subTotal = 0;
+                        discountedPrice=cart.getTotal();
+                    }
                     userDAO.resetPoint(userId);
                     user.setPoint(0);
                 } else if (checkPoint.equals("no")) {
@@ -122,7 +126,7 @@ public class CartController extends HttpServlet {
                 }
                 userSession.setUser(user);
             }
-            
+
             Order order = new Order(invoiceId, discountedPrice, orderDate, subTotal, note, status, userId, voucher);
             if (orderDAO.save(order) == true) {
                 for (CartItem item : cart.getList()) {
@@ -227,7 +231,9 @@ public class CartController extends HttpServlet {
     }
 
     private int isExisting(String id, Cart cart) {
-        if(cart==null) return -1;
+        if (cart == null) {
+            return -1;
+        }
         for (int i = 0; i < cart.getItemCount(); i++) {
             if (((CartItem) (cart.getList().get(i))).getProduct().getProductId().equalsIgnoreCase(id)) {
                 return i;
