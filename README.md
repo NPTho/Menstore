@@ -36,31 +36,40 @@ Shop targets on people whose taste toward elegant and neat style such as student
   -   [Github](https://github.com/GiangNTSE150747), [Facebook](https://www.facebook.com/TrGiang.ne/)
  ## `GUI (Screenshot of project):`
  * **Manage Pages (For admin/owner):** Simple, convenient for observation and management
-   * **Dashboard**
- ![image](https://user-images.githubusercontent.com/90202401/153649322-284ca55d-7225-458f-9d32-d1649ce18bb1.png)
+   * **Order management**
+ ![image](https://user-images.githubusercontent.com/97748149/159172384-66b3bddb-cd20-45bf-a03e-9f4bc955db0b.jpg)
+ ![image](https://user-images.githubusercontent.com/97748149/159172551-b571c2a1-f6f7-4ab2-b980-0afa1544f76a.jpg)
+ ![image](https://user-images.githubusercontent.com/97748149/159174537-a2df73ae-c42e-4236-9c73-14004cd928fa.jpg)
+   * **Product management**
+ ![image](https://user-images.githubusercontent.com/97748149/159172657-57a8a76d-5412-4081-8d50-4b4858e17a80.jpg)
+ ![image](https://user-images.githubusercontent.com/97748149/159172763-50e2a782-e68e-45e6-a80d-701eb6e62201.jpg)
+ ![image](https://user-images.githubusercontent.com/97748149/159172785-5b426156-4a9f-40a6-9211-0220db749645.jpg)
    * **Voucher management**
- ![image](https://user-images.githubusercontent.com/90202401/155060175-6e6b88d2-6677-45a4-87e7-efa7aad39096.png)
-   * **Manage**
- ![image](https://user-images.githubusercontent.com/90202401/153649867-11fe42ec-d540-4fb7-99bb-0146ad40fd7b.png)
+ ![image](https://user-images.githubusercontent.com/97748149/159173054-0e870211-afc8-4acb-b13e-4b5a70014744.jpg)
+ ![image](https://user-images.githubusercontent.com/97748149/159173109-9860138a-e9cb-4afd-b534-1ff515fd8487.jpg)
+ ![image](https://user-images.githubusercontent.com/97748149/159173149-9267ce79-8495-4e4d-82a0-98f3b52e189b.jpg)
+
 * **Web Pages (For user/customer):** Modern, good-looking to attract customers
    * **Home page**
-![image](https://user-images.githubusercontent.com/90202401/159170821-a0e86724-a34a-4bf3-b5bf-42d662df4779.png)
-![image](https://user-images.githubusercontent.com/90202401/159170915-b9da73a4-f3de-4f06-9cc5-a3d74a8f8241.png)
-![image](https://user-images.githubusercontent.com/90202401/159170925-075994c1-1ced-4565-a808-15ab14c29286.png)
-![image](https://user-images.githubusercontent.com/90202401/159170951-1c1da082-4c50-4170-bbeb-2340deaa0046.png)
-
+![image](https://user-images.githubusercontent.com/97748149/159173375-9c9d2974-bdb6-4771-bc46-a591b5708805.jpg)
+![image](https://user-images.githubusercontent.com/97748149/159173396-cbd7eea7-891c-4740-8c50-352b7d476765.jpg)
+![image](https://user-images.githubusercontent.com/97748149/159173407-11abb019-8656-4615-90d5-3d9212006c56.jpg)
+![image](https://user-images.githubusercontent.com/97748149/159173414-9a0db45e-1ba7-4960-8db2-d02919c1f9be.jpg)
    * **Product page**
-![image](https://user-images.githubusercontent.com/90202401/159171001-aabeee6a-7b34-4481-93d5-cfdfc427eb29.png)
-![image](https://user-images.githubusercontent.com/90202401/159171015-f1a8689c-ed6c-4a26-94e4-c06dd220ee61.png)
-![image](https://user-images.githubusercontent.com/90202401/159171099-09d824b2-8a83-409d-aba3-8d12a86116b6.png)
+![image](https://user-images.githubusercontent.com/97748149/159173553-a403c6a4-478d-4493-ac49-f56f6ed79a0b.jpg)
+![image](https://user-images.githubusercontent.com/97748149/159173571-e426a237-4122-457b-b9fa-e74a568dd768.jpg)
+![image](https://user-images.githubusercontent.com/97748149/159173585-4928606d-7c07-4a02-b9bf-2148bd4dad70.jpg)
    * **Product detail**
-![image](https://user-images.githubusercontent.com/90202401/153675124-94991e56-71e1-4704-a8ff-0dd0df121276.png)
-   * **Contact page**
-![image](https://user-images.githubusercontent.com/90202401/153674050-1bda7b8a-e189-4b96-aed0-460e23abde55.png)
-   * **Login or Register page**
-![image](https://user-images.githubusercontent.com/90202401/153674857-118b3de6-f429-48b6-9245-a421937b82d1.png)
+![image](https://user-images.githubusercontent.com/97748149/159173632-87734e10-1503-467d-b074-749d2da1080f.jpg)
    * **Shopping cart**
-![image](https://user-images.githubusercontent.com/90202401/153679998-59aea7ee-941c-4425-8263-fe7a7d800be3.png)
+![image](https://user-images.githubusercontent.com/97748149/159173836-3e18ce87-8ca1-4089-bb14-9990fd86ec62.jpg)
+![image](https://user-images.githubusercontent.com/97748149/159173851-a272a99e-d260-4374-a46f-73782e6a9411.jpg)
+   * **Login or Register page**
+![image](https://user-images.githubusercontent.com/97748149/159174005-28cb915d-83f4-42e3-819b-939fd1f14fe6.jpg)
+![image](https://user-images.githubusercontent.com/97748149/159174018-96655499-e4cd-4445-af21-d72dd8c0a718.jpg)
+   * **Change Information page**
+![image](https://user-images.githubusercontent.com/97748149/159174070-f88e08f5-4ec6-4d08-a407-96e93528ec3d.jpg)
+
 
 ## `Database design:`
 * **ER Model**
@@ -70,6 +79,8 @@ ER Model in details:
 * **Relational Model**
 ![image](https://user-images.githubusercontent.com/90202401/156308944-a0ecf44a-3fad-4f5f-9a8a-d447944a249b.png)
 ## `System design(Folder tree screenshot):`
-![image](https://user-images.githubusercontent.com/90202401/155380530-c21bbbcc-5a33-483f-907e-fdfa5e91dde0.png)
+![image](https://user-images.githubusercontent.com/97748149/159174174-bdb87f8f-8bb0-4f34-83a9-9a49f961c4ec.jpg)
+![image](https://user-images.githubusercontent.com/97748149/159174189-f2541e2e-61d4-463a-a6ed-9d40e39230b3.jpg)
+
 
 
