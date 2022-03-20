@@ -2,6 +2,7 @@
 package com.menstore.DAO;
 
 import com.menstore.model.Product;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IProductDAO {
@@ -24,5 +25,7 @@ public interface IProductDAO {
     List<Product> listBy(int start, int recordsPerPage, String category);
     
     Product find(String id);
+    
+    ArrayList<String> findSizes(String name);
 
 }

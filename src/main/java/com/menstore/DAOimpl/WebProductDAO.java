@@ -900,4 +900,30 @@ public class WebProductDAO implements IProductDAO {
 
         return list;
     }
+    
+        public ArrayList<String> findSizes(String name) {
+        ArrayList<String> sizes= new ArrayList<>();
+        String sql = "SELECT size FROM Product WHERE ProductName = ?";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, name);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                sizes.add(rs.getString("size"));
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return sizes;
+    }
 }

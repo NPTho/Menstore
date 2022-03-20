@@ -221,7 +221,7 @@ public class ProductDAO implements IProductDAO {
 
             PreparedStatement ps = conn.prepareStatement(sql);
 
-            ps.setString(1, product.getProductId());
+            ps.setString(1, product.getProductId().trim()+"_"+product.getSize().trim());
             ps.setString(2, product.getProductName());
             ps.setString(3, product.getStatus());
             ps.setFloat(4, product.getDiscount());
@@ -411,6 +411,11 @@ public class ProductDAO implements IProductDAO {
         }
 
         return product;
+    }
+
+    @Override
+    public ArrayList<String> findSizes(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
    
