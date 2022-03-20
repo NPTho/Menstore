@@ -93,13 +93,16 @@ public class CartController extends HttpServlet {
             String note = request.getParameter("note");
             String status = "Đang xử lý";
             String userId;
+
             if (userSession != null) {
                 userId = userSession.getUser().getUserId();
             } else {
                 userId = "US" + (userDAO.getNoOfRecords() + 1);
                 userDAO.saveWalkInGuest(userId, request.getParameter("name"), request.getParameter("phone"), request.getParameter("address"));
             }
+            System.out.println("đang check nè");
             String voucher = cart.getVoucherId();
+            System.out.println("check ra voucher :" + cart.getVoucherId());
 
 //            System.out.println("subtotal: "+subTotal);
 //            System.out.println("dis: "+discountedPrice);
@@ -112,7 +115,7 @@ public class CartController extends HttpServlet {
                     subTotal -= user.getPoint() * 1000;
                     if (subTotal < 0) {
                         subTotal = 0;
-                        discountedPrice=cart.getTotal();
+                        discountedPrice = cart.getTotal();
                     }
                     userDAO.resetPoint(userId);
                     user.setPoint(0);
@@ -211,7 +214,6 @@ public class CartController extends HttpServlet {
         String voucherId = request.getParameter("voucherId");
         IVoucherDAO voucherDAO = new VoucherDAO();
         String checkDuedate = "";
-
         int voucher_DiscountPercent = voucherDAO.loadDiscountedPercent(voucherId);
         if (voucher_DiscountPercent > 0) {
             Voucher voucher = voucherDAO.find(voucherId);
@@ -222,13 +224,14 @@ public class CartController extends HttpServlet {
                 request.setAttribute("voucher_discountPercent", voucher_DiscountPercent);
                 session.setAttribute("voucher", voucherDAO.find(voucherId));
                 double discountedMoney = (voucher_DiscountPercent / 100.0) * cart.getTotal();
-//
+//              
 //            cart.setDiscounted(discountedMoney);
-//            cart.setVoucherId(voucherId);
+                cart.setVoucherId(voucherId);
+                session.setAttribute("cart", cart);
                 checkDuedate = "Voucher còn hạng";
                 session.setAttribute("voucherMsgSs", "Giảm giá từ Voucher: -");
+
             } else {
-                System.out.println("Dô đúng");
                 session.setAttribute("voucher", null);
                 session.setAttribute("voucherMsgSs", null);
                 request.setAttribute("voucher_message", checkDuedate);
