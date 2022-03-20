@@ -8,7 +8,6 @@ MenStore is a clothing store website for men. Providing a modern perspective on 
     * Admin can add/edit/delete product to the product list.
     * Admin can add/edit/delete the discount voucher
     * Admin can know the status of products. 
-        * For example: Admin can know products which are about to be out of stock
     * Admin can know and manage the order of customer
     * And many more small features like: seaching, updating their profile,..
 * **Web features (For user/customer):**
