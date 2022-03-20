@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="tag" tagdir="/WEB-INF/tags/" %>
 <!--Da sua
 -->
 <!DOCTYPE HTML>
@@ -93,29 +93,8 @@
                     <c:set var="count" value="${1}"/>
 
                     <c:forEach var="product" items="${requestScope.list}">
-                        <c:if test="${(count%3)==1}">
-                            <div class="grids_of_3">
-                            </c:if>
-                            <div style="text-align: center !important;" class="grid1_of_3">
-                                <c:url var="productDetail" value="${request.contextPath}/detail" scope="request">
-                                    <c:param name="productName" value="${product.productName}"></c:param>
-                                </c:url>
-                                <a href="${productDetail}">
-                                    <img src="${product.linkImage}" width="260" height="300" alt="">
-                                    <h3 >${product.productName}</h3>
-                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
-                                    <span class="price">${actuaPrice}</span>
-                                    <c:if test="${product.discount != 0}">
-                                        <span class="price1 bg">on sale</span>
-                                    </c:if>
-                                </a>
-                            </div>
-                            <c:if test="${(count%3)==0}">
-                                <div class="clear"></div> 
-                            </c:if>            
-                            <c:if test="${(count%3)==1}">
-                            </div>
-                        </c:if>
+                        <tag:showProductByType name="${product.productName}" image="${product.linkImage}" price="${product.price}" discount="${product.discount}" count="${count}"/>
+                        
                         <c:set var="count" value="${count + 1}"/>
                     </c:forEach>
 

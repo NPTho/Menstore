@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="tag" tagdir="/WEB-INF/tags/" %>
 
 <!--Da sua
 -->
@@ -61,21 +62,7 @@
                     <c:set var="shirtList" value="${requestScope.shirtList}" />
                     <div class="grids_of_3">
                         <c:forEach  var="product" items="${shirtList}">
-                            <div class="grid1_of_3">
-                                <a href="detail?productName=${product.productName}">
-                                    <img src="${product.linkImage}" width="260" height="300"/>
-
-                                    <h3>    ${product.productName}   </h3>
-
-                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
-
-                                    <span class="price">${actuaPrice}</span>
-
-                                    <c:if test="${product.discount != 0}">
-                                        <span class="price1 bg">on sale</span>
-                                    </c:if>
-                                </a>
-                            </div>
+                             <tag:show3Product name="${product.productName}" image="${product.linkImage}" price="${product.price}" discount="${product.discount}"/>        
                         </c:forEach>
 
                         <div class="clear"></div>
@@ -91,21 +78,7 @@
                     <c:set var="pantList" value="${requestScope.pantList}" />
                     <div class="grids_of_3">
                         <c:forEach  var="product" items="${pantList}">
-                            <div class="grid1_of_3">
-                                <a href="detail?productName=${product.productName}">
-                                    <img src="${product.linkImage}" width="260" height="300"/>
-
-                                    <h3>    ${product.productName}   </h3>
-
-                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
-
-                                    <span class="price">${actuaPrice}</span>
-
-                                    <c:if test="${product.discount != 0}">
-                                        <span class="price1 bg">on sale</span>
-                                    </c:if>
-                                </a>
-                            </div>
+                             <tag:show3Product name="${product.productName}" image="${product.linkImage}" price="${product.price}" discount="${product.discount}"/>        
                         </c:forEach>
 
                         <div class="clear"></div>
@@ -121,21 +94,7 @@
                     <div class="grids_of_3">
 
                         <c:forEach  var="product" items="${accessoryList}">
-                            <div class="grid1_of_3">
-                                <a href="detail?productName=${product.productName}">
-                                    <img src="${product.linkImage}" width="260" height="300"/>
-
-                                    <h3>    ${product.productName}   </h3>
-
-                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
-
-                                    <span class="price">${actuaPrice}</span>
-
-                                    <c:if test="${product.discount != 0}">
-                                        <span class="price1 bg">on sale</span>
-                                    </c:if>
-                                </a>
-                            </div>
+                             <tag:show3Product name="${product.productName}" image="${product.linkImage}" price="${product.price}" discount="${product.discount}"/>        
                         </c:forEach>
                         <div class="clear"></div>
                     </div>
