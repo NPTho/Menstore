@@ -109,7 +109,7 @@
                                                                 <td>${order.status}</td>
                                                                 <td>${order.voucherId}</td>
                                                                 <td>
-                                                                    <a href="${pageContext.request.contextPath}/orderDetail?action=search&orderId=${order.orderId}" target="_blank" class="see"><i class="material-icons" data-toggle="tooltip" title="Image">visibility</i></a>
+                                                                    <a href="${pageContext.request.contextPath}/orderDetail?action=search&orderId=${order.orderId}&userId=${order.userId}" target="_blank" class="see"><i class="material-icons" data-toggle="tooltip" title="Image">visibility</i></a>
                                                                     </form>
 
                                                                     <form action="admin" method="post">

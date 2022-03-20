@@ -7,8 +7,11 @@ package com.menstore.Controller.admin;
  */
 
 import com.menstore.DAO.IOrderDetailDAO;
+import com.menstore.DAO.IUserDAO;
 import com.menstore.DAOimpl.OrderDetailDAO;
+import com.menstore.DAOimpl.UserDAO;
 import com.menstore.model.OrderDetail;
+import com.menstore.model.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -112,12 +115,18 @@ public class OrderDetailServlet extends HttpServlet {
 
     private void doGet_Search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String orderId = request.getParameter("orderId");
+        String userId = request.getParameter("userId");
         
         IOrderDetailDAO orderDetailDAO = new OrderDetailDAO();
         List<OrderDetail> list = new ArrayList<>();
         
+        IUserDAO userDAO = new UserDAO();
+        
+        User user = ((UserDAO)userDAO).find(userId);   
         list = orderDetailDAO.list(orderId);
+        
         request.setAttribute("list", list);
+        request.setAttribute("user", user);
 
         RequestDispatcher rd = request.getRequestDispatcher("views/admin/OrderDetail.jsp");
         rd.forward(request, response);

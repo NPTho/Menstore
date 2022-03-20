@@ -42,6 +42,37 @@ public class UserDAO implements IUserDAO {
         }
         return 0;
     }
+    
+    public User find(String id) {
+        String sql = "Select * from Users Where UserID like ?";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+            User user = new User();
+            while(rs.next()){
+                user.setUserId(rs.getString("UserID"));
+                user.setName(rs.getNString("NameOfUser"));
+                user.setPhoneNumber(rs.getString("PhoneNumber"));
+                user.setAddress(rs.getNString("Address"));
+            }
+            
+            return user;
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return null;
+    }
 
     @Override
     public boolean save(User user) {

@@ -65,27 +65,47 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:set var="orderDetailList" value="${requestScope.list}" />
-                                                    <c:set var="count" value="${0}" />
+                                                <div class="table table-striped table-hover">
+                                                    <div class="row">
+                                                        <div class="col-sm-3">
+                                                            <h5>Khách hàng: <span style="font-size: larger;">${requestScope.user.name}</span></h5>
+                                                        </div>
 
-                                                    <c:forEach var="orderDetail" items="${orderDetailList}">
-                                                        <tr>
-                                                            <td>${orderDetail.invoiceId}</td>
-                                                            <td>${orderDetail.productId}</td>
-                                                            <td>${orderDetail.soldPrice}</td>
-                                                            <td>${orderDetail.quantity}</td>
-                                                            <td>${orderDetail.soldPrice * orderDetail.quantity}</td>
-                                                        </tr>
-                                                        <c:set var="count" value="${count + 1}" />
-                                                    </c:forEach>
+                                                        <div class="col-sm-3">
+                                                            <h5>SĐT: <span style="font-size: larger;">${requestScope.user.phoneNumber}</span></h5>
+                                                        </div>
+
+                                                        <div class="col-sm-6">
+                                                            <h5>Địa chỉ giao hàng: <span style="font-size: larger;">${requestScope.user.address}</span></h5>
+                                                        </div>  
+
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <c:set var="orderDetailList" value="${requestScope.list}" />
+                                                <c:set var="count" value="${0}" />
+
+                                                <c:forEach var="orderDetail" items="${orderDetailList}">
+                                                    <tr>
+                                                        <td>${orderDetail.invoiceId}</td>
+                                                        <td>${orderDetail.productId}</td>
+                                                        <td>${orderDetail.soldPrice}</td>
+                                                        <td>${orderDetail.quantity}</td>
+                                                        <td>${orderDetail.soldPrice * orderDetail.quantity}</td>
+                                                    </tr>
+                                                    <c:set var="count" value="${count + 1}" />
+                                                </c:forEach>
+
                                                 </tbody>
 
-                                            </table>
+                                            </table>                                                    
                                             <div class="clearfix">
 
 
                                             </div>
+
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -98,28 +118,28 @@
         </div>
         <jsp:include page="Footer.jsp"/>
 
-</body>
-<!--   Core JS Files   -->
-<script src="${pageContext.request.contextPath}/views/admin/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/views/admin/js/core/popper.min.js" type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/views/admin/js/core/bootstrap.min.js" type="text/javascript"></script>
-<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="${pageContext.request.contextPath}/views/admin/js/plugins/bootstrap-switch.js"></script>
-<!--  Chartist Plugin  -->
-<script src="${pageContext.request.contextPath}/views/admin/js/plugins/chartist.min.js"></script>
-<!--  Notifications Plugin    -->
-<script src="${pageContext.request.contextPath}/views/admin/js/plugins/bootstrap-notify.js"></script>
-<!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
-<script src="${pageContext.request.contextPath}/views/admin/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
+    </body>
+    <!--   Core JS Files   -->
+    <script src="${pageContext.request.contextPath}/views/admin/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/views/admin/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/views/admin/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="${pageContext.request.contextPath}/views/admin/js/plugins/bootstrap-switch.js"></script>
+    <!--  Chartist Plugin  -->
+    <script src="${pageContext.request.contextPath}/views/admin/js/plugins/chartist.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="${pageContext.request.contextPath}/views/admin/js/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+    <script src="${pageContext.request.contextPath}/views/admin/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#selectAllOrderCheckBox").click(function () {
-            $(".CustomerOrderCheckBox").not(this).prop('checked', this.checked);
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#selectAllOrderCheckBox").click(function () {
+                $(".CustomerOrderCheckBox").not(this).prop('checked', this.checked);
+            });
         });
-    });
 
 
-</script>
+    </script>
 
 </html>
