@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="tag" tagdir="/WEB-INF/tags/"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -317,31 +318,12 @@
                                             </c:when>
 
                                             <c:otherwise>
-                                                <ul class="pagination">
-
-                                                    <c:if test="${currentPage != 1}">
-                                                        <li class="page-item"><a href="product?page=${currentPage - 1}">Previous</a></li>
-                                                        </c:if>
-                                                        <c:forEach begin="1" end="${noOfPages}" var="i">
-                                                            <c:choose>
-                                                                <c:when test="${currentPage eq i}">
-                                                                <li class="page-item"><a class="page-link">${i}</a></li>
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                <li class="page-item"><a href="product?page=${i}" class="page-link">${i}</a></li>
-                                                                </c:otherwise>
-                                                            </c:choose>
-                                                        </c:forEach>
-
-                                                    <c:if test="${currentPage lt noOfPages}">
-                                                        <li class="page-item"><a href="product?page=${currentPage + 1}">Next</a></li>
-                                                        <li class="page-item"><a href="#">${param.action}</a></li>
-                                                        </c:if>                
-                                                </ul>
+                                                <tag:paging noOfPages="${noOfPages}" currentPage="${currentPage}" path="${pageContext.request.contextPath}/product"/>   
                                             </c:otherwise>
+                                           
                                         </c:choose>
 
-
+                                            
                                     </div>
                             </div>
                         </div>        
