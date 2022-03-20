@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Filter;
+package com.menstore.Filter;
 
 import com.menstore.model.UserSession;
 import java.io.IOException;
