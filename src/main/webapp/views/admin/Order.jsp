@@ -25,7 +25,7 @@
     </head>
 
     <body>
-
+        
         <c:set var="changedMsg" value="${changed}"/>                   <!-- changed password success message-->
         <c:if test="${not empty changedMsg}">
 
@@ -43,17 +43,11 @@
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class="container-fluid">
-                       <div class="dropdown col-sm-6">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Trạng thái
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin">Tất cả</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin?action=listBy&category=AT">Đang xử lý</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin?action=listBy&category=AT">Đã thanh toán</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin?action=listBy&category=SM">Đơn hủy</a> 
-                            </div>
-                        </div>
+                        <form action="admin" method="post"> 
+                            <input type="hidden" name="action" value="search"/>
+                            <input name="orderId" class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Enter ID..." aria-label="Search">
+                            
+                        </form>
                     </div>
                 </nav>
                 <!-- End Navbar -->

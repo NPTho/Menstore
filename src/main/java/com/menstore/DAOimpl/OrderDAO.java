@@ -220,7 +220,7 @@ public class OrderDAO implements IOrderDAO {
 
     @Override
     public boolean delete(String orderId) {
-         String sql = "DELETE FROM Orders WHERE InvoiceID = ?;";
+        String sql = "DELETE FROM Orders WHERE InvoiceID = ?;";
 
         try {
 
@@ -277,9 +277,39 @@ public class OrderDAO implements IOrderDAO {
     }
 
     @Override
-    public List<Order> search(String by, String keyword) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public List<Order> search(String id) {
+        ArrayList<Order> list;
+        list = new ArrayList<Order>();
 
+        String sql = "select * from Orders "
+                + " where InvoiceID like ?";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Order order = new Order();
+                order.setOrderId(rs.getString("InvoiceID"));
+                order.setNote(rs.getString("Note"));
+                order.setDiscountedMoney(rs.getInt("DiscountedPrice"));
+                order.setTotal(rs.getInt("Total"));
+                order.setOrderDate(rs.getDate("OrderDate"));
+                order.setStatus(rs.getString("Status"));
+                order.setVoucherId(rs.getString("VoucherID"));
+                order.setUserId(rs.getString("UserID"));
+                list.add(order);
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+        return list;
+    }
 
 }

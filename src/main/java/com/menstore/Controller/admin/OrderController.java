@@ -25,20 +25,21 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
-        
-        
-        System.out.println("admin action:"+action);
-        
+
+        System.out.println("admin action:" + action);
+
         if (action == null) {
             doGet_Display(request, response);
         } else if (action.equals("sort")) {
             doGet_Sort(request, response);
-        } else if(action.equals("edit")){
+        } else if (action.equals("edit")) {
             doGet_Update(request, response);
-        } else if(action.equals("delete")){
+        } else if (action.equals("delete")) {
             doPost_delete(request, response);
-        } else if(action.equals("listBY")){
-            doPost_listBy(request, response);
+        } else if (action.equals("search")) {
+            doPost_search(request, response);
+        } else {
+            response.sendRedirect("/admin");
         }
     }
 
@@ -83,7 +84,7 @@ public class OrderController extends HttpServlet {
 
     protected void doGet_Display(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int page = 1;
-        int recordsPerPage = 6;
+        int recordsPerPage = 10;
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }
@@ -106,7 +107,7 @@ public class OrderController extends HttpServlet {
 
     protected void doGet_Sort(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int page = 1;
-        int recordsPerPage = 4;
+        int recordsPerPage = 10;
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }
@@ -118,7 +119,7 @@ public class OrderController extends HttpServlet {
 
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
-        
+
         String direction = request.getParameter("direction");
         String by = request.getParameter("by");
 
@@ -132,21 +133,21 @@ public class OrderController extends HttpServlet {
     private void doGet_Update(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String orderId = request.getParameter("id");
         String status = request.getParameter("status");
-        
+
         IOrderDAO orderDAO = new OrderDAO();
-        if(orderDAO.updateStatus(orderId, status)){
+        if (orderDAO.updateStatus(orderId, status)) {
             request.setAttribute("message", "Cập nhật thành công");
-        } else{
+        } else {
             request.setAttribute("message", "Cập nhật thất bại");
         }
-        
+
         doGet_Display(request, response);
     }
 
-    protected void doPost_delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {    
+    protected void doPost_delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         IOrderDAO orderDAO = new OrderDAO();
-        
+
         if (request.getParameterValues("options") != null) {
             for (String id : request.getParameterValues("options")) {
                 orderDAO.delete(id);
@@ -156,7 +157,32 @@ public class OrderController extends HttpServlet {
         doGet_Display(request, response);
     }
 
-    protected void doPost_listBy(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost_search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int page = 1;
+        int recordsPerPage = 10;
+        if (request.getParameter("page") != null) {
+            page = Integer.parseInt(request.getParameter("page"));
+        }
+        IOrderDAO orderDAO = new OrderDAO();
+        List<Order> list = new ArrayList<>();
+
+        int noOfRecords = orderDAO.getNoOfRecords();
+        int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
+
+        request.setAttribute("noOfPages", noOfPages);
+        request.setAttribute("currentPage", page);
         
+
+        list = orderDAO.search(request.getParameter("orderId"));
+        
+        for(int i = 0; i <list.size(); i++){
+            System.out.println(list.get(i));
+        }               
+//            list = orderDAO.list();
+        request.setAttribute("list", list);
+
+        RequestDispatcher rd = request.getRequestDispatcher("views/admin/Order.jsp");
+        rd.forward(request, response);
     }
+
 }

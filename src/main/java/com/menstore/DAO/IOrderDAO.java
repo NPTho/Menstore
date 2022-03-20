@@ -30,6 +30,6 @@ public interface IOrderDAO {
     
     boolean updateStatus(String id, String status);
     
-    List<Order> search(String by, String keyword);
+    List<Order> search(String id);
             
 }

@@ -99,5 +99,4 @@ public class Order {
         this.voucherId = voucherId;
     }
     
-    
 }
