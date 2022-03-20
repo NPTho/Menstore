@@ -30,6 +30,7 @@ import com.menstore.model.Order;
 import com.menstore.model.OrderDetail;
 import com.menstore.model.Product;
 import com.menstore.model.User;
+import com.menstore.model.Voucher;
 import javax.servlet.RequestDispatcher;
 
 /**
@@ -209,22 +210,35 @@ public class CartController extends HttpServlet {
         Cart cart = (Cart) session.getAttribute("cart");
         String voucherId = request.getParameter("voucherId");
         IVoucherDAO voucherDAO = new VoucherDAO();
+        String checkDuedate = "";
 
         int voucher_DiscountPercent = voucherDAO.loadDiscountedPercent(voucherId);
         if (voucher_DiscountPercent > 0) {
-            request.setAttribute("voucher_discountPercent", voucher_DiscountPercent);
-            session.setAttribute("voucher", voucherDAO.find(voucherId));
-            double discountedMoney = (voucher_DiscountPercent / 100.0) * cart.getTotal();
+            Voucher voucher = voucherDAO.find(voucherId);
+            long millis = System.currentTimeMillis();
+            java.sql.Date date = new java.sql.Date(millis);
+            checkDuedate = "Voucher đã hết hạn";
+            if (voucher != null && voucher.getDueDate().after(date)) {
+                request.setAttribute("voucher_discountPercent", voucher_DiscountPercent);
+                session.setAttribute("voucher", voucherDAO.find(voucherId));
+                double discountedMoney = (voucher_DiscountPercent / 100.0) * cart.getTotal();
 //
 //            cart.setDiscounted(discountedMoney);
 //            cart.setVoucherId(voucherId);
-            session.setAttribute("voucherMsgSs", "Giảm giá từ Voucher: -");
-
+                checkDuedate = "Voucher còn hạng";
+                session.setAttribute("voucherMsgSs", "Giảm giá từ Voucher: -");
+            } else {
+                System.out.println("Dô đúng");
+                session.setAttribute("voucher", null);
+                session.setAttribute("voucherMsgSs", null);
+                request.setAttribute("voucher_message", checkDuedate);
+            }
         } else {
 //            cart.setDiscounted(0);
             session.setAttribute("voucher", null);
             session.setAttribute("voucherMsgSs", null);
             request.setAttribute("voucher_message", "Voucher không tồn tại");
+
         }
 
         request.getRequestDispatcher("views/web/cart.jsp").forward(request, response);
