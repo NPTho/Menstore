@@ -44,11 +44,15 @@ Shop targets on people whose taste toward elegant and neat style such as student
  ![image](https://user-images.githubusercontent.com/90202401/153649867-11fe42ec-d540-4fb7-99bb-0146ad40fd7b.png)
 * **Web Pages (For user/customer):** Modern, good-looking to attract customers
    * **Home page**
-![image](https://user-images.githubusercontent.com/90202401/153672358-b2163c31-af20-43c2-9bfb-20e74de04bb1.png)
-![image](https://user-images.githubusercontent.com/90202401/153672859-7f54d0eb-6c3a-4530-b8a9-df836781bea4.png)
+![image](https://user-images.githubusercontent.com/90202401/159170821-a0e86724-a34a-4bf3-b5bf-42d662df4779.png)
+![image](https://user-images.githubusercontent.com/90202401/159170915-b9da73a4-f3de-4f06-9cc5-a3d74a8f8241.png)
+![image](https://user-images.githubusercontent.com/90202401/159170925-075994c1-1ced-4565-a808-15ab14c29286.png)
+![image](https://user-images.githubusercontent.com/90202401/159170951-1c1da082-4c50-4170-bbeb-2340deaa0046.png)
+
    * **Product page**
-![image](https://user-images.githubusercontent.com/90202401/153673608-d8e41ad2-4678-440f-90e0-be0a3bfa2831.png)
-![image](https://user-images.githubusercontent.com/90202401/153673805-4697615c-6299-4d2d-9b29-c66fdbc96200.png)
+![image](https://user-images.githubusercontent.com/90202401/159171001-aabeee6a-7b34-4481-93d5-cfdfc427eb29.png)
+![image](https://user-images.githubusercontent.com/90202401/159171015-f1a8689c-ed6c-4a26-94e4-c06dd220ee61.png)
+![image](https://user-images.githubusercontent.com/90202401/159171099-09d824b2-8a83-409d-aba3-8d12a86116b6.png)
    * **Product detail**
 ![image](https://user-images.githubusercontent.com/90202401/153675124-94991e56-71e1-4704-a8ff-0dd0df121276.png)
    * **Contact page**
