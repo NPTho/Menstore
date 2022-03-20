@@ -46,10 +46,10 @@
         <jsp:include page="../web/header.jsp"/>
 
         <!-- start top_bg -->
-        <div class="top_bg">
+        <div class="top_bg" style="margin-top: 120px">
             <div class="wrap">
                 <div class="main_top">
-                    <h4 class="style">Login/Register</h4>
+                    <h4 class="style">Đăng nhập/Đăng ký</h4>
                 </div>
             </div>
         </div>
@@ -58,8 +58,8 @@
             <div class="wrap">
                 <div class="main">
                     <div class="login_left">
-                        <h3>login customers</h3>
-                        <p>if you have any account with us, please log in.</p>
+                        <h3>Đăng nhập</h3>
+                        <p>Nếu quý khách là thành viên, xin hãy đăng nhập tại đây!</p>
                         <!-- start registration -->
                         <div class="registration">
                             <!-- [if IE] 
@@ -114,16 +114,16 @@
                                         <input type="hidden" name="action" value="login"/>
                                         <div>
                                             <label>
-                                                <input name="username" placeholder="Username" type="text" tabindex="1" required="">
+                                                <input name="username" placeholder="Tên tài khoản" type="text" tabindex="1" required="">
                                             </label>
                                         </div>
                                         <div>
                                             <label>	
-                                                <input name="password" placeholder="password" type="password" tabindex="2" required="">
+                                                <input name="password" placeholder="Mật khẩu" type="password" tabindex="2" required="">
                                             </label>
                                         </div>									
                                         <div>
-                                            <input type="submit" value="sign in" id="register-submit"> <span style="color: red;">${login_mess}</span>
+                                            <input type="submit" value="Xác nhận" id="register-submit"> <span style="color: red;">${login_mess}</span>
                                         </div>
                                     </form>
                                     <!-- /Form -->
@@ -133,8 +133,8 @@
                         <!-- end registration -->
                     </div>
                     <div class="login_left">
-                        <h3>register new customers</h3>
-                        <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping address, view and track your orders in your accoung and more.</p>
+                        <h3>Đăng kí thành viên</h3>
+                        <p>Bằng cách tạo một tài khoản thành viên, bạn sẽ có thể thực hiện quá trình thanh toán nhanh hơn, lưu trữ nhiều địa chỉ giao hàng, xem và theo dõi đơn đặt hàng của bạn trong tài khoản của bạn và hơn thế nữa.</p>
                         <div class="registration_left">
                             <div class="registration_form">
                                 <!-- Form -->
@@ -142,37 +142,37 @@
                                     <input type="hidden" name="action" value="register"/>
                                     <div>
                                         <label>
-                                            <input name="register_name" placeholder="Name" type="text" tabindex="3" required="" autofocus="">
+                                            <input name="register_name" placeholder="Tên Thành viên" type="text" tabindex="3" required="" autofocus="">
                                         </label>
                                     </div>
 
                                     <div>
                                         <label>
-                                            <input name="register_username" placeholder="Username" type="text" tabindex="4" required="">
+                                            <input name="register_username" placeholder="Tên tài khoản" type="text" tabindex="4" required="">
                                         </label>
                                     </div>
                                     <div>
                                         <label>
-                                            <input name="register_password" placeholder="password" type="password" tabindex="5" required="">
+                                            <input name="register_password" placeholder="Mật khẩu" type="password" tabindex="5" required="">
                                         </label>
                                     </div>						
                                     <div>
                                         <label>
-                                            <input name="register_retypePassword" placeholder="retype password" type="password" tabindex="6" required="">
+                                            <input name="register_retypePassword" placeholder="Xác nhận mật khẩu" type="password" tabindex="6" required="">
                                         </label>
                                     </div>
                                     <div>
                                         <label>
-                                            <input name="register_phoneNumber" placeholder="Phone number" type="text" tabindex="7" required="">
+                                            <input name="register_phoneNumber" placeholder="Số điện thoại" type="text" tabindex="7" required="">
                                         </label>
                                     </div>
                                     <div>
                                         <label>
-                                            <input name="register_address" placeholder="Address" type="text" tabindex="8" required="">
+                                            <input name="register_address" placeholder="Địa chỉ liên hệ" type="text" tabindex="8" required="">
                                         </label>
                                     </div>
                                     <div>
-                                        <input type="submit" value="create an account" id="register-submit"> <span> ${register_mess}</span>
+                                        <input type="submit" value="Tạo tài khoản" id="register-submit"> <span style="color: #FF0000"> ${register_mess}</span>
                                     </div>
 
                                 </form>

@@ -40,7 +40,7 @@
         <jsp:include page="header.jsp"/>
 
         <!-- start top_bg -->
-        <div class="top_bg">
+        <div class="top_bg" style="margin-top: 120px">
             <div class="wrap">
                 <div class="main_top">
                     <h4 class="style">SẢN PHẨM</h4>
