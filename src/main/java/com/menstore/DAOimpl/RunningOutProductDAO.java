@@ -421,4 +421,9 @@ public class RunningOutProductDAO implements IProductDAO {
         return product;
     }
 
+    @Override
+    public ArrayList<String> findSizes(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

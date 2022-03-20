@@ -10,6 +10,7 @@ import com.menstore.DAOimpl.ProductDAO;
 import com.menstore.DAOimpl.WebProductDAO;
 import com.menstore.model.Product;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -39,7 +40,10 @@ public class DetailController extends HttpServlet {
         String productName = request.getParameter("productName");
         IProductDAO webProductDAO = new WebProductDAO();
         Product product = webProductDAO.find(productName);
-        
+        if(product!=null){
+            ArrayList<String> sizes= webProductDAO.findSizes(productName);
+            request.setAttribute("sizes", sizes);
+        }
         request.setAttribute("product", product);
         
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/details.jsp");

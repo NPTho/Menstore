@@ -71,7 +71,7 @@
 
                                             <div class="product-image"> 
                                                 <a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="${requestScope.product.linkImage}" title="Women Shorts" alt="Women Shorts">
-                                                    <img style="z-index: 0 !important" src="${requestScope.product.linkImage}" width="450" height="450" alt="Women Shorts" title="Women Shorts" />
+                                                    <img style="z-index: 0 !important; object-fit: cover" src="${requestScope.product.linkImage}" width="450" height="450" alt="Women Shorts" title="Women Shorts" />
                                                 </a>
                                             </div>
 
@@ -93,20 +93,18 @@
                                                     <input type="hidden" name="name" value="${requestScope.product.productName}">
                                                 <input type="hidden" name="price" value="${requestScope.product.price - requestScope.product.price*(requestScope.product.discount/100)}">
 
-                                                <c:if test="${requestScope.product.categoryId == 'GI'}">
+                                                <c:if test="${not empty sizes}">
                                                     <select name="size" style="height: 42px; border-radius: 5px;" class="form-control">
-                                                        <option value="39">39</option>
-                                                        <option value="40">40</option>
-                                                        <option value="41">41</option>
-                                                        <option value="42">42</option>
-                                                        <option value="43">43</option>
+                                                        <c:forEach var="size" items="${sizes}">
+                                                            <option value="${size}">${size}</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </c:if>
-                                                <c:if test="${requestScope.product.categoryId != 'GI'}">
+                                                <c:if test="${empty sizes}">
                                                     <select name="size" style="height: 42px; border-radius: 5px;" class="form-control">
-                                                        <option value="S">S</option>
-                                                        <option value="M">M</option>
-                                                        <option value="L">L</option>
+                                                        <option value="S">A</option>
+                                                        <option value="M">B</option>
+                                                        <option value="L">C</option>
                                                     </select>
                                                 </c:if>
 
@@ -114,8 +112,17 @@
                                             </form>
 
                                         </div>
-                                        <p>Size: ${requestScope.product.size}, Đồ đẹp bao mặc, 1 đêm duy nhất 1 đêm duy nhất</p>
-                                        <c:if test="${requestScope.product.discount > 0}"><p>Sản phẩm được giảm giá lên tới ${requestScope.product.discount}%, nhanh tayyyy</p></c:if>
+                                        <p>Size:
+                                            <c:if test="${not empty sizes}">
+                                                <c:forEach var="size" items="${sizes}">
+                                                    ${size}.&nbsp;
+                                                </c:forEach>
+                                            </c:if>
+                                                <c:if test="${empty sizes}">${0}</c:if>
+                                                <br>
+                                            Với phong cách thanh lịch, gọn gàng. Sản phẩm luôn được chọn là món đồ phải có trong mọi tủ đồ của nam giới!</p>
+                                        <hr>
+                                        <c:if test="${requestScope.product.discount > 0}"><p style="color: #00BCD4; font-weight: bold; font-size: 1.1em">Sản phẩm được giảm giá lên đến ${requestScope.product.discount}%</p></c:if>
                                         </div>
 
                                     </div>
