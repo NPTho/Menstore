@@ -66,10 +66,16 @@
             <c:remove var="pointMsg"/>
         </c:if>
 
-
         <!-- start header -->
         <jsp:include page="header.jsp"/>
-
+        <!-- start top_bg -->
+        <div class="top_bg" style="margin-top: 120px">
+            <div class="wrap">
+                <div class="main_top">
+                    <h4 class="style">Giỏ Hàng</h4>
+                </div>
+            </div>
+        </div>
         <!-- start slider -->
         <div class="gray_bg">
             <div class="container p-3 rounded cart gray_bg">
@@ -78,7 +84,6 @@
 
                         <div class="product-details mr-2">
                             <hr>
-                            <h6 class="mb-0">Giỏ hàng</h6>
                             <div class="d-flex justify-content-between">
                                 <c:if test="${sessionScope.cart.itemCount>0}">
                                     <span>Bạn đang có ${sessionScope.cart.itemCount} món hàng trong giỏ</span>

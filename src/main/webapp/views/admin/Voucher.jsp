@@ -52,8 +52,6 @@
 
     <body>
 
-        <%@include file="../admin/CheckLogin.jsp" %>
-
         <div class="wrapper">
 
             <jsp:include page="Menu.jsp"/>

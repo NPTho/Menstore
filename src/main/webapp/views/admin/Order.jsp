@@ -26,7 +26,6 @@
 
     <body>
 
-        <%@include file="../admin/CheckLogin.jsp" %>
         <c:set var="changedMsg" value="${changed}"/>                   <!-- changed password success message-->
         <c:if test="${not empty changedMsg}">
 

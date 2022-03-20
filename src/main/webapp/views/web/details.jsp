@@ -48,7 +48,7 @@
         <jsp:include page="header.jsp"/>
 
         <!-- start top_bg -->
-        <div class="top_bg">
+        <div class="top_bg" style="margin-top: 120px">
             <div class="wrap">
                 <div class="main_top">
                     <h4 class="style">CHI TIẾT SẢN PHẨM</h4>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <!-- start main -->
-        <div class="main_bg">
+        <div class="main_bg" style="position: relative; z-index: 0">
             <div class="wrap">
                 <div class="main">
                     <!-- start content -->
@@ -70,8 +70,8 @@
                                         <div class="product-img-box">
 
                                             <div class="product-image"> 
-                                                <a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="images/0001-2.jpg" title="Women Shorts" alt="Women Shorts">
-                                                    <img src="${requestScope.product.linkImage}" width="450" height="450" alt="Women Shorts" title="Women Shorts" />
+                                                <a class="cs-fancybox-thumbs cloud-zoom" rel="adjustX:30,adjustY:0,position:'right',tint:'#202020',tintOpacity:0.5,smoothMove:2,showTitle:true,titleOpacity:0.5" data-fancybox-group="thumb" href="${requestScope.product.linkImage}" title="Women Shorts" alt="Women Shorts">
+                                                    <img style="z-index: 0 !important" src="${requestScope.product.linkImage}" width="450" height="450" alt="Women Shorts" title="Women Shorts" />
                                                 </a>
                                             </div>
 

@@ -10,7 +10,7 @@
 <!-- ĐÃ SỬA -->
 
 <!DOCTYPE HTML>
-<html>
+<html lang="">
     <head>
         <title>Menstore</title>
        

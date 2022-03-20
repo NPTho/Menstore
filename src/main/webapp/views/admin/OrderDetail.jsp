@@ -26,7 +26,6 @@
 
     <body>
 
-        <%@include file="../admin/CheckLogin.jsp" %>
 
         <div class="wrapper">
 

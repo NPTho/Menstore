@@ -68,21 +68,21 @@
             padding: 8px 0;
             position: absolute;
             z-index: 1;
-            bottom: 85%;
+            bottom: -30%;
             left: 40%;
             margin-left: -80px;
         }
 
         /* Popup arrow */
-        .popup .popuptext::after {
+        .popup .popuptext::before {
             content: "";
             position: absolute;
-            top: 100%;
+            top: -26%;
             left: 50%;
             margin-left: -5px;
             border-width: 5px;
             border-style: solid;
-            border-color: #555 transparent transparent transparent;
+            border-color: transparent transparent  #5c897f transparent;
         }
 
         /* Toggle this class - hide and show the popup */
