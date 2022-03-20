@@ -149,6 +149,76 @@ public class WebProductDAO implements IProductDAO {
         return list;
     }
 
+    public List<Product> top7_random_list() {
+        ArrayList<Product> list;
+        list = new ArrayList<Product>();
+
+        String sql = "Select Top 7 p.ProductName, p.Price, p.Discount, p.Link_image\n"
+                + " From Product p \n"
+                + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount"
+                + " Order by newid()";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductName(rs.getString("ProductName"));
+                product.setPrice(rs.getInt("Price"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setLinkImage(rs.getString("Link_image"));
+                list.add(product);
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return list;
+    }
+
+    public List<Product> top3_random_list() {
+        ArrayList<Product> list;
+        list = new ArrayList<Product>();
+
+        String sql = "Select Top 3 p.ProductName, p.Price, p.Discount, p.Link_image\n"
+                + " From Product p \n"
+                + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount"
+                + " Order by newid()";
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductName(rs.getString("ProductName"));
+                product.setPrice(rs.getInt("Price"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setLinkImage(rs.getString("Link_image"));
+                list.add(product);
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return list;
+    }
+
     public List<Product> top3Shirt_list() {
         ArrayList<Product> list;
         list = new ArrayList<Product>();

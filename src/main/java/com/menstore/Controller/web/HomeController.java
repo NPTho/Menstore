@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet(name = "WebHomeController", urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
 
@@ -28,12 +27,19 @@ public class HomeController extends HttpServlet {
         IProductDAO webProductDAO = new WebProductDAO();
         List<Product> list = new ArrayList<>();
         List<Product> top7list = new ArrayList<>();
-        
-        list = ((WebProductDAO)webProductDAO).top3_list();
-        top7list = ((WebProductDAO)webProductDAO).top7_list();
+        List<Product> top7Randomlist = new ArrayList<>();
+        List<Product> top3Randomlist = new ArrayList<>();
+
+        list = ((WebProductDAO) webProductDAO).top3_list();
+        top7list = ((WebProductDAO) webProductDAO).top7_list();
+        top7Randomlist = ((WebProductDAO) webProductDAO).top7_random_list();
+        top3Randomlist = ((WebProductDAO) webProductDAO).top3_random_list();
+
         request.setAttribute("list", list);
         request.setAttribute("top7list", top7list);
-        
+        request.setAttribute("top7Randomlist", top7Randomlist);
+        request.setAttribute("top3Randomlist", top3Randomlist);
+
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
         rd.forward(request, response);
     }

@@ -64,18 +64,18 @@
             </script>   
             <c:remove var="changed" scope="session"/>
         </c:if>
-
+            
         <!-- Start header -->
         <jsp:include page="header.jsp"/>
         <!-- End Header -->
 
         <!-- start slider -->
-        <div class="slider">
+        <div class="slider" style="margin-top: 120px; position: relative; z-index: 0;">
             <!---start-image-slider---->
             <div class="image-slider">
                 <div class="wrapper">
                     <div id="ei-slider" class="ei-slider">
-                        <c:set var="productList" value="${requestScope.top7list}" />
+                        <c:set var="productList" value="${requestScope.top7Randomlist}" />
                         <ul  class="ei-slider-large">
                             <c:forEach var="product" items="${productList}">
                                 <c:url var="productDetail" value="${request.contextPath}/detail" scope="request">
@@ -85,11 +85,11 @@
                                     <img src="${pageContext.request.contextPath}/views/web/images/slider-image2.jpg" alt="image04"/>
                                     <div class="ei-title">
                                         <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
-                                        <h3 class="btn">${actuaPrice} VNĐ</h3>
+                                        <h3 class="btn"><a href="${productDetail}" style=" color: #FFFFFF">${actuaPrice} VNĐ</a></h3>
                                         <h2>${product.productName}</h2>
 
                                         <h3>
-                                            <a class="ei_icons" href="${productDetail}"><img src="${pageContext.request.contextPath}/views/web/images/icon_1.png" alt=""></a>
+                                            <img src="${product.linkImage}" alt="${product.productName}" width="250px" height="250px" style="object-fit: cover">
                                         </h3>
                                     </div>
                                 </li>
@@ -103,7 +103,7 @@
                                 <c:url var="productDetail" value="${request.contextPath}/detail" scope="request">
                                     <c:param name="productName" value="${product.productName}"></c:param>
                                 </c:url>
-                                <li><a href="${productDetail}"><span>T Shirt</span> <p>ssss</p></a><img src="${product.linkImage}" alt="thumb07" /></li>
+                                <li><a href="${productDetail}"><span>Hot Item</span> <p></p></a><img src="${product.linkImage}" alt="thumb07" /></li>
                                 </c:forEach>
 
                         </ul><!-- ei-slider-thumbs -->
@@ -170,36 +170,31 @@
 
 
                     <div class="top_main">
-                        <h2>Sản phẩm quần bán chạy tại MenStore</h2>
+                        <h2>Những sản phẩm gợi ý cho bạn</h2>
                         <div class="clear"></div>
                     </div>
-                    <!-- start grids_of_3 -->
+
+                    <c:set var="productList" value="${requestScope.top3Randomlist}" />
                     <div class="grids_of_3">
-                        <div class="grid1_of_3">
-                            <a href="######">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2NrICZGfSxeHsGhc4b4NhJE9yQFf-2gsD6A&usqp=CAU" alt=""/>
-                                <h3>buffalo decollete</h3>
-                                <span class="price">$145,99</span>
-                            </a>
-                        </div>
-                        <div class="grid1_of_3">
-                            <a href="######">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKdevpitJMV4NZ_p4SNwRVGy6Vqhg-M_Kwew&usqp=CAU" alt=""/>
-                                <h3>even & odd</h3>
-                                <span class="price">$185,99</span>
-                            </a>
-                        </div>
-                        <div class="grid1_of_3">
-                            <a href="######">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEklXWJxshj9SKQ-jhRnj4iMux7zaZ-mR7BA&usqp=CAU" alt=""/>
-                                <h3>buffalo decollete</h3>
-                                <span class="price">$145,99</span>
-                                <!--                                <span class="price1 bg1">out of stock</span>-->
-                            </a>
-                        </div>
-                        <div class="clear"></div>
+                        <c:forEach var="product" items="${productList}">
+                            <div class="grid1_of_3">
+                                <a href="detail?productName=${product.productName}">
+                                    <img src="${product.linkImage}" width="260" height="300"/>
+
+                                    <h3 style="text-align: center;">${product.productName}</h3>
+
+                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
+
+                                    <span class="price">${actuaPrice}</span>
+
+                                    <c:if test="${product.discount != 0}">
+                                        <span class="price1 bg">on sale</span>
+                                    </c:if>
+                                </a>
+                            </div>
+                        </c:forEach>
                     </div>
-                    <div class="clear"></div>
+                    <div class="clear"></div>  
 
 
                     <!-- start grids_of_2 -->
