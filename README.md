@@ -79,8 +79,6 @@ ER Model in details:
 * **Relational Model**
 ![image](https://user-images.githubusercontent.com/90202401/156308944-a0ecf44a-3fad-4f5f-9a8a-d447944a249b.png)
 ## `System design(Folder tree screenshot):`
-![image](https://user-images.githubusercontent.com/97748149/159174174-bdb87f8f-8bb0-4f34-83a9-9a49f961c4ec.jpg)
-![image](https://user-images.githubusercontent.com/97748149/159174189-f2541e2e-61d4-463a-a6ed-9d40e39230b3.jpg)
-
-
+![image](https://user-images.githubusercontent.com/90202401/159177048-a8ddda4b-9516-4db0-9924-d0b98be74087.png)
+![image](https://user-images.githubusercontent.com/90202401/159177072-af10384a-2a39-4600-8f37-74d2c59fa082.png)
 
