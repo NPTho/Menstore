@@ -39,6 +39,7 @@ Shop targets on people whose taste toward elegant and neat style such as student
    * **Order management**
  ![image](https://user-images.githubusercontent.com/97748149/159172384-66b3bddb-cd20-45bf-a03e-9f4bc955db0b.jpg)
  ![image](https://user-images.githubusercontent.com/97748149/159172551-b571c2a1-f6f7-4ab2-b980-0afa1544f76a.jpg)
+ ![image](https://user-images.githubusercontent.com/97748149/159174537-a2df73ae-c42e-4236-9c73-14004cd928fa.jpg)
    * **Product management**
  ![image](https://user-images.githubusercontent.com/97748149/159172657-57a8a76d-5412-4081-8d50-4b4858e17a80.jpg)
  ![image](https://user-images.githubusercontent.com/97748149/159172763-50e2a782-e68e-45e6-a80d-701eb6e62201.jpg)
