@@ -12,6 +12,8 @@
 <html>
     <head>
         <title>Đăng nhập</title>
+        <link rel="icon" type="image/png"  href="${pageContext.request.contextPath}/views/common/images/login-logo.png">
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
@@ -172,7 +174,7 @@
                                     <div>
                                         <input type="submit" value="create an account" id="register-submit"> <span> ${register_mess}</span>
                                     </div>
-                                    
+
                                 </form>
                                 <!-- /Form -->
                             </div>

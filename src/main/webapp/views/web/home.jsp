@@ -13,6 +13,9 @@
 <html>
     <head>
         <title>Menstore</title>
+       
+        <link rel="icon" type="image/png"  href="${pageContext.request.contextPath}/views/web/images/mens-store-logo.png">
+        
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
@@ -55,13 +58,13 @@
     <body>
         <c:set var="changedMsg" value="${changed}"/>                   <!-- changed password success message-->
         <c:if test="${not empty changedMsg}">
-        
-         <script>
-            confirm("${changedMsg}");
-         </script>   
-         <c:remove var="changed" scope="session"/>
-         </c:if>
-         
+
+            <script>
+                confirm("${changedMsg}");
+            </script>   
+            <c:remove var="changed" scope="session"/>
+        </c:if>
+
         <!-- Start header -->
         <jsp:include page="header.jsp"/>
         <!-- End Header -->
@@ -111,25 +114,25 @@
             <!---End-image-slider---->	
         </div>
         <!-- start image1_of_3 -->
-<!--        <div class="top_bg">
-            <div class="wrap">
-                <div class="main1">
-                    <div class="image1_of_3">
-                        <img src="https://cdn.shopify.com/s/files/1/0246/3668/6402/products/black_front_ab4cc71d-5e23-462d-8938-f7f6278f4c71_2048x2048.jpg?v=1577127966" alt=""/>
-                        <a href="products?show=onsale"><span class="tag">on sale</span></a>
+        <!--        <div class="top_bg">
+                    <div class="wrap">
+                        <div class="main1">
+                            <div class="image1_of_3">
+                                <img src="https://cdn.shopify.com/s/files/1/0246/3668/6402/products/black_front_ab4cc71d-5e23-462d-8938-f7f6278f4c71_2048x2048.jpg?v=1577127966" alt=""/>
+                                <a href="products?show=onsale"><span class="tag">on sale</span></a>
+                            </div>
+                            <div class="image1_of_3">
+                                <img src="https://www.hobbycorner.co.nz/user/images/6340_300_300.jpg?t=1507071001" alt=""/>
+                                <a href="products?list=are"><span class="tag">special offers</span></a>
+                            </div>
+                            <div class="image1_of_3">
+                                <img src="https://znews-photo.zadn.vn/w660/Uploaded/rohunwa/2020_04_13/skinny_jeans.jpg" alt=""/>
+                                <a href="details.html"><span class="tag">must have</span></a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
                     </div>
-                    <div class="image1_of_3">
-                        <img src="https://www.hobbycorner.co.nz/user/images/6340_300_300.jpg?t=1507071001" alt=""/>
-                        <a href="products?list=are"><span class="tag">special offers</span></a>
-                    </div>
-                    <div class="image1_of_3">
-                        <img src="https://znews-photo.zadn.vn/w660/Uploaded/rohunwa/2020_04_13/skinny_jeans.jpg" alt=""/>
-                        <a href="details.html"><span class="tag">must have</span></a>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-        </div>-->
+                </div>-->
 
         <!-- start main -->
         <div class="main_bg">

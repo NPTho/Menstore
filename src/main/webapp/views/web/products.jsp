@@ -7,6 +7,8 @@
 <html>
     <head>
         <title>Products</title>
+        <link rel="icon" type="image/png"  href="${pageContext.request.contextPath}/views/web/images/mens-store-logo.png">
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
@@ -55,12 +57,12 @@
                         <div class="clear"></div>
                     </div>
 
-                   <!-- start grids_of_3 -->
-                <c:set var="shirtList" value="${requestScope.shirtList}" />
-                <div class="grids_of_3">
-                     <c:forEach  var="product" items="${shirtList}">
-                        <div class="grid1_of_3">
-                        <a href="detail?productName=${product.productName}">
+                    <!-- start grids_of_3 -->
+                    <c:set var="shirtList" value="${requestScope.shirtList}" />
+                    <div class="grids_of_3">
+                        <c:forEach  var="product" items="${shirtList}">
+                            <div class="grid1_of_3">
+                                <a href="detail?productName=${product.productName}">
                                     <img src="${product.linkImage}" width="260" height="300"/>
 
                                     <h3>    ${product.productName}   </h3>
@@ -73,54 +75,24 @@
                                         <span class="price1 bg">on sale</span>
                                     </c:if>
                                 </a>
+                            </div>
+                        </c:forEach>
+
+                        <div class="clear"></div>
                     </div>
-                    </c:forEach>
-                    
-                    <div class="clear"></div>
-                </div>
 
-                <div class="top_main">
-                    <h2>Quần</h2>
-                    <a href="products?listType=Quan">show all</a>
-                    <div class="clear"></div>
-                </div>
-                    
-                <!-- start grids_of_3 -->
-                <c:set var="pantList" value="${requestScope.pantList}" />
-                <div class="grids_of_3">
-                     <c:forEach  var="product" items="${pantList}">
-                        <div class="grid1_of_3">
-                        <a href="detail?productName=${product.productName}">
-                                    <img src="${product.linkImage}" width="260" height="300"/>
-
-                                    <h3>    ${product.productName}   </h3>
-
-                                   <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
-
-                                    <span class="price">${actuaPrice}</span>
-
-                                    <c:if test="${product.discount != 0}">
-                                        <span class="price1 bg">on sale</span>
-                                    </c:if>
-                                </a>
+                    <div class="top_main">
+                        <h2>Quần</h2>
+                        <a href="products?listType=Quan">show all</a>
+                        <div class="clear"></div>
                     </div>
-                    </c:forEach>
-                    
-                    <div class="clear"></div>
-                </div>
 
-                <div class="top_main">
-                    <h2>Giày</h2>
-                    <a href="products?listType=Giay">show all</a>
-                    <div class="clear"></div>
-                </div>
-                <!-- start grids_of_3 -->
-                <c:set var="accessoryList" value="${requestScope.accessoryList}" />
-                <div class="grids_of_3">
-                   
-                    <c:forEach  var="product" items="${accessoryList}">
-                        <div class="grid1_of_3">
-                        <a href="detail?productName=${product.productName}">
+                    <!-- start grids_of_3 -->
+                    <c:set var="pantList" value="${requestScope.pantList}" />
+                    <div class="grids_of_3">
+                        <c:forEach  var="product" items="${pantList}">
+                            <div class="grid1_of_3">
+                                <a href="detail?productName=${product.productName}">
                                     <img src="${product.linkImage}" width="260" height="300"/>
 
                                     <h3>    ${product.productName}   </h3>
@@ -133,16 +105,46 @@
                                         <span class="price1 bg">on sale</span>
                                     </c:if>
                                 </a>
-                    </div>
-                    </c:forEach>
-                    <div class="clear"></div>
-                </div>
-                <div class="clear"></div>
+                            </div>
+                        </c:forEach>
 
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="top_main">
+                        <h2>Giày</h2>
+                        <a href="products?listType=Giay">show all</a>
+                        <div class="clear"></div>
+                    </div>
+                    <!-- start grids_of_3 -->
+                    <c:set var="accessoryList" value="${requestScope.accessoryList}" />
+                    <div class="grids_of_3">
+
+                        <c:forEach  var="product" items="${accessoryList}">
+                            <div class="grid1_of_3">
+                                <a href="detail?productName=${product.productName}">
+                                    <img src="${product.linkImage}" width="260" height="300"/>
+
+                                    <h3>    ${product.productName}   </h3>
+
+                                    <c:set var="actuaPrice" value="${(product.price - product.price*product.discount/100)/1000}k"/>
+
+                                    <span class="price">${actuaPrice}</span>
+
+                                    <c:if test="${product.discount != 0}">
+                                        <span class="price1 bg">on sale</span>
+                                    </c:if>
+                                </a>
+                            </div>
+                        </c:forEach>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
             </div>
         </div>
-    </div>
-    <!-- start footer -->
-    <jsp:include page="Footer.jsp"/>
-</body>
+        <!-- start footer -->
+        <jsp:include page="Footer.jsp"/>
+    </body>
 </html>

@@ -9,6 +9,8 @@
 
     <head>
         <title>Giỏ hàng</title>
+        <link rel="icon" type="image/png"  href="${pageContext.request.contextPath}/views/web/images/mens-store-logo.png">
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Mavsen+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
@@ -262,7 +264,7 @@
                                                     <c:if test="${checkMinus<0}">
                                                         $ 0.0k (VNĐ)
                                                     </c:if>
-                                                    
+
                                                     <c:if test="${checkMinus>=0}">
                                                         <%
                                                             num = priceFormatter.format((double) request.getAttribute("tmpTotal") - (int) request.getAttribute("uPoint"));
@@ -270,7 +272,7 @@
                                                         %> 
                                                         k (VNĐ)
                                                     </c:if>
-                                                    
+
                                                 </c:if>
                                             </c:if> 
                                         </c:if>

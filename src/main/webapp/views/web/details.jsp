@@ -8,6 +8,8 @@
         <c:url var="linkSource" value="${request.contextPath}/views/web" />
 
         <title>Chi tiết sản phẩm</title>
+        <link rel="icon" type="image/png"  href="${pageContext.request.contextPath}/views/web/images/mens-store-logo.png">
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
@@ -90,7 +92,7 @@
                                                 <form action="cart?action=buy" method="post">
                                                     <input type="hidden" name="name" value="${requestScope.product.productName}">
                                                 <input type="hidden" name="price" value="${requestScope.product.price - requestScope.product.price*(requestScope.product.discount/100)}">
-                                           
+
                                                 <c:if test="${requestScope.product.categoryId == 'GI'}">
                                                     <select name="size" style="height: 42px; border-radius: 5px;" class="form-control">
                                                         <option value="39">39</option>

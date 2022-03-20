@@ -8,6 +8,8 @@
 <html>
     <head>
         <title>Tài khoản</title>
+        <link rel="icon" type="image/png"  href="${pageContext.request.contextPath}/views/common/images/edit.png">
+
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <link href='http://fonts.googleapis.com/css?family=Maven+Pro:400,900,700,500' rel='stylesheet' type='text/css'>
@@ -40,11 +42,11 @@
                 color: #FF0000;
                 font-size: 20px;
             }
-           
+
 
         </style>
-        
-        
+
+
 
     </head>
     <body>
@@ -78,7 +80,7 @@
                             <p>Recommend: Hãy đặt mật khẩu dễ nhớ</p>
                         </c:if>
 
-                            <c:if test="${not empty e_mess}"> <p  id="mess">${e_mess}</p></c:if>
+                        <c:if test="${not empty e_mess}"> <p  id="mess">${e_mess}</p></c:if>
 
                             <!-- start registration -->
                             <div class="registration">
