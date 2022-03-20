@@ -63,6 +63,7 @@
                         <form action="voucher" method="post"> 
                             <input type="hidden" name="action" value="search"/>
                             <input name="voucherId" class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Enter ID..." aria-label="Search">
+                            
                         </form>
                     </div>
                 </nav>
@@ -80,8 +81,8 @@
                                             </div>
 
                                             <div class="col-sm-6">
-                                                <input style="background-color: red" value="Xóa" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
-                                                <a style="background-color: #00BCD4" href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">Thêm</a>
+                                                <input style="background-color: red; cursor: pointer;" value="Xóa voucher" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
+                                                <a style="background-color: #00BCD4;" href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">Thêm voucher</a>
                                             </div>
                                         </div>
                                     </div>
@@ -180,7 +181,7 @@
                                     </table>
 
                                     <div class="clearfix">
-                                        <div class="hint-text">Showing <b>${currentPage}</b> out of <b>${noOfPages}</b> entries</div>
+                                        <div class="hint-text">Trang <b>${currentPage}</b> trên <b>${noOfPages}</b></div>
 
                                         <c:choose>
 
@@ -303,7 +304,7 @@
                                             <input name="discount" type="text" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Ngày hết hạn (yyyy/MM/dd)</label>
+                                            <label>Ngày hết hạn (yyyy-MM-dd)</label>
                                             <input name="dueDate" type="text" class="form-control" required>
                                         </div>
                                         <div class="form-group">

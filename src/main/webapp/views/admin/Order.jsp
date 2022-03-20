@@ -43,10 +43,17 @@
                 <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg " color-on-scroll="500">
                     <div class="container-fluid">
-                        <form action="order" method="post"> 
-                            <input type="hidden" name="action" value="search"/>
-                            <input name="keyword" class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Enter ID..." aria-label="Search">
-                        </form>
+                       <div class="dropdown col-sm-6">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Trạng thái
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin">Tất cả</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin?action=listBy&category=AT">Đang xử lý</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin?action=listBy&category=AT">Đã thanh toán</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/admin?action=listBy&category=SM">Đơn hủy</a> 
+                            </div>
+                        </div>
                     </div>
                 </nav>
                 <!-- End Navbar -->
@@ -67,7 +74,7 @@
                                                         </div>
 
                                                         <div class="col-sm-6">
-                                                            <input style="background-color: red" value="Xóa đơn hàng" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
+                                                            <input style="background-color: red; cursor: pointer;" value="Xóa đơn hàng" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
                                                         </div>
 
                                                     </div>
@@ -76,11 +83,13 @@
                                                     <thead>
                                                         <tr>
                                                             <th><span>Mã</span><a href="${pageContext.request.contextPath}/admin?action=sort&direction=down&by=id"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/admin?action=sort&direction=up&by=id"><i class="material-icons">arrow_upward</i></a></th>
+                                                            <th>Khách hàng</th>
                                                             <th>Note</th>
                                                             <th><span>Tiền giảm</span><a href="${pageContext.request.contextPath}/admin?action=sort&direction=down&by=discounted"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/admin?action=sort&direction=up&by=discounted"><i class="material-icons">arrow_upward</i></a></th>
                                                             <th><span>Thành tiền</span><a href="${pageContext.request.contextPath}/admin?action=sort&direction=down&by=total"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/admin?action=sort&direction=up&by=total"><i class="material-icons">arrow_upward</i></a></th>
                                                             <th>Ngày<a href="${pageContext.request.contextPath}/admin?action=sort&direction=down&by=date"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/admin?action=sort&direction=up&by=date"><i class="material-icons">arrow_upward</i></a></th>
                                                             <th>Trạng thái</th>
+                                                            
                                                             <th>Voucher</th>
                                                             <th>Action</th>
                                                             <th>
@@ -98,6 +107,7 @@
                                                         <c:forEach var="order" items="${orderList}">
                                                             <tr>
                                                                 <td>${order.orderId}</td>
+                                                                <td>${order.userId}</td>
                                                                 <td>${order.note}</td>
                                                                 <td>${order.discountedMoney}</td>
                                                                 <td>${order.total}</td>
@@ -157,7 +167,7 @@
 
                                                 </table>
                                                 <div class="clearfix">
-                                                    <div class="hint-text">Showing <b>${currentPage}</b> out of <b>${noOfPages}</b> entries</div>
+                                                     <div class="hint-text">Trang <b>${currentPage}</b> trên <b>${noOfPages}</b></div>
 
                                                     <c:choose>
 

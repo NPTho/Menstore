@@ -63,33 +63,25 @@
                     <div class="container-fluid">
                         <div class="dropdown col-sm-6">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                PRODUCT
+                                Loại sản phẩm
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product">All</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=AC">Accessories</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=BZ">Blazer</a> 
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=CT">Coat</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=HT">Hat</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=JK">Jacket</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=JN">Jeans</a> 
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=PT">Pants</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SRT">Shorts</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SS">Shoes</a> 
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=ST">Shirt</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SU">Suit</a>
-                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=TST">T-Shirt</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product">Tất cả</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=AT">Áo thun</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=SM">Sơ mi</a> 
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=QT">Quần tây</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=QJ">Quần jean</a>
+                                <a class="dropdown-item" href="${pageContext.request.contextPath}/product?action=listBy&category=GI">Giày</a>
                             </div>
                         </div>
 
                         <form action="product?action=search" method="post"> 
                             <div class="input-group mt-3 mb-3">
                                 <div class="input-group-prepend">
-                                     <select name="by" > 
-                                    <option value="ProductID">Product ID</option>
-                                    <option value="ProductName">Product Name</option>
-                                    <option value="CategoryID">Category</option>
-                                    <option value="Status">Status</option>
+                                    <select name="by" style="height: 30px; border-radius: 3px;"> 
+                                        <option value="ProductID">Mã sản phẩm</option>
+                                        <option value="ProductName">Tên sản phẩm</option>
+                                        <option value="Status">Trạng thái</option>
                                     </select>
                                     <input name="keyword" type="text" placeholder="Search..." aria-label="Search">
                                 </div>
@@ -106,12 +98,12 @@
                                     <div class="table-title">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <h2>PRODUCT <b>TABLE</b></h2>
+                                                <h2>BẢNG SẢN PHẨM</h2>
                                             </div>
 
                                             <div class="col-sm-6">
-                                                <input style="background-color: red" value="Delete" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
-                                                <a href="#addEmployeeModal" class="btn btn-success" style="background-color: #00BCD4" data-toggle="modal">Add New Product</a>
+                                                <input style="background-color: red; cursor: pointer;" value="Xóa sảm phẩm" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Bạn có chắc xóa những sản phẩm này?')"/> 
+                                                <a href="#addEmployeeModal" class="btn btn-success" style="background-color: #00BCD4" data-toggle="modal">Thêm sản phẩm</a>
                                             </div>
                                         </div>
                                     </div>
@@ -181,17 +173,17 @@
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">						
-                                                                            <h4 class="modal-title">PRODUCT TABLE</h4>
+                                                                            <h4 class="modal-title">BẢN SẢN PHẨM</h4>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                                                                         </div>
                                                                         <div class="modal-body">					
                                                                             <div class="form-group">
-                                                                                <label>Product ID</label>
+                                                                                <label>Mã sản phẩm</label>
                                                                                 <input name="id" type="hidden" class="form-control" value="${product.productId}" required>
                                                                                 <input disabled type="text" class="form-control" value="${product.productId}" required>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label>Product name</label>
+                                                                                <label>Tên</label>
                                                                                 <input name="name" type="text" class="form-control" value="${product.productName}" required>
                                                                             </div>
                                                                             <div class="form-group">
@@ -199,27 +191,40 @@
                                                                                 <input name="size" type="text" class="form-control" value="${product.size}" required>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label>Price</label>
+                                                                                <label>Giá</label>
                                                                                 <input name="price" type="text" class="form-control" value="${product.price}" required>  
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label>Discount</label>
+                                                                                <label>Giảm giá(%)</label>
                                                                                 <input name="discount" type="text" class="form-control" value="${product.discount}" required>
                                                                             </div>	
                                                                             <div class="form-group">
-                                                                                <label>Quantity</label>
+                                                                                <label>Số lượng</label>
                                                                                 <input name="quantity" type="text" class="form-control" value="${product.quantity}" required>
                                                                             </div>	
                                                                             <div class="form-group">
-                                                                                <label>Category</label>
-                                                                                <input name="categoryId" type="text" class="form-control" value="${product.categoryId}" required>
+                                                                                <label>Loại</label>
+                                                                                <select name="categoryId" class="form-control" id="status">
+                                                                                    <option value="${product.categoryId}">${product.categoryId}</option>
+                                                                                    <option value="AT">Áo thun</option>
+                                                                                    <option value="SM">Áo sơ mi</option>
+                                                                                    <option value="QT">Quần tây</option>
+                                                                                    <option value="QJ">Quần Jean</option>
+                                                                                    <option value="GI">Giày</option>
+                                                                                </select>
+<!--                                                                                <input name="categoryId" type="text" class="form-control" value="${product.categoryId}" required>-->
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label>Status</label>
-                                                                                <input name="status" type="text" class="form-control" value="${product.status}" required>
+                                                                                <label>Trạng thái</label>
+                                                                                <select name="status" class="form-control" id="status">
+                                                                                    <option value="${product.status}">${product.status}</option>
+                                                                                    <option value="On">On</option>
+                                                                                    <option value="Off">Off</option>
+                                                                                </select>
+<!--                                                                                <input name="status" type="text" class="form-control" value="${product.status}" required>-->
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <label>Link image</label>
+                                                                                <label>Hình ảnh</label>
                                                                                 <input name="linkImage" type="text" class="form-control" value="${product.linkImage}" required>
                                                                             </div>				
                                                                         </div>
@@ -239,7 +244,7 @@
                                     </table>
 
                                     <div class="clearfix">
-                                        <div class="hint-text">Showing <b>${currentPage}</b> out of <b>${noOfPages}</b> entries</div>
+                                         <div class="hint-text">Trang <b>${currentPage}</b> trên <b>${noOfPages}</b></div>
 
                                         <c:choose>
 
@@ -353,11 +358,11 @@
                                     </div>
                                     <div class="modal-body">					
                                         <div class="form-group">
-                                            <label>Product ID</label>
+                                            <label>Mã sản phẩm</label>
                                             <input name="id" type="text" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Product name</label>
+                                            <label>Tên sản phẩm</label>
                                             <input name="name" type="text" class="form-control" required>
                                         </div>
                                         <div class="form-group">
@@ -365,27 +370,38 @@
                                             <input name="size" type="text" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <label>Price</label>
+                                            <label>Giá</label>
                                             <input name="price" type="text" class="form-control" required>  
                                         </div>
                                         <div class="form-group">
-                                            <label>Discount</label>
+                                            <label>Giảm giá(%)</label>
                                             <input name="discount" type="text" class="form-control" required>
                                         </div>	
                                         <div class="form-group">
-                                            <label>Quantity</label>
+                                            <label>Số lượng</label>
                                             <input name="quantity" type="text" class="form-control" required>
                                         </div>	
                                         <div class="form-group">
-                                            <label>Category</label>
-                                            <input name="categoryId" type="text" class="form-control" required>
+                                            <label>Loại sản phẩm</label>
+                                            <select name="categoryId" class="form-control" id="status">
+                                                <option value="AT" selected="">Áo thun</option>
+                                                <option value="SM">Áo sơ mi</option>
+                                                <option value="QT">Quần tây</option>
+                                                <option value="QJ">Quần Jean</option>
+                                                <option value="GI">Giày</option>
+                                            </select>
+                                            <!--                                            <input name="categoryId" type="text" class="form-control" required>-->
                                         </div>
                                         <div class="form-group">
-                                            <label>Status</label>
-                                            <input name="status" type="text" class="form-control" >
+                                            <label>Trạng thái</label>
+                                            <select name="status" class="form-control" id="status">
+                                                <option value="On" selected="">On</option>
+                                                <option value="Off">Off</option>
+                                            </select>
+<!--                                            <input name="status" type="text" class="form-control" >-->
                                         </div>
                                         <div class="form-group">
-                                            <label>Link image</label>
+                                            <label>Link hình ảnh</label>
                                             <input name="linkImage" type="text" class="form-control" >
                                         </div>
 

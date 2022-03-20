@@ -34,14 +34,7 @@
 
             <div class="main-panel">
                 <!-- Navbar -->
-                <nav class="navbar navbar-expand-lg " color-on-scroll="500">
-                    <div class="container-fluid">
-                        <form action="orderDetail" method="post"> 
-                            <input type="hidden" name="action" value="search"/>
-                            <input name="keyword" class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Enter ID..." aria-label="Search">
-                        </form>
-                    </div>
-                </nav>
+
                 <!-- End Navbar -->
                 <div class="content">
                     <div class="container-fluid">
@@ -63,11 +56,11 @@
                                             <table class="table table-striped table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th><span>Mã</span><a href="${pageContext.request.contextPath}/orderDetail?action=sort&direction=down&by=id"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/admin?action=sort&direction=up&by=id"><i class="material-icons">arrow_upward</i></a></th>
+                                                        <th>Mã</th>
 
-                                                        <th><span>Mã sản phẩm</span><a href="${pageContext.request.contextPath}/orderDetail?action=sort&direction=down&by=discounted"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/admin?action=sort&direction=up&by=discounted"><i class="material-icons">arrow_upward</i></a></th>
-                                                        <th><span>Giá bán ra</span><a href="${pageContext.request.contextPath}/orderDetail?action=sort&direction=down&by=total"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/admin?action=sort&direction=up&by=total"><i class="material-icons">arrow_upward</i></a></th>
-                                                        <th>Số lượng<a href="${pageContext.request.contextPath}/orderDetail?action=sort&direction=down&by=date"><i class="material-icons">arrow_downward</i></a><a href="${pageContext.request.contextPath}/admin?action=sort&direction=up&by=date"><i class="material-icons">arrow_upward</i></a></th>
+                                                        <th>Mã sản phẩm</th>
+                                                        <th>Giá bán ra</th>
+                                                        <th>Số lượng</th>
                                                         <th>Thành tiền</th>
                                                     </tr>
                                                 </thead>
@@ -89,102 +82,6 @@
 
                                             </table>
                                             <div class="clearfix">
-                                                <div class="hint-text">Showing <b>${currentPage}</b> out of <b>${noOfPages}</b> entries</div>
-
-                                                <c:choose>
-
-                                                    <c:when test = "${param.action == 'sort'}">
-                                                        <ul class="pagination">
-
-                                                            <c:if test="${currentPage != 1}">
-                                                                <li class="page-item"><a href="orderDetail?action=sort&direction=${param.direction}&by=${param.by}&page=${currentPage - 1}">Previous</a></li>
-                                                                </c:if>
-                                                                <c:forEach begin="1" end="${noOfPages}" var="i">
-                                                                    <c:choose>
-                                                                        <c:when test="${currentPage eq i}">
-                                                                        <li class="page-item"><a class="page-link">${i}</a></li>
-                                                                        </c:when>
-                                                                        <c:otherwise>
-                                                                        <li class="page-item"><a href="orderDetail?action=sort&direction=${param.direction}&by=${param.by}&page=${i}" class="page-link">${i}</a></li>
-                                                                        </c:otherwise>
-                                                                    </c:choose>
-                                                                </c:forEach>
-                                                                <c:if test="${currentPage lt noOfPages}">
-                                                                <li class="page-item"><a href="orderDetail?action=sort&direction=${param.direction}&by=${param.by}&page=${currentPage + 1}">Next</a></li>
-                                                                </c:if>                
-                                                        </ul>
-                                                    </c:when>
-
-                                                    <c:when test = "${param.action == 'listBy'}">
-                                                        <ul class="pagination">
-
-                                                            <c:if test="${currentPage != 1}">
-                                                                <li class="page-item"><a href="orderDetail?action=listBy&category=${param.category}&page=${currentPage - 1}">Previous</a></li>
-                                                                </c:if>
-                                                                <c:forEach begin="1" end="${noOfPages}" var="i">
-                                                                    <c:choose>
-                                                                        <c:when test="${currentPage eq i}">
-                                                                        <li class="page-item"><a class="page-link">${i}</a></li>
-                                                                        </c:when>
-                                                                        <c:otherwise>
-                                                                        <li class="page-item"><a href="orderDetail?action=listBy&category=${param.category}&page=${i}" class="page-link">${i}</a></li>
-                                                                        </c:otherwise>
-                                                                    </c:choose>
-                                                                </c:forEach>
-
-                                                            <c:if test="${currentPage lt noOfPages}">
-                                                                <li class="page-item"><a href="orderDetail?action=listBy&category=${param.category}&page=${currentPage + 1}">Next</a></li>
-                                                                </c:if>                
-                                                        </ul>
-                                                    </c:when>
-
-                                                    <c:when test = "${param.action == 'search'}">
-                                                        <ul class="pagination">
-
-                                                            <c:if test="${currentPage != 1}">
-                                                                <li class="page-item"><a href="orderDetail?action=search&by=${param.by}&keyword=${param.keyword}&page=${currentPage - 1}">Previous</a></li>
-                                                                </c:if>
-                                                                <c:forEach begin="1" end="${noOfPages}" var="i">
-                                                                    <c:choose>
-                                                                        <c:when test="${currentPage eq i}">
-                                                                        <li class="page-item"><a class="page-link">${i}</a></li>
-                                                                        </c:when>
-                                                                        <c:otherwise>
-                                                                        <li class="page-item"><a href="orderDetail?action=search&by=${param.by}&keyword=${param.keyword}&page=${i}" class="page-link">${i}</a></li>
-                                                                        </c:otherwise>
-                                                                    </c:choose>
-                                                                </c:forEach>
-
-                                                            <c:if test="${currentPage lt noOfPages}">
-                                                                <li class="page-item"><a href="orderDetail?action=search&by=${param.by}&keyword=${param.keyword}&page=${currentPage + 1}">Next</a></li>
-                                                                </c:if>                
-                                                        </ul>
-                                                    </c:when>
-
-                                                    <c:otherwise>
-                                                        <ul class="pagination">
-
-                                                            <c:if test="${currentPage != 1}">
-                                                                <li class="page-item"><a href="orderDetail?page=${currentPage - 1}">Previous</a></li>
-                                                                </c:if>
-                                                                <c:forEach begin="1" end="${noOfPages}" var="i">
-                                                                    <c:choose>
-                                                                        <c:when test="${currentPage eq i}">
-                                                                        <li class="page-item"><a class="page-link">${i}</a></li>
-                                                                        </c:when>
-                                                                        <c:otherwise>
-                                                                        <li class="page-item"><a href="orderDetail?page=${i}" class="page-link">${i}</a></li>
-                                                                        </c:otherwise>
-                                                                    </c:choose>
-                                                                </c:forEach>
-
-                                                            <c:if test="${currentPage lt noOfPages}">
-                                                                <li class="page-item"><a href="orderDetail?page=${currentPage + 1}">Next</a></li>
-
-                                                            </c:if>                
-                                                        </ul>
-                                                    </c:otherwise>
-                                                </c:choose>
 
 
                                             </div>

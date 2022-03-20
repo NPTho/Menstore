@@ -37,8 +37,8 @@ public class OrderController extends HttpServlet {
             doGet_Update(request, response);
         } else if(action.equals("delete")){
             doPost_delete(request, response);
-        } else if(action.equals("search")){
-            
+        } else if(action.equals("listBY")){
+            doPost_listBy(request, response);
         }
     }
 
@@ -154,5 +154,9 @@ public class OrderController extends HttpServlet {
         }
 
         doGet_Display(request, response);
+    }
+
+    protected void doPost_listBy(HttpServletRequest request, HttpServletResponse response) {
+        
     }
 }
