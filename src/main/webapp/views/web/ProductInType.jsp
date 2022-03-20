@@ -78,6 +78,12 @@
                 <div class="main">
                     <div class="top_main">
                         <a style="position: absolute;" href="products">Trở lại</a>
+                        <c:if test="${(param.listType=='Ao' || param.listType=='Quan' || param.listType=='Giay')}">
+                            <a style="position: right;" href="products?listType=${param.listType}&sort=UP">UP</a>
+
+
+                            <a style="position: right;" href="products?listType=${param.listType}&sort=DOWN">DOWN</a>
+                        </c:if>
                         <br>
                         <div class="clear"></div>
                     </div>
@@ -114,31 +120,59 @@
                     </c:forEach>
 
                     <div class="clear"></div>   <br>       
-
-
+                    
                     <c:if test="${(param.listType=='Ao' || param.listType=='Quan' || param.listType=='Giay')}">
-                        <div style="text-align: center; margin-top: 20px;">
-                            <div class="pagination">
-                                <c:if test="${currentPage != 1}">
-                                    <a href="products?listType=${requestScope.listType}&page=${currentPage - 1}">PREVIOUS</a>
-                                </c:if>
-                                <c:forEach begin="1" end="${noOfPages}" var="i">
-                                    <c:choose>
-                                        <c:when test="${currentPage eq i}">
-                                            <a class="page-link active">${i}</a>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <a href="products?listType=${requestScope.listType}&page=${i}" class="page-link">${i}</a>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
+                        <c:if test="${(param.sort==null)}">
+                            <div style="text-align: center; margin-top: 20px;">
+                                <div class="pagination">
+                                    <c:if test="${currentPage != 1}">
+                                        <a href="products?listType=${requestScope.listType}&page=${currentPage - 1}">PREVIOUS</a>
+                                    </c:if>
+                                    <c:forEach begin="1" end="${noOfPages}" var="i">
+                                        <c:choose>
+                                            <c:when test="${currentPage eq i}">
+                                                <a class="page-link active">${i}</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="products?listType=${requestScope.listType}&page=${i}" class="page-link">${i}</a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
 
-                                <c:if test="${currentPage lt noOfPages}">
-                                    <a href="products?listType=${requestScope.listType}&page=${currentPage + 1}">NEXT</a>
-                                </c:if>   
+                                    <c:if test="${currentPage lt noOfPages}">
+                                        <a href="products?listType=${requestScope.listType}&page=${currentPage + 1}">NEXT</a>
+                                    </c:if>   
+                                </div>
                             </div>
-                        </div>
+                        </c:if>
+
+
+                        <c:if test="${(param.sort!=null)}">
+                            <div style="text-align: center; margin-top: 20px;">
+                                <div class="pagination">
+                                    <c:if test="${currentPage != 1}">
+                                        <a href="products?listType=${requestScope.listType}&sort=${requestScope.sort}&page=${currentPage - 1}">PREVIOUS</a>
+                                    </c:if>
+                                    <c:forEach begin="1" end="${noOfPages}" var="i">
+                                        <c:choose>
+                                            <c:when test="${currentPage eq i}">
+                                                <a class="page-link active">${i}</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="products?listType=${requestScope.listType}&sort=${requestScope.sort}&page=${i}" class="page-link">${i}</a>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+
+                                    <c:if test="${currentPage lt noOfPages}">
+                                        <a href="products?listType=${requestScope.listType}&sort=${requestScope.sort}&page=${currentPage + 1}">NEXT</a>
+                                    </c:if>   
+                                </div>
+                            </div>
+                        </c:if>
                     </c:if>
+
+
 
                 </div>
             </div>

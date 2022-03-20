@@ -841,4 +841,63 @@ public class WebProductDAO implements IProductDAO {
         System.out.println(product);
         return product;
     }
+
+    public List<Product> showListByPrice(int start, int recordsPerPage, String catagory, String sort) {
+        ArrayList<Product> list;
+        list = new ArrayList<Product>();
+        String direct = sort.equals("UP") ? "ASC" : "DESC";
+        String sql = "";
+
+        if (catagory.equals("Ao")) {
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+                    + " From Product p\n"
+                    + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " ORDER BY Price " + direct + "\n"
+                    + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        } else if (catagory.equals("Quan")) {
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+                    + " From Product p\n"
+                    + " WHERE CategoryID like 'QJ' OR CategoryID like 'QT'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " ORDER BY Price " + direct + "\n"
+                    + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        } else {
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+                    + " From Product p\n"
+                    + " WHERE CategoryID like 'GI'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " ORDER BY Price " + direct + "\n"
+                    + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
+        }
+
+        try {
+
+            Connection conn = DBUtils.getConnection();
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, start);
+            ps.setInt(2, recordsPerPage);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                product.setProductName(rs.getString("ProductName"));
+                product.setPrice(rs.getInt("Price"));
+                product.setDiscount(rs.getFloat("Discount"));
+                product.setLinkImage(rs.getString("Link_image"));
+                product.setCategoryId(rs.getString("CategoryID"));
+                list.add(product);
+            }
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+
+        }
+
+        return list;
+    }
 }

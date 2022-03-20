@@ -37,7 +37,7 @@ public class ProductController extends HttpServlet {
             doDisplayList(request, response);
         } else if (listType.equals("OnSale")) {
             doDisplay(request, response);
-        } else{
+        } else {
             doDisplaySearchList(request, response);
         }
 
@@ -54,17 +54,20 @@ public class ProductController extends HttpServlet {
         if (request.getParameter("page") != null) {
             page = Integer.parseInt(request.getParameter("page"));
         }
-
+        /*
+        if (sort == "UP") {
+            list = ((WebProductDAO) webProductDAO).sortUpList(listType);
+        }
+         */
         int noOfRecords = ((WebProductDAO) webProductDAO).getNoOfRecordsBy(listType);
         int noOfPages = (int) Math.ceil(noOfRecords * 1.0 / recordsPerPage);
-        
+
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
         request.setAttribute("listType", listType);
-        
+
         list = ((WebProductDAO) webProductDAO).searchList(listType);
         request.setAttribute("list", list);
-
         RequestDispatcher rd = request.getRequestDispatcher("views/web/ProductInType.jsp");
         rd.forward(request, response);
     }
@@ -73,6 +76,8 @@ public class ProductController extends HttpServlet {
             throws ServletException, IOException {
         IProductDAO webProductDAO = new WebProductDAO();
         String listType = request.getParameter("listType");
+        String sort = request.getParameter("sort");
+
         List<Product> list = new ArrayList<>();
 
         int page = 1;
@@ -87,10 +92,14 @@ public class ProductController extends HttpServlet {
         request.setAttribute("noOfPages", noOfPages);
         request.setAttribute("currentPage", page);
         request.setAttribute("listType", listType);
-
-        list = ((WebProductDAO) webProductDAO).showList((page - 1) * recordsPerPage, recordsPerPage, listType);
-        request.setAttribute("list", list);
-
+        request.setAttribute("sort", sort);
+        if (sort!= null) {
+            list = ((WebProductDAO) webProductDAO).showListByPrice((page - 1) * recordsPerPage, recordsPerPage, listType, sort);
+            request.setAttribute("list", list);
+        } else {
+            list = ((WebProductDAO) webProductDAO).showList((page - 1) * recordsPerPage, recordsPerPage, listType);
+            request.setAttribute("list", list);
+        }
         RequestDispatcher rd = request.getRequestDispatcher("views/web/ProductInType.jsp");
         rd.forward(request, response);
     }
