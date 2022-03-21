@@ -86,7 +86,7 @@ public class WebProductDAO implements IProductDAO {
         String sql = "Select Top 3 p.ProductID, p.ProductName, p.Price, p.Discount, p.Link_image, sum(o.Quantity) as 'Sold'\n"
                 + " From Product p join OrderDetail o on p.ProductID = o.ProductID\n"
                 + " Group by p.ProductID, p.ProductName, p.Price, p.Link_image, p.Discount\n"
-                + " Order by Sold desc";
+                + " Order by (p.Price-((p.Price*p.Discount)/100)) desc";
 
         try {
 
@@ -121,7 +121,8 @@ public class WebProductDAO implements IProductDAO {
 
         String sql = "Select Top 7 p.ProductName, p.Price, p.Discount, p.Link_image\n"
                 + " From Product p \n"
-                + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount";
+                + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount"
+                + " Order by (p.Price-((p.Price*p.Discount)/100))";
 
         try {
 
@@ -853,21 +854,21 @@ public class WebProductDAO implements IProductDAO {
                     + " From Product p\n"
                     + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
                     + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
-                    + " ORDER BY Price " + direct + "\n"
+                    + " ORDER BY (p.Price-((p.Price*p.Discount)/100)) " + direct + "\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         } else if (catagory.equals("Quan")) {
             sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
                     + " From Product p\n"
                     + " WHERE CategoryID like 'QJ' OR CategoryID like 'QT'\n"
                     + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
-                    + " ORDER BY Price " + direct + "\n"
+                    + " ORDER BY (p.Price-((p.Price*p.Discount)/100)) " + direct + "\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         } else {
             sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
                     + " From Product p\n"
                     + " WHERE CategoryID like 'GI'\n"
                     + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
-                    + " ORDER BY Price " + direct + "\n"
+                    + " ORDER BY (p.Price-((p.Price*p.Discount)/100)) " + direct + "\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         }
 

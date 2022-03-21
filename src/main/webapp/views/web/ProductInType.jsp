@@ -79,10 +79,10 @@
                     <div class="top_main">
                         <a style="position: absolute;" href="products">Trở lại</a>
                         <c:if test="${(param.listType=='Ao' || param.listType=='Quan' || param.listType=='Giay')}">
-                            <a style="position: right;" href="products?listType=${param.listType}&sort=UP">UP</a>
+                            <a style="position: right;" href="products?listType=${param.listType}&sort=UP">Sắp xếp Tăng Dần</a>
 
 
-                            <a style="position: right;" href="products?listType=${param.listType}&sort=DOWN">DOWN</a>
+                            <a style="position: right;" href="products?listType=${param.listType}&sort=DOWN">Sắp xếp Giảm Dần</a>
                         </c:if>
                         <br>
                         <div class="clear"></div>
