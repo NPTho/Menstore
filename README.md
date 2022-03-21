@@ -101,4 +101,7 @@ ER Model in details:
       
       
    * **Future improving:**
-    
+      * Update More Payment Method like Pay by Credit cart, Visa card, Mastercard, ...
+      * Update More Displays for Graphic User Interface like News Item, Most Sale Items, Related Items... 
+      * Re-organize and sort The Code more logically.
+      * Update Database to be more efficient.
