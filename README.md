@@ -83,12 +83,12 @@ ER Model in details:
 
 
 ## `Conclusion and Discussion`
-* **The Pros and Cons**
-   *The Pros:
-      + Accomodating sufficient features for a common `Web Store`
-      + Graphical User Interface is designed to be user-friendly, eye-catching, and elegant
-      + An useful data-storing System is developed to facilitate the information-input, information-storing for users
-   *The Cons:
-      + Some small errors occur related to session `time out`
-      + Graphical User Interface is considered to be simple and stereotypic
-      + Features is sufficient but not efficient yet
+   * **The Pros and Cons**
+      * The Pros:
+         * Accomodating sufficient features for a common `Web Store`
+         * Graphical User Interface is designed to be user-friendly, eye-catching, and elegant
+         * An useful data-storing System is developed to facilitate the information-input, information-storing for users
+      * The Cons:
+         * Some small errors occur related to session `time out`
+         * Graphical User Interface is considered to be simple and stereotypic
+         * Features is sufficient but not efficient yet
