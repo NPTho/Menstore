@@ -92,3 +92,10 @@ ER Model in details:
          * Some small errors occur related to session `time out`
          * Graphical User Interface is considered to be simple and stereotypic
          * Features is sufficient but not efficient yet
+    * **Exprience gained:**
+      * To finish a completed Project. It is sufficient for the Team to have an excellent teamwork.
+      * The Coding needs to be dispatch logically and orderly among teammates to prevent Code misunderstanding, moreover, make it easy to fix and upgrade.
+      * Every changes related to coding need to be annouced and unified to avoid from Update-errors from github.
+      * Designing a great database is vital for team in terms of developing web application in future.
+    * **Future improving:**
+      *  
