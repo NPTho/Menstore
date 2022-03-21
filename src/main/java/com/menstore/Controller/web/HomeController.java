@@ -28,17 +28,17 @@ public class HomeController extends HttpServlet {
         List<Product> list = new ArrayList<>();
         List<Product> top7list = new ArrayList<>();
         List<Product> top7Randomlist = new ArrayList<>();
-        List<Product> top3Randomlist = new ArrayList<>();
+        List<Product> top3Cheapestlist = new ArrayList<>();
 
         list = ((WebProductDAO) webProductDAO).top3_list();
         top7list = ((WebProductDAO) webProductDAO).top7_list();
         top7Randomlist = ((WebProductDAO) webProductDAO).top7_random_list();
-        top3Randomlist = ((WebProductDAO) webProductDAO).top3_random_list();
+        top3Cheapestlist = ((WebProductDAO) webProductDAO).top3_cheapest_list();
 
         request.setAttribute("list", list);
         request.setAttribute("top7list", top7list);
         request.setAttribute("top7Randomlist", top7Randomlist);
-        request.setAttribute("top3Randomlist", top3Randomlist);
+        request.setAttribute("top3Cheapestlist", top3Cheapestlist);
 
         RequestDispatcher rd = request.getRequestDispatcher("/views/web/home.jsp");
         rd.forward(request, response);

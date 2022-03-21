@@ -185,14 +185,14 @@ public class WebProductDAO implements IProductDAO {
         return list;
     }
 
-    public List<Product> top3_random_list() {
+    public List<Product> top3_cheapest_list() {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
         String sql = "Select Top 3 p.ProductName, p.Price, p.Discount, p.Link_image\n"
                 + " From Product p \n"
                 + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount"
-                + " Order by newid()";
+                + " Order by (p.Price-((p.Price*p.Discount)/100))";
 
         try {
 
@@ -228,7 +228,7 @@ public class WebProductDAO implements IProductDAO {
                 + " From Product p\n"
                 + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
                 + " Group by ProductName, Price, Link_image, Discount,CategoryID"
-                + " Order by Discount desc";
+                + " Order by (p.Price-((p.Price*p.Discount)/100)) asc";
 
         try {
 
@@ -265,7 +265,7 @@ public class WebProductDAO implements IProductDAO {
                 + " From Product p\n"
                 + " WHERE CategoryID like 'QJ' or CategoryID like 'QT' \n"
                 + " Group by ProductName, Price, Link_image, Discount,CategoryID"
-                + " Order by Discount desc";
+                + " Order by (p.Price-((p.Price*p.Discount)/100)) asc";
         try {
 
             Connection conn = DBUtils.getConnection();
@@ -301,7 +301,7 @@ public class WebProductDAO implements IProductDAO {
                 + " From Product p\n"
                 + " WHERE CategoryID like 'GI' \n"
                 + " Group by ProductName, Price, Link_image, Discount,CategoryID"
-                + " Order by Discount desc";
+                + " Order by (p.Price-((p.Price*p.Discount)/100)) asc";
 
         try {
 

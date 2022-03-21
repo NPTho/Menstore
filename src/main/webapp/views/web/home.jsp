@@ -99,13 +99,13 @@
                         </ul>
                         <!-- ei-slider-large -->
                         <ul class="ei-slider-thumbs">                            
-                            <c:set var="productList" value="${requestScope.top7list}" />                          
+                            <c:set var="productList" value="${requestScope.top7Randomlist}" />                          
                             <c:forEach var="product" items="${productList}">
                                 <c:url var="productDetail" value="${request.contextPath}/detail" scope="request">
                                     <c:param name="productName" value="${product.productName}"></c:param>
                                 </c:url>
-                                <li><a href="${productDetail}"><span style="font-size:0.35cm">${product.productName}</span> <p></p></a><img src="${product.linkImage}" alt="thumb07" /></li>
-                                </c:forEach>
+                                <li><a href=""><span style="font-size:0.35cm">${product.productName}</span> <p></p></a><img src="${product.linkImage}" alt="thumb07" /></li>
+                            </c:forEach>
 
                         </ul><!-- ei-slider-thumbs -->
 
@@ -161,7 +161,7 @@
                         <div class="clear"></div>
                     </div>
 
-                    <c:set var="productList" value="${requestScope.top3Randomlist}" />
+                    <c:set var="productList" value="${requestScope.top3Cheapestlist}" />
                     <div class="grids_of_3">
                         <c:forEach var="product" items="${productList}">
                             <tag:show3Product name="${product.productName}" image="${product.linkImage}" price="${product.price}" discount="${product.discount}"/>                                   

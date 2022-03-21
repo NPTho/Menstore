@@ -53,7 +53,7 @@
             <div class="wrap">
                 <div class="main">
                     <div class="top_main">
-                        <h2>Áo/Áo khoác</h2>
+                        <h2>Áo thun/Sơ mi</h2>
                         <a href="products?listType=Ao">show all</a>
                         <div class="clear"></div>
                     </div>
