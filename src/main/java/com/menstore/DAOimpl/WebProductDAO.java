@@ -902,9 +902,10 @@ public class WebProductDAO implements IProductDAO {
         return list;
     }
 
+    @Override
     public ArrayList<String> findSizes(String name) {
         ArrayList<String> sizes = new ArrayList<>();
-        String sql = "SELECT size FROM Product WHERE ProductName = ?";
+        String sql = "SELECT size FROM Product WHERE ProductName = ? AND Status = 'On'";
 
         try {
 
