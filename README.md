@@ -82,4 +82,13 @@ ER Model in details:
 ![image](https://user-images.githubusercontent.com/90202401/159243018-76137b64-61d8-47db-b82d-d91a5ad90354.png)
 
 
-
+## `Conclusion and Discussion`
+* **The Pros and Cons**
+   *The Pros:
+      + Accomodating sufficient features for a common `Web Store`
+      + Graphical User Interface is designed to be user-friendly, eye-catching, and elegant
+      + An useful data-storing System is developed to facilitate the information-input, information-storing for users
+   *The Cons:
+      + Some small errors occur related to session `time out`
+      + Graphical User Interface is considered to be simple and stereotypic
+      + Features is sufficient but not efficient yet
