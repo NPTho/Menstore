@@ -172,15 +172,15 @@
             <!--end scroll_top_btn -->
             <div class="f_nav1">
                 <ul>
-                    <li><a href="#">home /</a></li>
-                    <li><a href="#">support /</a></li>
-                    <li><a href="#">Terms and conditions /</a></li>
-                    <li><a href="#">Faqs /</a></li>
-                    <li><a href="#">Contact us</a></li>
+                    <li><a href="${pageContext.request.contextPath}/home">home /</a></li>
+                    <li><a href="https://www.facebook.com/hoang.duy.794/">supporter 1 /</a></li>
+                    <li><a href="https://www.facebook.com/TrGiang.ne">supporter 2 /</a></li>
+                    <li><a href="https://www.facebook.com/Ivor.Eoss">supporter 3 /</a></li>
+                    <li><a href="https://www.facebook.com/DinhPhanHaiTrieu">supporter 4</a></li>
                 </ul>
             </div>
             <div class="copy">
-                <p class="link"><span>© All rights reserved | Template by&nbsp;<a href="http://w3layouts.com/"> W3Layouts</a></span></p>
+                <p class="link"><span>© All rights reserved | Designed by Group 3 - SE1602</span></p>
             </div>
             <div class="clear"></div>
         </div>

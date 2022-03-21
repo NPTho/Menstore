@@ -104,7 +104,7 @@
                                 <c:url var="productDetail" value="${request.contextPath}/detail" scope="request">
                                     <c:param name="productName" value="${product.productName}"></c:param>
                                 </c:url>
-                                <li><a href="${productDetail}"><span>Hot Item</span> <p></p></a><img src="${product.linkImage}" alt="thumb07" /></li>
+                                <li><a href="${productDetail}"><span style="font-size:0.35cm">${product.productName}</span> <p></p></a><img src="${product.linkImage}" alt="thumb07" /></li>
                                 </c:forEach>
 
                         </ul><!-- ei-slider-thumbs -->

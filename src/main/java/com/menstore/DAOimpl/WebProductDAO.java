@@ -900,9 +900,9 @@ public class WebProductDAO implements IProductDAO {
 
         return list;
     }
-    
-        public ArrayList<String> findSizes(String name) {
-        ArrayList<String> sizes= new ArrayList<>();
+
+    public ArrayList<String> findSizes(String name) {
+        ArrayList<String> sizes = new ArrayList<>();
         String sql = "SELECT size FROM Product WHERE ProductName = ?";
 
         try {
