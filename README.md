@@ -101,7 +101,7 @@ ER Model in details:
       
       
    * **Future improving:**
-      * Update More Payment Method like Pay by Credit cart, Visa card, Mastercard, ...
+      * Update More Payment Method like Pay by Credit card, Visa card, Mastercard, ...
       * Customer will be able to check their purchase history and their orders' status.
       * Admin can set up how much money granted each Bonus Point.
       * Admin can design which items will be top-priority in display.
