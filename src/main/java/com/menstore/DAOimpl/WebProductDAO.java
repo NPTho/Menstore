@@ -27,24 +27,24 @@ public class WebProductDAO implements IProductDAO {
         String sql = "";
 
         if (catagory.equals("Ao")) {
-            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID, Status\n"
                     + " From Product p\n"
-                    + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
-                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " WHERE (CategoryID like 'AT' or CategoryID like 'SM') AND Status like 'On'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID, Status\n"
                     + " ORDER BY ProductName\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         } else if (catagory.equals("Quan")) {
-            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID, Status\n"
                     + " From Product p\n"
-                    + " WHERE CategoryID like 'QJ' OR CategoryID like 'QT'\n"
-                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " WHERE (CategoryID like 'QJ' OR CategoryID like 'QT') AND Status like 'On'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID, Status\n"
                     + " ORDER BY ProductName\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         } else {
-            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID, Status\n"
                     + " From Product p\n"
-                    + " WHERE CategoryID like 'GI'\n"
-                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " WHERE CategoryID like 'GI' AND Status like 'On'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID, Status\n"
                     + " ORDER BY ProductName\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         }
@@ -83,9 +83,10 @@ public class WebProductDAO implements IProductDAO {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
-        String sql = "Select Top 3 p.ProductID, p.ProductName, p.Price, p.Discount, p.Link_image, sum(o.Quantity) as 'Sold'\n"
+        String sql = "Select Top 3 p.ProductID, p.ProductName, p.Price, p.Discount, p.Link_image, p.Status,sum(o.Quantity) as 'Sold'\n"
                 + " From Product p join OrderDetail o on p.ProductID = o.ProductID\n"
-                + " Group by p.ProductID, p.ProductName, p.Price, p.Link_image, p.Discount\n"
+                + " WHERE Status like 'On'\n"
+                + " Group by p.ProductID, p.ProductName, p.Price, p.Link_image, p.Discount, p.Status\n"
                 + " Order by (p.Price-((p.Price*p.Discount)/100)) desc";
 
         try {
@@ -121,6 +122,7 @@ public class WebProductDAO implements IProductDAO {
 
         String sql = "Select Top 7 p.ProductName, p.Price, p.Discount, p.Link_image\n"
                 + " From Product p \n"
+                + " WHERE Status like 'On'\n"
                 + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount"
                 + " Order by (p.Price-((p.Price*p.Discount)/100))";
 
@@ -154,9 +156,10 @@ public class WebProductDAO implements IProductDAO {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
-        String sql = "Select Top 7 p.ProductName, p.Price, p.Discount, p.Link_image\n"
+        String sql = "Select Top 7 p.ProductName, p.Price, p.Discount, p.Link_image, p.Status\n"
                 + " From Product p \n"
-                + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount"
+                + " WHERE Status like 'On'\n"
+                + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount, p.Status\n"
                 + " Order by newid()";
 
         try {
@@ -189,10 +192,11 @@ public class WebProductDAO implements IProductDAO {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
-        String sql = "Select Top 3 p.ProductName, p.Price, p.Discount, p.Link_image\n"
+        String sql = "Select Top 3 p.ProductName, p.Price, p.Discount, p.Link_image, p.Status\n"
                 + " From Product p \n"
-                + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount"
-                + " Order by (p.Price-((p.Price*p.Discount)/100))";
+                + " WHERE Status like 'On'\n"
+                + " Group by  p.ProductName, p.Price, p.Link_image, p.Discount, p.Status"
+                + " Order by (p.Price-((p.Price*p.Discount)/100)) asc";
 
         try {
 
@@ -224,10 +228,10 @@ public class WebProductDAO implements IProductDAO {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
-        String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
+        String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID, Status\n"
                 + " From Product p\n"
-                + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
-                + " Group by ProductName, Price, Link_image, Discount,CategoryID"
+                + " WHERE (CategoryID like 'AT' or CategoryID like 'SM') AND Status like 'On'\n"
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID, Status"
                 + " Order by (p.Price-((p.Price*p.Discount)/100)) asc";
 
         try {
@@ -261,10 +265,10 @@ public class WebProductDAO implements IProductDAO {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
-        String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
+        String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID, Status\n"
                 + " From Product p\n"
-                + " WHERE CategoryID like 'QJ' or CategoryID like 'QT' \n"
-                + " Group by ProductName, Price, Link_image, Discount,CategoryID"
+                + " WHERE (CategoryID like 'QJ' or CategoryID like 'QT') AND Status like 'On'\n"
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID, Status"
                 + " Order by (p.Price-((p.Price*p.Discount)/100)) asc";
         try {
 
@@ -297,10 +301,10 @@ public class WebProductDAO implements IProductDAO {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
 
-        String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID\n"
+        String sql = "Select TOP 3 ProductName, Price,Discount, Link_image, CategoryID, Status\n"
                 + " From Product p\n"
-                + " WHERE CategoryID like 'GI' \n"
-                + " Group by ProductName, Price, Link_image, Discount,CategoryID"
+                + " WHERE CategoryID like 'GI' AND Status like 'On'\n"
+                + " Group by ProductName, Price, Link_image, Discount,CategoryID, Status"
                 + " Order by (p.Price-((p.Price*p.Discount)/100)) asc";
 
         try {
@@ -482,10 +486,10 @@ public class WebProductDAO implements IProductDAO {
     public List<Product> searchList(String name) {
         ArrayList<Product> list;
         list = new ArrayList<Product>();
-        String sql = " SELECT ProductName, Price, Discount, Link_image, CategoryID"
+        String sql = " SELECT ProductName, Price, Discount, Link_image, CategoryID, Status"
                 + " FROM Product "
-                + " WHERE ProductName like ? \n"
-                + " GROUP BY ProductName, Price, Discount, Link_image, CategoryID";
+                + " WHERE ProductName like ? AND Status like 'On'\n"
+                + " GROUP BY ProductName, Price, Discount, Link_image, CategoryID, Status";
 
         try {
 
@@ -774,7 +778,7 @@ public class WebProductDAO implements IProductDAO {
     @Override
     public Product find(String name) {
         Product product = new Product();
-        String sql = "SELECT * FROM Product WHERE ProductName = ?";
+        String sql = "SELECT * FROM Product WHERE ProductName = ? AND Status like 'On'";
 
         try {
 
@@ -809,7 +813,7 @@ public class WebProductDAO implements IProductDAO {
 
     public Product find(String name, String size) {
         Product product = new Product();
-        String sql = "SELECT * FROM Product WHERE ProductName like ? and Size like ?";
+        String sql = "SELECT * FROM Product WHERE ProductName like ? and Size like ? AND Status like 'On'";
 
         try {
 
@@ -850,24 +854,24 @@ public class WebProductDAO implements IProductDAO {
         String sql = "";
 
         if (catagory.equals("Ao")) {
-            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID, Status\n"
                     + " From Product p\n"
-                    + " WHERE CategoryID like 'AT' or CategoryID like 'SM'\n"
-                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " WHERE (CategoryID like 'AT' or CategoryID like 'SM') AND Status like 'On'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID, Status\n"
                     + " ORDER BY (p.Price-((p.Price*p.Discount)/100)) " + direct + "\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         } else if (catagory.equals("Quan")) {
-            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID, Status\n"
                     + " From Product p\n"
-                    + " WHERE CategoryID like 'QJ' OR CategoryID like 'QT'\n"
-                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " WHERE (CategoryID like 'QJ' OR CategoryID like 'QT') AND Status like 'On'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID, Status\n"
                     + " ORDER BY (p.Price-((p.Price*p.Discount)/100)) " + direct + "\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         } else {
-            sql = "Select ProductName, Price, Discount, Link_image, CategoryID\n"
+            sql = "Select ProductName, Price, Discount, Link_image, CategoryID, Status\n"
                     + " From Product p\n"
-                    + " WHERE CategoryID like 'GI'\n"
-                    + " Group by ProductName, Price, Link_image, Discount, CategoryID\n"
+                    + " WHERE CategoryID like 'GI' AND Status like 'On'\n"
+                    + " Group by ProductName, Price, Link_image, Discount, CategoryID, Status\n"
                     + " ORDER BY (p.Price-((p.Price*p.Discount)/100)) " + direct + "\n"
                     + " OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
         }
