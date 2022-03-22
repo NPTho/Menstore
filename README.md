@@ -14,7 +14,7 @@ MenStore is a clothing store website for men. Providing a modern perspective on 
     * User can add products to their cart and purchase them.
     * User can remove product from their cart and purchase them.
     * User can use voucher to save money if they meet the requirement
-    * Recommend best seller, newest or sale items
+    * Recommend best seller, sale items
     * Sort items by price
     * Divide items by type
     * Search for item
