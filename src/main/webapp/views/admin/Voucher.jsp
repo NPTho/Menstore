@@ -82,7 +82,7 @@
                                             </div>
 
                                             <div class="col-sm-6">
-                                                <input style="background-color: red; cursor: pointer;" value="Xóa voucher" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Are you sure you want to delete these Records?')"/> 
+                                                <input style="background-color: red; cursor: pointer;" value="Xóa voucher" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Xóa voucher có thể dẫn đến mất dữ liệu hệ thống, bạn có chắc muốn xóa?')"/> 
                                                 <a style="background-color: #00BCD4;" href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">Thêm voucher</a>
                                             </div>
                                         </div>
@@ -302,8 +302,8 @@
 
                                     </div>
                                     <div class="modal-footer">
-                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                        <input type="submit" class="btn btn-success" value="Add">
+                                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy">
+                                        <input type="Thêm" class="btn btn-success" value="Add">
                                     </div>
                                 </form>
                             </div>

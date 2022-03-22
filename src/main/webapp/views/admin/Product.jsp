@@ -103,7 +103,7 @@
                                             </div>
 
                                             <div class="col-sm-6">
-                                                <input style="background-color: red; cursor: pointer;" value="Xóa sảm phẩm" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Bạn có chắc xóa những sản phẩm này?')"/> 
+                                                <input style="background-color: red; cursor: pointer;" value="Xóa sảm phẩm" type="submit" class="btn btn-danger" data-toggle="modal" onclick="return confirm('Xóa sản phẩm có thể dẫn đến mất dữ liệu hệ thống, bạn có chắc muốn xóa??')"/> 
                                                 <a href="#addEmployeeModal" class="btn btn-success" style="background-color: #00BCD4" data-toggle="modal">Thêm sản phẩm</a>
                                             </div>
                                         </div>
