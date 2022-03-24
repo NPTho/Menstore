@@ -329,7 +329,7 @@
                                         <c:if test="${not empty userPoint}">
                                             <c:if test="${userPoint.user.point>0}">
                                                 <div style="text-align: center; padding: 2px; margin-left: 15px; margin-top: 15px; color: #007bff">
-                                                    Giảm giá từ Điểm thưởng: -${userPoint.user.point}k
+                                                    Giảm giá từ Điểm thưởng: -${userPoint.user.point*1000>cart.total?((cart.total)/1000):(userPoint.user.point)}k
                                                 </div>
                                             </c:if>
                                         </c:if> 
@@ -359,8 +359,8 @@
                                 <c:if test="${not empty checkedSs && checkedSs=='yes'}">
                                     <c:if test="${not empty userPoint}">
                                         <c:if test="${userPoint.user.point>0}">
-                                            <c:set var="tmpDis" value="${sessionScope.cart.discounted/1000}"/>
-                                            <span style="color:${colorDiscount}; font-size: 18px">-${tmpDis+userPoint.user.point}k (VNĐ)</span>
+                                            <c:set var="tmpDis" value="${userPoint.user.point*1000>cart.total?((cart.total)/1000):(userPoint.user.point)}"/>
+                                            <span style="color:${colorDiscount}; font-size: 18px">-${tmpDis}k (VNĐ)</span>
 
                                         </c:if>
                                     </c:if> 

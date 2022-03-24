@@ -116,9 +116,12 @@ public class CartController extends HttpServlet {
                     if (subTotal < 0) {
                         subTotal = 0;
                         discountedPrice = cart.getTotal();
-                    }
+                        userDAO.updatePoint(userId, (int) (user.getPoint() - cart.getTotal()/1000));
+                        user.setPoint((int) (user.getPoint() - cart.getTotal()/1000));
+                    } else{                       
                     userDAO.resetPoint(userId);
                     user.setPoint(0);
+                    }
                 } else if (checkPoint.equals("no")) {
                     int point = user.getPoint();
                     point += subTotal / 10000;

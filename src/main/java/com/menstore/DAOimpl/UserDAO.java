@@ -269,9 +269,8 @@ public class UserDAO implements IUserDAO {
             ps.setInt(1, point);
             ps.setString(2, userID);
 
-            ResultSet rs = ps.executeQuery();
 
-            while (rs.next()) {
+            if (ps.executeUpdate() > 0) {
                 return true;
             }
 
